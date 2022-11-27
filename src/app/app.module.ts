@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HelperModule } from './core/helpers/helper.module';
 import { ServicesModule } from './core/services/services.module';
+import { LottieModule } from 'ngx-lottie';
+import { playerFactory } from './modules/users/users.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +19,7 @@ import { ServicesModule } from './core/services/services.module';
     AppRoutingModule,
     HelperModule,
     ServicesModule,
+    LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

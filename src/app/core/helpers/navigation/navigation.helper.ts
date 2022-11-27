@@ -15,15 +15,13 @@ export class NavigationHelper {
     private readonly location: Location
   ) {}
 
-  public goToByUrl(params: GoToParams): void {
+  public openPage(params: GoToParams): void {
     this.router.navigateByUrl(params.route);
+    // '/users/sign-up'
+    // this.location.go(params.route);
   }
 
   public goBack(): void {
     this.location.back();
-  }
-
-  public goToLink(url: string): void {
-    window.open(url, '_blank');
   }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
-import { SessionService } from '../services/session/session.service';
-import { NavigationHelper } from '../helpers/navigation/navigation.helper';
-import { Routes } from '../enums/routes.enum';
+import { SessionService } from '../../services/session/session.service';
+import { NavigationHelper } from '../../helpers/navigation/navigation.helper';
+import { PageRoutes } from '../enums/routes.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +17,8 @@ export class AuthenticationGuard implements CanActivate {
     const isLogged = !!(await this.sessionService.getSessionToken());
 
     if (!isLogged) {
-      this.navigationHelper.goToByUrl({
-        route: `${Routes.Login}`,
+      this.navigationHelper.openPage({
+        route: `${PageRoutes.Login}`,
       });
     }
 
