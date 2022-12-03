@@ -8,19 +8,26 @@ import player from 'lottie-web';
 import { IonicModule } from '@ionic/angular';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SharedModule } from '../../shared/shared.module';
+import { RegistrationDetailsComponent } from './components/registration-details/registration-details.component';
+import { FormsModule } from '@angular/forms';
 
 export function playerFactory(): any {
   return import('lottie-web');
 }
 
 @NgModule({
-  declarations: [SignInComponent, SignUpComponent],
+  declarations: [
+    SignInComponent,
+    SignUpComponent,
+    RegistrationDetailsComponent,
+  ],
   imports: [
     CommonModule,
     UsersRoutingModule,
     LottieModule.forRoot({ player: playerFactory }),
     IonicModule,
     SharedModule,
+    FormsModule,
   ],
   providers: [UserAuthService],
 })

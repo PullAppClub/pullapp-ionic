@@ -1,0 +1,111 @@
+<!--<app-header></app-header>-->
+
+<ion-content>
+  <!-- Height div instead of header -->
+  <div style="height: 56px"></div>
+  <!-- ./Height div instead of header -->
+
+  <div>
+    <div class="max-w-lg mx-auto bg-white pl-8 pr-8 rounded-xl">
+      <img
+        src="/assets/img/muscle.svg"
+        alt="Welcome"
+        class="mx-auto"
+        style="width: 70%" />
+    </div>
+    <div class="max-w-lg mx-auto my-10 bg-white pl-8 pr-8 rounded-xl">
+      <div class="flex flex-col space-y-6">
+        <!--      <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>-->
+        <p class="text-3xl text-slate-800 mb-1 text-center mb-5">
+          Something about you
+        </p>
+
+        <!-- Gender Selection -->
+        <p class="text-2xl text-slate-800 text-left">Gender</p>
+
+        <div class="btn-group mx-auto">
+          <button
+            class="btn btn-outline"
+            [ngClass]="selectedGenderTab === gender.Male ? 'btn-active' : ''"
+            (click)="setSelectedGenderTab(gender.Male)">
+            Male
+          </button>
+          <button
+            class="btn btn-outline"
+            [ngClass]="selectedGenderTab === gender.Female ? 'btn-active' : ''"
+            (click)="setSelectedGenderTab(gender.Female)">
+            Female
+          </button>
+          <button
+            class="btn btn-outline"
+            [ngClass]="
+              selectedGenderTab === gender.NoBinary ? 'btn-active' : ''
+            "
+            (click)="setSelectedGenderTab(gender.NoBinary)">
+            No binary
+          </button>
+        </div>
+        <!-- ./Gender Selection -->
+
+        <!-- Height Selection -->
+        <div>
+          <p class="text-2xl text-slate-800 mb-1 text-left mt-5">
+            Height <span class="float-right"> {{ height }} cm</span>
+          </p>
+          <input
+            type="range"
+            min="100"
+            max="220"
+            [(ngModel)]="height"
+            class="range range-xs mt-2" />
+        </div>
+        <!-- ./Height Selection -->
+
+        <!-- Weight Selection -->
+        <div>
+          <p class="text-2xl text-slate-800 mb-1 text-left mt-5">
+            Weight <span class="float-right"> {{ weight }} kg</span>
+          </p>
+          <input
+            type="range"
+            min="35"
+            max="160"
+            [(ngModel)]="weight"
+            class="range range-xs mt-2" />
+        </div>
+        <!-- ./Weight Selection -->
+
+        <!-- Date of Birth Selection -->
+        <div>
+          <p class="text-2xl text-slate-800 mb-1 text-left mt-5">
+            Date of Birth
+          </p>
+          <!-- Calendar Popover -->
+          <div class="dropdown dropdown-top">
+            <button tabindex="0" class="btn btn-outline gap-2">
+              <ion-icon name="calendar" style="font-size: 16px"></ion-icon>
+              {{ birthday | date : 'dd/MM/yyyy' }}
+            </button>
+            <div
+              tabindex="0"
+              class="dropdown-content p-2 shadow menu w-96 bg-base-100 rounded-box">
+              <ion-datetime
+                presentation="date"
+                [(ngModel)]="birthday"></ion-datetime>
+            </div>
+          </div>
+          <!-- ./Calendar Popover -->
+        </div>
+        <!-- ./Date of Birth Selection -->
+
+        <button
+          class="btn bg-indigo-600 space-x-2 items-center justify-center mt-5 ml-auto w-40"
+          type="submit"
+          (click)="submit()"
+          [ngClass]="showSubmitSpinner ? 'loading disabled' : ''">
+          <span *ngIf="!showSubmitSpinner">submit</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ion-content>
