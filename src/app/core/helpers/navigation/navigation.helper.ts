@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { NavController } from '@ionic/angular';
 interface GoToParams {
   route: string;
   params?: object;
@@ -10,18 +9,20 @@ interface GoToParams {
   providedIn: 'root',
 })
 export class NavigationHelper {
-  constructor(
-    private readonly router: Router,
-    private readonly location: Location
-  ) {}
+  public history: string[] = [];
+
+  constructor(private readonly navController: NavController) {}
 
   public openPage(params: GoToParams): void {
-    this.router.navigateByUrl(params.route);
-    // '/users/sign-up'
-    // this.location.go(params.route);
+    this.navController
+      .navigateForward(params.route)
+      .then(() => this.history.push(params.route));
   }
 
   public goBack(): void {
-    this.location.back();
+    if (this.history.length > 0) {
+      this.navController.back();
+      this.history.pop();
+    }
   }
 }

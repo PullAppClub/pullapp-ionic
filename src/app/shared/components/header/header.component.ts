@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NavigationHelper } from '../../../core/helpers/navigation/navigation.helper';
 
 @Component({
@@ -7,6 +7,9 @@ import { NavigationHelper } from '../../../core/helpers/navigation/navigation.he
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input()
+  public title: string | undefined;
+
   constructor(public readonly navigationHelper: NavigationHelper) {}
 
   ngOnInit() {}
