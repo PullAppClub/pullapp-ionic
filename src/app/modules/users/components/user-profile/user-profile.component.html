@@ -1,0 +1,204 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="container">
+    <div class="grid mt-5">
+      <div class="avatar mx-auto">
+        <div class="w-32 rounded-full">
+          <img src="https://placeimg.com/192/192/people" />
+        </div>
+      </div>
+      <div>
+        <p class="text-2xl text-slate-900 font-bold mb-1 text-center mt-5">
+          @username
+        </p>
+      </div>
+
+      <div class="stats shadow mx-3 mt-5">
+        <div class="stat">
+          <div class="stat-figure text-secondary pt-3.5">
+            <span style="font-size: 30px" class="align-middle">💪</span>
+          </div>
+          <div class="stat-title">MP</div>
+          <div class="stat-value">90</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-figure text-secondary">
+            <div class="stat-figure text-secondary pt-3.5">
+              <span style="font-size: 30px" class="align-middle">🏆️</span>
+            </div>
+          </div>
+          <div class="stat-title">Ranking</div>
+          <div class="stat-value">150</div>
+        </div>
+      </div>
+
+      <!-- Events -->
+      <div class="px-4 mt-8">
+        <!--        <div class="mb-5">-->
+        <!--          <a-->
+        <!--            href="#"-->
+        <!--            class="block rounded-lg relative p-5 transform transition-all duration-300 scale-100 hover:scale-95"-->
+        <!--            style="-->
+        <!--              background: url(https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80)-->
+        <!--                center;-->
+        <!--              background-size: cover;-->
+        <!--              border-radius: 20px;-->
+        <!--            ">-->
+        <!--            <div class="h-48"></div>-->
+        <!--            <h2 class="text-white text-2xl font-bold leading-tight mb-3 pr-5">-->
+        <!--              Top 5 Cocktail Bars in&nbsp;NYC-->
+        <!--            </h2>-->
+        <!--            <div-->
+        <!--              class="flex w-full items-center text-sm text-gray-300 font-medium">-->
+        <!--              <div class="flex-1 flex items-center text-white">-->
+        <!--                <div-->
+        <!--                  class="rounded-full w-8 h-8 mr-3"-->
+        <!--                  style="-->
+        <!--                    background: url(https://randomuser.me/api/portraits/women/55.jpg)-->
+        <!--                      center;-->
+        <!--                    background-size: cover;-->
+        <!--                  "></div>-->
+        <!--                <div>Kayden Buckley</div>-->
+        <!--              </div>-->
+        <!--              <div><i class="mdi mdi-thumb-up"></i> 7</div>-->
+        <!--            </div>-->
+        <!--          </a>-->
+        <!--        </div>-->
+        <!-- Challenge Card -->
+        <div class="card w-96 bg-base-100 shadow-xl image-full mb-5">
+          <figure>
+            <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">Shoes!</h2>
+            <p>If a dog chews shoes whose shoes does he choose?</p>
+
+            <h2 class="text-xl">
+              Rewards 10 💪
+              <span style="float: right">Required 5 💪</span>
+            </h2>
+            <div class="card-actions justify-end mt-2">
+              <button class="btn btn-primary mr-auto">accept</button>
+
+              <div class="avatar-group -space-x-6">
+                <div class="avatar">
+                  <div class="w-9">
+                    <img src="https://placeimg.com/192/192/people" />
+                  </div>
+                </div>
+                <div class="avatar">
+                  <div class="w-9">
+                    <img src="https://placeimg.com/192/192/people" />
+                  </div>
+                </div>
+                <div class="avatar">
+                  <div class="w-9">
+                    <img src="https://placeimg.com/192/192/people" />
+                  </div>
+                </div>
+                <div class="avatar placeholder">
+                  <div class="w-9 bg-neutral-focus text-neutral-content">
+                    <span>+99</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ./Challenge Card -->
+
+        <!-- Spot Card -->
+        <div class="card card-side bg-base-100 shadow-xl mb-5">
+          <figure>
+            <img src="assets/img/share.svg" alt="share" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">Spot! 🌍️</h2>
+            <p>@username shared a new spot.</p>
+            <div class="card-actions justify-end">
+              <button class="btn btn-primary">Discover it</button>
+            </div>
+          </div>
+        </div>
+        <!-- ./Spot Card -->
+
+        <!-- Meeting Card -->
+        <div class="card card-side bg-base-100 shadow-xl mb-5">
+          <div class="card-body">
+            <h2 class="card-title">Meeting 🤝️</h2>
+            <p>@username shared a new spot.</p>
+            <div class="card-actions justify-start">
+              <button class="btn btn-primary">
+                <label for="my-modal-6">join</label>
+              </button>
+            </div>
+          </div>
+          <figure>
+            <img src="assets/img/meeting.svg" alt="share" />
+          </figure>
+        </div>
+        <!-- ./Meeting Card -->
+      </div>
+      <!-- ./Events -->
+    </div>
+  </div>
+  <!-- Meeting Modal -->
+  <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+  <div class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <label
+        for="my-modal-6"
+        class="btn btn-xs btn-circle absolute right-2 top-2"
+        >✕</label
+      >
+
+      <!-- Maps -->
+      <figure class="px-1 pt-1 overflow-hidden mt-2">
+        <div class="rounded-xl overflow-hidden">
+          <div id="map" style="height: 15em"></div>
+        </div>
+      </figure>
+      <!-- ./Maps -->
+
+      <h3 class="font-bold text-lg mt-5">Title</h3>
+      <p class="py-4">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco
+      </p>
+      <div class="modal-action">
+        <!-- Join Meeting -->
+        <button class="btn btn-primary mr-auto">Join</button>
+
+        <div class="avatar-group -space-x-6">
+          <div class="avatar">
+            <div class="w-9">
+              <img src="https://placeimg.com/192/192/people" />
+            </div>
+          </div>
+          <div class="avatar">
+            <div class="w-9">
+              <img src="https://placeimg.com/192/192/people" />
+            </div>
+          </div>
+          <div class="avatar">
+            <div class="w-9">
+              <img src="https://placeimg.com/192/192/people" />
+            </div>
+          </div>
+          <div class="avatar placeholder">
+            <div class="w-9 bg-neutral-focus text-neutral-content">
+              <span>+99</span>
+            </div>
+          </div>
+        </div>
+        <!-- ./Join Meeting -->
+
+        <!--        <label for="my-modal-6" class="btn">Yay!</label>-->
+      </div>
+    </div>
+  </div>
+  <!-- ./Meeting Modal -->
+</ion-content>

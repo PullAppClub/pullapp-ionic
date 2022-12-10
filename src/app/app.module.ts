@@ -10,6 +10,7 @@ import { HelperModule } from './core/helpers/helper.module';
 import { ServicesModule } from './core/services/services.module';
 import { LottieModule } from 'ngx-lottie';
 import { playerFactory } from './modules/users/users.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { playerFactory } from './modules/users/users.module';
     HelperModule,
     ServicesModule,
     LottieModule.forRoot({ player: playerFactory }),
+    SharedModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

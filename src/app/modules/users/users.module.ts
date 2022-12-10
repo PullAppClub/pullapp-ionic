@@ -10,6 +10,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SharedModule } from '../../shared/shared.module';
 import { RegistrationDetailsComponent } from './components/registration-details/registration-details.component';
 import { FormsModule } from '@angular/forms';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -20,6 +21,7 @@ export function playerFactory(): any {
     SignInComponent,
     SignUpComponent,
     RegistrationDetailsComponent,
+    UserProfileComponent,
   ],
   imports: [
     CommonModule,

@@ -22,38 +22,10 @@ interface ShowToastParams {
   providedIn: 'root',
 })
 export class ToastService {
-  private _toastOnScreen: boolean = false;
-  private _title: string = '';
-  private _msg: string = '';
-  private _type: ToastType | undefined;
-
-  public get title(): string {
-    return this._title;
-  }
-  public set title(value: string) {
-    this._title = value;
-  }
-  public get msg(): string {
-    return this._msg;
-  }
-  public set msg(value: string) {
-    this._msg = value;
-  }
-
-  public get toastOnScreen(): boolean {
-    return this._toastOnScreen;
-  }
-  public set toastOnScreen(value: boolean) {
-    this._toastOnScreen = value;
-  }
-
-  get type(): ToastType {
-    return this._type as ToastType;
-  }
-
-  set type(value: ToastType) {
-    this._type = value;
-  }
+  public toastOnScreen: boolean = false;
+  public title: string = '';
+  public msg: string = '';
+  public type: ToastType | undefined;
 
   public showToast(params: ShowToastParams): void {
     this.title = params.title;
