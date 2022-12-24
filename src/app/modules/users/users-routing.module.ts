@@ -9,6 +9,11 @@ import { AuthenticationGuard } from '../../core/guards/authentication/authentica
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'profile',
+    pathMatch: 'full',
+  },
+  {
     path: 'sign-in',
     component: SignInComponent,
   },
