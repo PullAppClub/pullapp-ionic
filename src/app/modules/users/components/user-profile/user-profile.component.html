@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<ion-content>
+<ion-content scrollEvents="true">
   <div class="container">
     <div class="grid mt-5">
       <div class="avatar mx-auto">
@@ -36,77 +36,10 @@
 
       <!-- Events -->
       <div class="px-4 mt-8">
-        <!--        <div class="mb-5">-->
-        <!--          <a-->
-        <!--            href="#"-->
-        <!--            class="block rounded-lg relative p-5 transform transition-all duration-300 scale-100 hover:scale-95"-->
-        <!--            style="-->
-        <!--              background: url(https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80)-->
-        <!--                center;-->
-        <!--              background-size: cover;-->
-        <!--              border-radius: 20px;-->
-        <!--            ">-->
-        <!--            <div class="h-48"></div>-->
-        <!--            <h2 class="text-white text-2xl font-bold leading-tight mb-3 pr-5">-->
-        <!--              Top 5 Cocktail Bars in&nbsp;NYC-->
-        <!--            </h2>-->
-        <!--            <div-->
-        <!--              class="flex w-full items-center text-sm text-gray-300 font-medium">-->
-        <!--              <div class="flex-1 flex items-center text-white">-->
-        <!--                <div-->
-        <!--                  class="rounded-full w-8 h-8 mr-3"-->
-        <!--                  style="-->
-        <!--                    background: url(https://randomuser.me/api/portraits/women/55.jpg)-->
-        <!--                      center;-->
-        <!--                    background-size: cover;-->
-        <!--                  "></div>-->
-        <!--                <div>Kayden Buckley</div>-->
-        <!--              </div>-->
-        <!--              <div><i class="mdi mdi-thumb-up"></i> 7</div>-->
-        <!--            </div>-->
-        <!--          </a>-->
-        <!--        </div>-->
         <!-- Challenge Card -->
-        <div class="card w-96 bg-base-100 shadow-xl image-full mb-5">
-          <figure>
-            <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-
-            <h2 class="text-xl">
-              Rewards 10 💪
-              <span style="float: right">Required 5 💪</span>
-            </h2>
-            <div class="card-actions justify-end mt-2">
-              <button class="btn btn-primary mr-auto">accept</button>
-
-              <div class="avatar-group -space-x-6">
-                <div class="avatar">
-                  <div class="w-9">
-                    <img src="https://placeimg.com/192/192/people" />
-                  </div>
-                </div>
-                <div class="avatar">
-                  <div class="w-9">
-                    <img src="https://placeimg.com/192/192/people" />
-                  </div>
-                </div>
-                <div class="avatar">
-                  <div class="w-9">
-                    <img src="https://placeimg.com/192/192/people" />
-                  </div>
-                </div>
-                <div class="avatar placeholder">
-                  <div class="w-9 bg-neutral-focus text-neutral-content">
-                    <span>+99</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <app-challenge-card
+          *ngFor="let challenge of challenges"
+          [challenge]="challenge"></app-challenge-card>
         <!-- ./Challenge Card -->
 
         <!-- Spot Card -->
@@ -195,8 +128,6 @@
           </div>
         </div>
         <!-- ./Join Meeting -->
-
-        <!--        <label for="my-modal-6" class="btn">Yay!</label>-->
       </div>
     </div>
   </div>

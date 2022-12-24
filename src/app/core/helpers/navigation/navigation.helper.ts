@@ -25,4 +25,8 @@ export class NavigationHelper {
       this.history.pop();
     }
   }
+
+  public openPageWithoutHistory(params: GoToParams): void {
+    this.navController.navigateForward(params.route);
+  }
 }

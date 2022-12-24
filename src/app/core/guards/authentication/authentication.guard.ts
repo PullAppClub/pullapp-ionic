@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { SessionService } from '../../services/session/session.service';
 import { NavigationHelper } from '../../helpers/navigation/navigation.helper';
-import { PageRoutes } from '../enums/routes.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +17,7 @@ export class AuthenticationGuard implements CanActivate {
 
     if (!isLogged) {
       this.navigationHelper.openPage({
-        route: `${PageRoutes.Login}`,
+        route: '/users/sign-in',
       });
     }
 

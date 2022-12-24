@@ -4,6 +4,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RegistrationDetailsComponent } from './components/registration-details/registration-details.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { AuthenticationGuard } from '../../core/guards/authentication/authentication.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +23,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
+    // canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
   },
 ];
 

@@ -1,4 +1,10 @@
 <ion-app>
-  <app-toast></app-toast>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-content scrollEvents="true" (ionScroll)="onContentScroll($event)">
+    <app-toast></app-toast>
+    <ion-router-outlet></ion-router-outlet>
+
+    <div #tabBarContainer *ngIf="showTabBar">
+      <app-tab-bar></app-tab-bar>
+    </div>
+  </ion-content>
 </ion-app>
