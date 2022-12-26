@@ -12,9 +12,9 @@
     </button>
   </div>
   <div class="navbar-center">
-    <span class="normal-case font-semibold text-xl">Complete name</span>
+    <span class="normal-case font-semibold text-xl">{{ title }}</span>
   </div>
-  <div class="navbar-end">
+  <div class="navbar-end" *ngIf="showMenu">
     <div class="dropdown dropdown-bottom dropdown-end">
       <label tabindex="0" class="btn btn-ghost btn-circle">
         <svg
@@ -32,8 +32,9 @@
       <ul
         tabindex="0"
         class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a>Homepage</a></li>
-        <li><a>Portfolio</a></li>
+        <li *ngIf="showProfilePreferences" (click)="onSettingsClick()">
+          <a>Settings</a>
+        </li>
         <li><a>About</a></li>
       </ul>
     </div>

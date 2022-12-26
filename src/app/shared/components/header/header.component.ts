@@ -10,7 +10,17 @@ export class HeaderComponent implements OnInit {
   @Input()
   public title: string | undefined;
 
+  @Input()
+  public showMenu: boolean = false;
+
+  @Input()
+  public showProfilePreferences: boolean = false;
+
   constructor(public readonly navigationHelper: NavigationHelper) {}
 
   ngOnInit() {}
+
+  public onSettingsClick(): void {
+    this.navigationHelper.openPage({ route: '/user/settings' });
+  }
 }

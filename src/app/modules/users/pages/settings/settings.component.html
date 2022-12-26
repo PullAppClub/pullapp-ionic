@@ -1,3 +1,60 @@
 <app-header></app-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <div class="container mx-auto">
+    <div class="grid">
+      <!-- Change Avatar -->
+      <div class="grid grid-cols-1 justify-items-center">
+        <div class="avatar">
+          <div class="w-24 rounded-full">
+            <img src="https://placeimg.com/192/192/people" />
+          </div>
+        </div>
+        <button class="btn btn-sm btn-outline mt-4">Change avatar</button>
+      </div>
+      <!-- ./Change Avatar -->
+
+      <!-- Settings -->
+      <div class="grid grid-cols-1 justify-items-start mt-5 px-7">
+        <!-- Personal Info -->
+        <div
+          class="flex items-center text-gray-900 text-xl mt-2 mb-2 space-x-3">
+          <ion-icon name="accessibility-outline"></ion-icon>
+          <span>Personal Info</span>
+        </div>
+        <!-- ./Personal Info -->
+
+        <!-- Email -->
+        <div
+          class="flex items-center text-gray-900 text-xl mt-2 mb-2 space-x-3">
+          <ion-icon name="mail-outline"></ion-icon>
+          <span>Email</span>
+        </div>
+        <!-- ./Email -->
+
+        <!-- Password -->
+        <div
+          class="flex items-center text-gray-900 text-xl mt-2 mb-2 space-x-3">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <span>Password</span>
+        </div>
+        <!-- ./Password -->
+
+        <div class="divider mt-2 mb-2 w-full"></div>
+
+        <!-- Language -->
+        <div
+          class="flex items-center text-gray-900 text-xl mt-2 mb-2 space-x-3">
+          <ion-icon name="language-outline"></ion-icon>
+          <span>Language</span>
+          <select class="select select-ghost select-md max-w-xs">
+            <option selected>English</option>
+            <option>Italiano</option>
+          </select>
+        </div>
+        <!-- ./Language -->
+      </div>
+    </div>
+    <!-- ./Settings -->
+  </div>
+</ion-content>
