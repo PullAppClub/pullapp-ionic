@@ -40,37 +40,5 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  async ngOnInit() {
-    const apiKey = environment.mapsKey;
-    const mapElement = document.getElementById('map');
-    const mapConfig = {
-      center: {
-        lat: 33.6,
-        lng: -117.9,
-      },
-      zoom: 8,
-      disableDefaultUI: true,
-      androidLiteMode: false,
-    };
-    const mapOptions = {
-      id: 'map',
-      apiKey: apiKey,
-      config: mapConfig,
-      element: mapElement,
-    };
-
-    // Create the Map Element
-    const map = await GoogleMap.create(mapOptions as CreateMapArgs);
-
-    // Drop a Map Marker
-    await map.addMarkers([
-      {
-        coordinate: {
-          lat: 33.6,
-          lng: -117.9,
-        },
-        title: 'Hello world',
-      },
-    ]);
-  }
+  async ngOnInit() {}
 }

@@ -9,11 +9,23 @@ import { TabBarPages } from '../../../core/enums/pages.enum';
 })
 export class TabBarComponent implements OnInit {
   public tabBarPages = TabBarPages;
+  private tabPagesArray = Object.values(TabBarPages);
+
   constructor(private readonly navigationHelper: NavigationHelper) {}
 
   ngOnInit() {}
 
   public openPage(page: TabBarPages): void {
-    this.navigationHelper.openPageWithoutHistory({ route: page });
+    const currentPathIndex = this.tabPagesArray.indexOf(
+      this.navigationHelper.getCurrentPath() as TabBarPages
+    );
+    const pageToNavigateIndex = this.tabPagesArray.indexOf(page);
+    const animationDirection =
+      currentPathIndex < pageToNavigateIndex ? 'forward' : 'back';
+
+    this.navigationHelper.openPageWithoutHistory({
+      route: page,
+      options: { animationDirection },
+    });
   }
 }

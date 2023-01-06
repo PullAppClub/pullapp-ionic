@@ -37,6 +37,7 @@
     "ionicons": "^6.0.3",
     "lottie-web": "^5.9.6",
     "ngx-lottie": "^10.0.0",
+    "ol": "^7.2.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -53,6 +54,7 @@
     "@angular/language-service": "^15.0.0",
     "@capacitor/cli": "4.5.0",
     "@ionic/angular-toolkit": "^6.0.0",
+    "@tailwindcss/typography": "^0.5.8",
     "@types/jasmine": "~4.0.0",
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.3.0",
@@ -72,6 +74,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "ngx-tailwind": "^4.0.0",
     "postcss": "^8.4.19",
     "prettier-eslint": "^15.0.1",
     "tailwindcss": "^3.2.4",

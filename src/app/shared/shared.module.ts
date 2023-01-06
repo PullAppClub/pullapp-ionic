@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { ToastComponent } from './components/toast/toast.component';
 import { ChallengeCardComponent } from './components/challenge-card/challenge-card.component';
 import { TabBarComponent } from './components/tapbar/tab-bar.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { TabBarComponent } from './components/tapbar/tab-bar.component';
     ToastComponent,
     ChallengeCardComponent,
     TabBarComponent,
+    MapComponent,
   ],
   imports: [CommonModule, IonicModule],
   exports: [
@@ -19,6 +21,7 @@ import { TabBarComponent } from './components/tapbar/tab-bar.component';
     ToastComponent,
     ChallengeCardComponent,
     TabBarComponent,
+    MapComponent,
   ],
 })
 export class SharedModule {}

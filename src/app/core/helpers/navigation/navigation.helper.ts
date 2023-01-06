@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { NavigationOptions } from '@ionic/angular/providers/nav-controller';
+import { Router } from '@angular/router';
 interface GoToParams {
   route: string;
-  params?: object;
+  params?: Record<string, any>;
+  options?: NavigationOptions;
 }
 
 @Injectable({
@@ -11,7 +14,10 @@ interface GoToParams {
 export class NavigationHelper {
   public history: string[] = [];
 
-  constructor(private readonly navController: NavController) {}
+  constructor(
+    private readonly navController: NavController,
+    private readonly router: Router
+  ) {}
 
   public openPage(params: GoToParams): void {
     this.navController
@@ -26,7 +32,11 @@ export class NavigationHelper {
     }
   }
 
+  public getCurrentPath(): string {
+    return this.router.url;
+  }
+
   public openPageWithoutHistory(params: GoToParams): void {
-    this.navController.navigateForward(params.route);
+    this.navController.navigateForward(params.route, params.options);
   }
 }

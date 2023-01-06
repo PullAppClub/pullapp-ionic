@@ -6,9 +6,17 @@ import { IonicModule } from '@ionic/angular';
 
 import { EventsPageRoutingModule } from './events-routing.module';
 import { HomeEventsComponent } from './pages/home-events/home-events.component';
+import { SpotsMapComponent } from './pages/spots-map/spots-map.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, EventsPageRoutingModule],
-  declarations: [HomeEventsComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    EventsPageRoutingModule,
+    SharedModule,
+  ],
+  declarations: [HomeEventsComponent, SpotsMapComponent],
 })
 export class EventsPageModule {}
