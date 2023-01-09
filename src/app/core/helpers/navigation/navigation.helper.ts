@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { NavigationOptions } from '@ionic/angular/providers/nav-controller';
 import { Router } from '@angular/router';
+
 interface GoToParams {
   route: string;
   params?: Record<string, any>;
@@ -37,6 +38,6 @@ export class NavigationHelper {
   }
 
   public openPageWithoutHistory(params: GoToParams): void {
-    this.navController.navigateForward(params.route, params.options);
+    this.navController.navigateRoot(params.route, params.options);
   }
 }

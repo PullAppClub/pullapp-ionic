@@ -23,6 +23,6 @@ export class SignInComponent implements OnInit {
   public async loginWithGoogle(): Promise<void> {}
 
   public openRegisterPage(): void {
-    this.navigationHelper.openPage({ route: 'users/sign-up' });
+    this.navigationHelper.openPage({ route: 'user/sign-up' });
   }
 }
