@@ -1,7 +1,4 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { GoogleMap } from '@capacitor/google-maps';
-import { environment } from '../../../../../environments/environment';
-import { CreateMapArgs } from '@capacitor/google-maps/dist/typings/implementation';
 import { Challenge } from '../../../events/interfaces/challenge.interface';
 import { SportType } from '../../../events/enums/sport.enum';
 import { ChallengeType } from '../../../events/enums/challenge-type.enum';
@@ -15,7 +12,7 @@ import { User } from '../../interfaces/user.interface';
 export class UserProfileComponent implements OnInit {
   public challenges: Challenge[] = [];
 
-  constructor(public renderer: Renderer2) {
+  constructor() {
     // temp challenges
     this.challenges.push({
       id: '1',

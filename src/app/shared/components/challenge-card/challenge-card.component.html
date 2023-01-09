@@ -1,7 +1,13 @@
 <!-- Challenge Card -->
-<div class="card w-96 bg-base-100 shadow-xl image-full mb-5" *ngIf="challenge">
+<div
+  class="card bg-base-100 shadow-xl image-full mb-5"
+  [ngClass]="cardClass"
+  *ngIf="challenge">
   <figure>
-    <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+    <img
+      src="https://placeimg.com/400/225/arch"
+      alt="challenge"
+      style="width: 100%" />
   </figure>
   <div class="card-body">
     <h2 class="card-title">{{ challenge.title }}</h2>
@@ -10,7 +16,7 @@
     <h2 class="text-xl">
       Rewards {{ challenge.level.rewardMusclePoints }} 💪
       <span style="float: right"
-        >{{ challenge.level.requiredMusclePoints }} 5 💪</span
+        >Required {{ challenge.level.requiredMusclePoints }} 💪</span
       >
     </h2>
     <div class="card-actions justify-end mt-2">

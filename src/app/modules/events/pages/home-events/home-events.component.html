@@ -1,3 +1,42 @@
-<ion-content>
-  <p>hello world</p>
+<ion-content scrollEvents="true">
+  <div class="container max-w-lg mx-auto my-10">
+    <!-- Official Challenges Horizontal Section -->
+    <div class="grid grid-cols-5 justify-items-center">
+      <!-- Scroll Left Button -->
+      <div class="max-w-lg mr-auto">
+        <button class="btn btn-ghost btn-circle text-2xl" #rightScrollButton>
+          <ion-icon
+            (click)="scrollLeft()"
+            name="chevron-back-outline"
+            style="color: rgba(55, 16, 185, 0.75)"></ion-icon>
+        </button>
+      </div>
+      <!-- ./Scroll Left Button -->
+      <div class="grid col-span-3 content-center">
+        <h1 class="text-xl font-medium text-slate-900">Official Challenges</h1>
+      </div>
+      <!-- Scroll Right Button -->
+      <div class="max-w-lg ml-auto">
+        <button class="btn btn-ghost btn-circle text-2xl">
+          <ion-icon
+            (click)="scrollRight()"
+            name="chevron-forward-outline"
+            style="color: rgba(55, 16, 185, 0.75)"></ion-icon>
+        </button>
+      </div>
+      <!-- ./Scroll Right Button -->
+    </div>
+    <div
+      class="container-snap snap-proximity pb-8 w-full flex gap-8 snap-x overflow-x-auto self-center p-5"
+      #widgetsContent>
+      <div class="snap-center" *ngFor="let challenge of challenges">
+        <!-- Challenge Card -->
+        <app-challenge-card
+          [cardClass]="'w-96'"
+          [challenge]="challenge"></app-challenge-card>
+        <!-- ./Challenge Card -->
+      </div>
+    </div>
+    <!-- Official Challenges Horizontal Section -->
+  </div>
 </ion-content>

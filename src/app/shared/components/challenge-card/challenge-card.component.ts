@@ -10,6 +10,9 @@ export class ChallengeCardComponent implements OnInit {
   @Input()
   public challenge: Challenge | undefined;
 
+  @Input()
+  public cardClass!: string;
+
   constructor() {}
 
   ngOnInit() {}
