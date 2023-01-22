@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TabBarPages } from './core/enums/pages.enum';
+import { TabBarService } from './core/services/tab-bar/tab-bar.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,9 @@ export class AppComponent {
   @ViewChild('tabBarContainer')
   public tapBar!: ElementRef;
 
-  public showTabBar: boolean = true;
+  public showTabBarOnScroll: boolean = true;
 
-  constructor(router: Router) {
+  constructor(router: Router, public readonly tabBarService: TabBarService) {
     this.showHideTabBar(router);
   }
 
@@ -22,7 +23,7 @@ export class AppComponent {
    */
   private showHideTabBar(router: Router): void {
     router.events.subscribe(event => {
-      this.showTabBar = Object.values(TabBarPages).some(page =>
+      this.showTabBarOnScroll = Object.values(TabBarPages).some(page =>
         router.url.includes(page)
       );
     });

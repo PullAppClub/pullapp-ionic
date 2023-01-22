@@ -3,7 +3,7 @@
     <app-toast></app-toast>
     <ion-router-outlet></ion-router-outlet>
 
-    <div #tabBarContainer *ngIf="showTabBar">
+    <div #tabBarContainer *ngIf="tabBarService.showTabBar">
       <app-tab-bar></app-tab-bar>
     </div>
   </ion-content>

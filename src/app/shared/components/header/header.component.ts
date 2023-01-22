@@ -16,6 +16,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input()
   public showProfilePreferences: boolean = false;
 
+  @Input()
+  public profilePreferencesCallback!: <T>(params?: T) => void;
+
   /**
    * Needs to show the right button in the header, that has to open a modal menu.
    */

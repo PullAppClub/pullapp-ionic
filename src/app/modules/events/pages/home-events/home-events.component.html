@@ -1,7 +1,10 @@
 <app-header
   [showMenu]="false"
   rightMenuLabelForId="filter-modal"
-  [showProfilePreferences]="false"></app-header>
+  [showProfilePreferences]="false"
+  [profilePreferencesCallback]="
+    tabBarService.setShowTabBar.bind(tabBarService, false)
+  "></app-header>
 
 <ion-content scrollEvents="true">
   <div class="container max-w-lg mx-auto my-10">
@@ -52,6 +55,7 @@
       <label
         for="filter-modal"
         class="btn btn-xs btn-circle absolute right-2 top-2"
+        (click)="tabBarService.setShowTabBar(true)"
         >✕</label
       >
 

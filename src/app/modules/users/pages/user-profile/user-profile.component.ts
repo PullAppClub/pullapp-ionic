@@ -3,6 +3,7 @@ import { Challenge } from '../../../events/interfaces/challenge.interface';
 import { SportType } from '../../../events/enums/sport.enum';
 import { ChallengeType } from '../../../events/enums/challenge-type.enum';
 import { User } from '../../interfaces/user.interface';
+import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,7 +13,7 @@ import { User } from '../../interfaces/user.interface';
 export class UserProfileComponent implements OnInit {
   public challenges: Challenge[] = [];
 
-  constructor() {
+  constructor(public readonly tabBarService: TabBarService) {
     // temp challenges
     this.challenges.push({
       id: '1',

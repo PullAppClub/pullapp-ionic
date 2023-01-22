@@ -4,6 +4,7 @@ import { SportType } from '../../enums/sport.enum';
 import { ChallengeType } from '../../enums/challenge-type.enum';
 import { User } from '../../../users/interfaces/user.interface';
 import { fromEvent } from 'rxjs';
+import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service';
 
 @Component({
   selector: 'app-home-events',
@@ -18,7 +19,7 @@ export class HomeEventsComponent implements OnInit {
   @ViewChild('rightScrollButton', { read: ElementRef })
   rightScrollButton!: ElementRef;
 
-  constructor() {
+  constructor(public readonly tabBarService: TabBarService) {
     // temp challenges
     this.challenges.push(
       {

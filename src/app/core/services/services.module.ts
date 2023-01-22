@@ -9,6 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LangService } from './lang/lang.service';
+import { TabBarService } from './tab-bar/tab-bar.service';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -30,6 +31,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     ToastService,
     NotificationService,
     LangService,
+    TabBarService,
   ],
 })
 export class ServicesModule {}
