@@ -7,6 +7,7 @@
   "></app-header>
 
 <ion-content scrollEvents="true">
+  <!-- Container -->
   <div class="container max-w-lg mx-auto my-10">
     <!-- Official Challenges Horizontal Section -->
     <div class="grid grid-cols-5 justify-items-center">
@@ -46,7 +47,22 @@
       </div>
     </div>
     <!-- Official Challenges Horizontal Section -->
+
+    <!-- Global Challenges Vertical Section -->
+    <div class="px-4 mt-12">
+      <h1 class="text-xl font-medium text-left text-slate-900 mb-8">
+        User Challenges
+      </h1>
+
+      <!-- Challenge Card -->
+      <app-challenge-card
+        *ngFor="let challenge of challenges"
+        [challenge]="challenge"></app-challenge-card>
+      <!-- ./Challenge Card -->
+    </div>
+    <!-- ./Global Challenges Vertical Section -->
   </div>
+  <!-- ./Container -->
 
   <!-- Filter Modal -->
   <input type="checkbox" id="filter-modal" class="modal-toggle" />
