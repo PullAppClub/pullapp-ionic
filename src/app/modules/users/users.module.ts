@@ -12,6 +12,7 @@ import { RegistrationDetailsComponent } from './pages/registration-details/regis
 import { FormsModule } from '@angular/forms';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -24,6 +25,7 @@ export function playerFactory(): any {
     RegistrationDetailsComponent,
     UserProfileComponent,
     SettingsComponent,
+    HallOfFameComponent,
   ],
   imports: [
     CommonModule,

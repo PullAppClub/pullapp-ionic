@@ -6,6 +6,7 @@ import { RegistrationDetailsComponent } from './pages/registration-details/regis
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { AuthenticationGuard } from '../../core/guards/authentication/authentication.guard';
+import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent,
+  },
+  {
+    path: 'hall-of-fame',
+    component: HallOfFameComponent,
   },
 ];
 
