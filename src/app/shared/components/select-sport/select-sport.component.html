@@ -1,0 +1,8 @@
+<select
+  class="select select-primary w-full max-w-xs"
+  (change)="emitSelectedSport($any($event.target).value)">
+  <option disabled selected>Select your sport?</option>
+  <option [value]="sportTypeEnum.Calisthenics">Calisthenics</option>
+  <option [value]="sportTypeEnum.Skating">Skating</option>
+  <option [value]="sportTypeEnum.Parkour">Parkour</option>
+</select>

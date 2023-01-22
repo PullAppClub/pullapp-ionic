@@ -5,6 +5,7 @@ import { ChallengeType } from '../../enums/challenge-type.enum';
 import { User } from '../../../users/interfaces/user.interface';
 import { fromEvent } from 'rxjs';
 import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service';
+import { ChallengeLevel } from '../../enums/challenge-level.enum';
 
 @Component({
   selector: 'app-home-events',
@@ -18,6 +19,9 @@ export class HomeEventsComponent implements OnInit {
 
   @ViewChild('rightScrollButton', { read: ElementRef })
   rightScrollButton!: ElementRef;
+
+  private levelFilter!: ChallengeLevel;
+  private sportFilter!: SportType;
 
   constructor(public readonly tabBarService: TabBarService) {
     // temp challenges
@@ -115,5 +119,13 @@ export class HomeEventsComponent implements OnInit {
       left: this.widgetsContent.nativeElement.scrollLeft - 300,
       behavior: 'smooth',
     });
+  }
+
+  public setLevelFilter(level: ChallengeLevel): void {
+    this.levelFilter = level;
+  }
+
+  public setSportFilter(sport: SportType): void {
+    this.sportFilter = sport;
   }
 }
