@@ -11,7 +11,8 @@ import { TabBarService } from './core/services/tab-bar/tab-bar.service';
 export class AppComponent {
   @ViewChild('tabBarContainer')
   public tapBar!: ElementRef;
-
+  private lastScrollPosition = 0;
+  private scrollAmount = 10;
   public showTabBarOnScroll: boolean = true;
 
   constructor(router: Router, public readonly tabBarService: TabBarService) {
@@ -30,10 +31,14 @@ export class AppComponent {
   }
 
   public onContentScroll(event: any) {
-    // if (event.detail.scrollTop >= 50) {
-    //   this.tapBar.nativeElement.style.display = 'none';
-    // } else {
-    //   this.tapBar.nativeElement.style.display = 'flex';
-    // }
+    const scrollPosition = event.detail.scrollTop;
+
+    if (scrollPosition > this.lastScrollPosition + this.scrollAmount) {
+      this.tapBar.nativeElement.style.display = 'none';
+    } else if (scrollPosition < this.lastScrollPosition - this.scrollAmount) {
+      this.tapBar.nativeElement.style.display = 'flex';
+    }
+
+    this.lastScrollPosition = scrollPosition;
   }
 }
