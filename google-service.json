@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "577169499609",
+    "firebase_url": "https://pullapp-39406.firebaseio.com",
+    "project_id": "pullapp-39406",
+    "storage_bucket": "pullapp-39406.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577169499609:android:4a7d03ab229f0b51da65c8",
+        "android_client_info": {
+          "package_name": "club.pullapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577169499609-cmlm7o63pk0jsth3thk1lfjhmgr3o6b8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5lTZBFeajEst2qDsSsXBpD5YmE61BYug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577169499609-cmlm7o63pk0jsth3thk1lfjhmgr3o6b8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
