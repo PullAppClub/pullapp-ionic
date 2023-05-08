@@ -1,7 +1,10 @@
 <div class="fixed" style="bottom: 15px; width: 100%">
   <div class="wrapper flex mx-auto" style="width: 24em">
     <div class="navbar">
-      <div class="navbar__item -blue" (click)="openPage(tabBarPages.Home)">
+      <div
+        class="navbar__item -grey"
+        [ngClass]="isCurrentPage(tabBarPages.Home) ? 'active' : ''"
+        (click)="openPage(tabBarPages.Home)">
         <span class="navbar__icon">
           <svg class="icon">
             <use xlink:href="#icon-home"></use>
@@ -9,7 +12,10 @@
         </span>
       </div>
 
-      <div class="navbar__item -yellow" (click)="openPage(tabBarPages.Map)">
+      <div
+        class="navbar__item -grey"
+        [ngClass]="isCurrentPage(tabBarPages.Map) ? 'active' : ''"
+        (click)="openPage(tabBarPages.Map)">
         <span class="navbar__icon">
           <svg class="icon">
             <use xlink:href="#icon-globe"></use>
@@ -17,7 +23,7 @@
         </span>
       </div>
 
-      <div class="navbar__item -navy-blue">
+      <div class="navbar__item -grey">
         <span class="navbar__icon">
           <svg class="icon">
             <use xlink:href="#icon-plus"></use>
@@ -26,7 +32,8 @@
       </div>
 
       <div
-        class="navbar__item -orange"
+        class="navbar__item -grey"
+        [ngClass]="isCurrentPage(tabBarPages.HallOfFame) ? 'active' : ''"
         (click)="openPage(tabBarPages.HallOfFame)">
         <span class="navbar__icon">
           <svg class="icon">
@@ -35,7 +42,10 @@
         </span>
       </div>
 
-      <div class="navbar__item -purple" (click)="openPage(tabBarPages.Profile)">
+      <div
+        class="navbar__item -grey"
+        [ngClass]="isCurrentPage(tabBarPages.Profile) ? 'active' : ''"
+        (click)="openPage(tabBarPages.Profile)">
         <span class="navbar__icon">
           <svg class="icon">
             <use xlink:href="#icon-user"></use>

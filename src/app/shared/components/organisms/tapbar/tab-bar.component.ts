@@ -28,4 +28,8 @@ export class TabBarComponent implements OnInit {
       options: { animationDirection },
     });
   }
+
+  public isCurrentPage(page: TabBarPages): boolean {
+    return this.navigationHelper.getCurrentPath().includes(page);
+  }
 }

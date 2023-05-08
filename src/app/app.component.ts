@@ -30,10 +30,10 @@ export class AppComponent {
   }
 
   public onContentScroll(event: any) {
-    if (event.detail.scrollTop >= 50) {
-      this.tapBar.nativeElement.style.display = 'none';
-    } else {
-      this.tapBar.nativeElement.style.display = 'flex';
-    }
+    // if (event.detail.scrollTop >= 50) {
+    //   this.tapBar.nativeElement.style.display = 'none';
+    // } else {
+    //   this.tapBar.nativeElement.style.display = 'flex';
+    // }
   }
 }
