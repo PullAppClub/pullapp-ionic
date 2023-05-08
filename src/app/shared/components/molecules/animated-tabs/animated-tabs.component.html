@@ -1,0 +1,9 @@
+<div class="tabs tabs-boxed">
+  <a
+    class="tab tab-lg rounded-2xl font-bold"
+    [ngClass]="tab.selected ? 'tab-active' : ''"
+    *ngFor="let tab of tabs"
+    (click)="clickHandler(tab)"
+    >{{ tab.value }}</a
+  >
+</div>

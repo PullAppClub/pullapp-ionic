@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { SportType } from '../../../modules/events/enums/sport.enum';
+import { SportType } from '../../../../modules/events/enums/sport.enum';
 
 @Component({
   selector: 'app-select-sport',

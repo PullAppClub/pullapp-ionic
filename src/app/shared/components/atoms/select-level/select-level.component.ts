@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ChallengeLevel } from '../../../modules/events/enums/challenge-level.enum';
+import { ChallengeLevel } from '../../../../modules/events/enums/challenge-level.enum';
 
 @Component({
   selector: 'app-select-level',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationHelper } from '../../../core/helpers/navigation/navigation.helper';
-import { TabBarPages } from '../../../core/enums/pages.enum';
+import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
+import { TabBarPages } from '../../../../core/enums/pages.enum';
 
 @Component({
   selector: 'app-tab-bar',

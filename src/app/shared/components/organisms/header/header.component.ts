@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { NavigationHelper } from '../../../core/helpers/navigation/navigation.helper';
+import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
 
 @Component({
   selector: 'app-header',

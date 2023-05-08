@@ -1,0 +1,37 @@
+<div class="card bg-base-100 w-80" style="background-color: #f2f4f7">
+  <div class="card-body text-left">
+    <p class="text-xs lowercase">
+      {{ challenge.sportType }} -
+      <span class="font-semibold">{{ challenge.level.levelName }}</span>
+    </p>
+    <h2 class="font-semibold">{{ challenge.title }}</h2>
+    <p>{{ challenge.description }}</p>
+
+    <div class="card-actions justify-end mt-2">
+      <button class="btn btn-primary mr-auto">accept</button>
+
+      <div class="avatar-group -space-x-6">
+        <div class="avatar">
+          <div class="w-9">
+            <img src="https://placeimg.com/192/192/people" />
+          </div>
+        </div>
+        <div class="avatar">
+          <div class="w-9">
+            <img src="https://placeimg.com/192/192/people" />
+          </div>
+        </div>
+        <div class="avatar">
+          <div class="w-9">
+            <img src="https://placeimg.com/192/192/people" />
+          </div>
+        </div>
+        <div class="avatar placeholder">
+          <div class="w-9 bg-neutral-focus text-neutral-content">
+            <span>+{{ challenge.participants }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

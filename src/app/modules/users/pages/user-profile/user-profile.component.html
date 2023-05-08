@@ -4,7 +4,7 @@
   [title]="'Giro Giro'"></app-header>
 
 <ion-content scrollEvents="true">
-  <div class="max-w-lg mx-auto my-10">
+  <div class="container max-w-lg mx-auto my-10">
     <div class="grid mt-5">
       <!-- User Info Section -->
       <div class="avatar mx-auto">
@@ -13,77 +13,178 @@
         </div>
       </div>
       <div>
-        <p class="text-2xl text-slate-900 font-bold mb-1 text-center mt-5">
+        <p class="text-3xl text-slate-900 font-bold mb-1 text-center mt-5">
           @username
+        </p>
+
+        <p class="text-lg text-slate-900 mb-1 text-center mt-2 pl-2 pr-2">
+          I will try to update this soon. Since I never received much of
+          comments on this.
         </p>
       </div>
 
-      <div class="stats shadow mx-3 mt-5">
-        <div class="stat">
-          <div class="stat-figure text-secondary pt-3.5">
-            <span style="font-size: 30px" class="align-middle">💪</span>
-          </div>
-          <div class="stat-title">MP</div>
-          <div class="stat-value">90</div>
-        </div>
+      <!-- Mp and Ranking Section -->
+      <div class="grid grid-cols-2 gap-2" style="margin: 10px">
+        <app-small-stat-card
+          [icon]="'💪'"
+          [title]="'Muscle Tokens'"
+          [value]="'90'"></app-small-stat-card>
 
-        <div class="stat">
-          <div class="stat-figure text-secondary">
-            <div class="stat-figure text-secondary pt-3.5">
-              <span style="font-size: 30px" class="align-middle">🏆️</span>
-            </div>
-          </div>
-          <div class="stat-title">Ranking</div>
-          <div class="stat-value">150</div>
-        </div>
+        <app-small-stat-card
+          [icon]="'🏆️'"
+          [title]="'Ranking'"
+          [value]="'150°'"></app-small-stat-card>
       </div>
+      <!-- Mp and Ranking Section -->
       <!-- ./User Info Section -->
-
-      <!-- Events -->
-      <div class="px-4 mt-8">
-        <!-- Challenge Card -->
-        <app-challenge-card
-          *ngFor="let challenge of challenges"
-          [challenge]="challenge"></app-challenge-card>
-        <!-- ./Challenge Card -->
-
-        <!-- Spot Card -->
-        <div class="card card-side bg-base-100 shadow-xl mb-5">
-          <figure>
-            <img src="assets/img/share.svg" alt="share" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Spot! 🌍️</h2>
-            <p>@username shared a new spot.</p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Discover it</button>
-            </div>
-          </div>
-        </div>
-        <!-- ./Spot Card -->
-
-        <!-- Meeting Card -->
-        <div class="card card-side bg-base-100 shadow-xl mb-5">
-          <div class="card-body">
-            <h2 class="card-title">Meeting 🤝️</h2>
-            <p>@username shared a new spot.</p>
-            <div class="card-actions justify-start">
-              <label
-                class="btn btn-primary"
-                for="my-modal-6"
-                (click)="tabBarService.setShowTabBar(false)"
-                >join</label
-              >
-            </div>
-          </div>
-          <figure>
-            <img src="assets/img/meeting.svg" alt="share" />
-          </figure>
-        </div>
-        <!-- ./Meeting Card -->
-      </div>
-      <!-- ./Events -->
     </div>
+    <!-- Events -->
+    <div class="px-4 mt-8 text-center">
+      <!-- Challenges  Section -->
+      <div class="flex items-center">
+        <div class="flex-none">
+          <h2 class="text-2xl inline-block align-middle">Challenges</h2>
+        </div>
+
+        <div class="flex-none ml-auto">
+          <app-animated-tabs
+            [inputTabs]="['Active', 'Completed']"
+            (selectedTab)="showChallengeSection($event)"></app-animated-tabs>
+        </div>
+      </div>
+
+      <!-- Active Challenges Section -->
+      <div *ngIf="showChallenges === userChallengesSection.Active">
+        <div class="grid grid-cols-2 gap-2 mt-5 mb-5">
+          <!-- Active Challenge Cards -->
+          <div
+            class="card bg-base-100"
+            style="background-color: #f2f4f7"
+            *ngFor="let challenge of activeChallenges">
+            <div class="card-body text-left">
+              <p class="text-xs lowercase">
+                {{ challenge.sportType }} -
+                <span class="font-semibold">{{
+                  challenge.level.levelName
+                }}</span>
+              </p>
+              <h2 class="font-semibold">{{ challenge.title }}</h2>
+            </div>
+          </div>
+          <!-- ./Active Challenge Cards -->
+        </div>
+
+        <!-- Load More Active Challenges Button -->
+        <app-load-more-button
+          (click)="loadMoreActiveChallenges()"></app-load-more-button>
+        <!-- ./Load More Active Challenges Button -->
+      </div>
+      <!-- ./Active Challenges Section -->
+
+      <!-- Completed Challenges Section -->
+      <div *ngIf="showChallenges === userChallengesSection.Completed">
+        <div class="grid grid-cols-2 gap-2 mt-5 mb-5">
+          <!-- Completed Challenge Cards -->
+          <div
+            class="card bg-base-100"
+            style="background-color: #d1fadf"
+            *ngFor="let challenge of activeChallenges">
+            <div class="card-body text-left">
+              <p class="text-xs lowercase">
+                {{ challenge.sportType }} -
+                <span class="font-semibold">{{
+                  challenge.level.levelName
+                }}</span>
+              </p>
+              <h2 class="font-semibold">{{ challenge.title }}</h2>
+            </div>
+          </div>
+          <!-- ./Completed Challenge Cards -->
+        </div>
+
+        <!-- Load More Completed Challenges Button -->
+        <app-load-more-button
+          (click)="loadMoreCompletedChallenges()"></app-load-more-button>
+        <!-- ./Load More Completed Challenges Button -->
+      </div>
+      <!-- ./Completed Challenges Section -->
+
+      <!-- Created Challenges Section -->
+      <div class="mx-auto my-10 text-left">
+        <h2 class="text-2xl inline-block align-middle font-semibold">
+          Created Challenges
+        </h2>
+        <!-- Created Challenge Carousel -->
+        <div
+          class="container-snap snap-proximity pb-8 w-full flex gap-8 snap-x overflow-x-auto self-center p-6">
+          <div class="snap-center" *ngFor="let challenge of challenges">
+            <app-challenge-card-md
+              [challenge]="challenge"></app-challenge-card-md>
+          </div>
+        </div>
+        <!-- ./Created Challenge Carousel -->
+      </div>
+      <!-- ./Created Challenges Section -->
+
+      <!-- User Spots -->
+      <div class="mx-auto my-10 text-left">
+        <h2 class="text-2xl inline-block align-middle font-semibold">
+          @username Spots
+        </h2>
+        <!-- Created Challenge Carousel -->
+        <div
+          class="container-snap snap-proximity pb-8 w-full flex gap-8 snap-x overflow-x-auto self-center p-6">
+          <div class="snap-center" *ngFor="let challenge of challenges">
+            <app-spot-card-md></app-spot-card-md>
+          </div>
+        </div>
+        <!-- ./Created Challenge Carousel -->
+      </div>
+      <!-- ./User Spots -->
+
+      <!-- Challenge Card -->
+      <app-challenge-card
+        *ngFor="let challenge of challenges"
+        [challenge]="challenge"></app-challenge-card>
+      <!-- ./Challenge Card -->
+      <!-- ./Challenges  Section -->
+
+      <!-- Spot Card -->
+      <div class="card card-side bg-base-100 shadow-xl mb-5">
+        <figure>
+          <img src="assets/img/share.svg" alt="share" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Spot! 🌍️</h2>
+          <p>@username shared a new spot.</p>
+          <div class="card-actions justify-end">
+            <button class="btn btn-primary">Discover it</button>
+          </div>
+        </div>
+      </div>
+      <!-- ./Spot Card -->
+
+      <!-- Meeting Card -->
+      <div class="card card-side bg-base-100 shadow-xl mb-5">
+        <div class="card-body">
+          <h2 class="card-title">Meeting 🤝️</h2>
+          <p>@username shared a new spot.</p>
+          <div class="card-actions justify-start">
+            <label
+              class="btn btn-primary"
+              for="my-modal-6"
+              (click)="tabBarService.setShowTabBar(false)"
+              >join</label
+            >
+          </div>
+        </div>
+        <figure>
+          <img src="assets/img/meeting.svg" alt="share" />
+        </figure>
+      </div>
+      <!-- ./Meeting Card -->
+    </div>
+    <!-- ./Events -->
   </div>
   <!-- Meeting Modal -->
   <input type="checkbox" id="my-modal-6" class="modal-toggle" />

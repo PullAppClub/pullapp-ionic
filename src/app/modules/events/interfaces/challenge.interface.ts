@@ -18,6 +18,14 @@ export interface Challenge {
   createdAt: Date;
 }
 
+export interface UserProfileChallenge {
+  id: string;
+  title: string;
+  description: string;
+  level: Level;
+  sportType: SportType;
+}
+
 export interface Level {
   id: string;
   levelName: string;
