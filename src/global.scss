@@ -43,3 +43,11 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
     border-radius: 20px;
   }
 }
+
+.earn-mt-sm-btn {
+  background-color: #d1fadf;
+  border: none;
+  margin-right: -10px;
+  z-index: 99;
+  color: #027a48;
+}

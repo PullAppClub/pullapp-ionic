@@ -23,13 +23,35 @@
         </span>
       </div>
 
-      <div class="navbar__item -grey">
-        <span class="navbar__icon">
-          <svg class="icon">
-            <use xlink:href="#icon-plus"></use>
-          </svg>
-        </span>
+      <!-- Plus Button -->
+      <div class="dropdown dropdown-top dropdown-center">
+        <div class="navbar__item -grey" tabindex="0">
+          <span class="navbar__icon">
+            <svg class="icon">
+              <use xlink:href="#icon-plus"></use>
+            </svg>
+          </span>
+
+          <div
+            tabindex="0"
+            class="dropdown-content p-6 shadow bg-slate-300 rounded-box w-96 grid grid-rows-2 grid-flow-col gap-2 mb-5">
+            <div class="flex items-center ml-auto">
+              <button class="btn btn-sm earn-mt-sm-btn">+2 💪</button>
+              <button class="btn">Create Challenge</button>
+            </div>
+            <!--            <div class="ml-auto">-->
+            <!--              <button class="btn">Create Meeting</button>-->
+            <!--            </div>-->
+            <div class="flex items-center ml-auto">
+              <button class="btn btn-sm earn-mt-sm-btn">+10 💪</button>
+              <button class="btn bg-slate-50 text-slate-500 border-0">
+                Add Spot
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- ./Plus Button -->
 
       <div
         class="navbar__item -grey"
