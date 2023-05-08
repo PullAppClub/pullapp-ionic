@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+
 import { SessionService } from '../../services/session/session.service';
 import { NavigationHelper } from '../../helpers/navigation/navigation.helper';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationGuard implements CanActivate {
+export class AuthenticationGuard {
   constructor(
     private readonly sessionService: SessionService,
     private readonly navigationHelper: NavigationHelper
