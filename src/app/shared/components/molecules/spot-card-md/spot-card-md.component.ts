@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GalleryItem, ImageItem } from 'ng-gallery';
 
 @Component({
   selector: 'app-spot-card-md',
@@ -6,7 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./spot-card-md.component.scss'],
 })
 export class SpotCardMdComponent implements OnInit {
+  public images!: GalleryItem[];
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.images = [
+      new ImageItem({
+        src: 'https://placeimg.com/192/192/people',
+      }),
+      new ImageItem({
+        src: 'https://placeimg.com/192/192/people',
+      }),
+      new ImageItem({
+        src: 'https://placeimg.com/192/192/people',
+      }),
+      new ImageItem({
+        src: 'https://placeimg.com/192/192/people',
+      }),
+    ];
+  }
 }

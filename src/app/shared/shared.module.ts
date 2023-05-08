@@ -14,6 +14,7 @@ import { AnimatedTabsComponent } from './components/molecules/animated-tabs/anim
 import { LoadMoreButtonComponent } from './components/atoms/load-more-button/load-more-button.component';
 import { ChallengeCardMdComponent } from './components/molecules/challenge-card-md/challenge-card-md.component';
 import { SpotCardMdComponent } from './components/molecules/spot-card-md/spot-card-md.component';
+import { GalleryModule } from 'ng-gallery';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { SpotCardMdComponent } from './components/molecules/spot-card-md/spot-ca
     ChallengeCardMdComponent,
     SpotCardMdComponent,
   ],
-  imports: [CommonModule, IonicModule, FormsModule],
+  imports: [CommonModule, IonicModule, FormsModule, GalleryModule],
   exports: [
     HeaderComponent,
     ToastComponent,

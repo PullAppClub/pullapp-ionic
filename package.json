@@ -13,6 +13,8 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^16.0.0",
+    "@angular/cdk": "^16.0.0",
     "@angular/common": "^16.0.0",
     "@angular/core": "^16.0.0",
     "@angular/forms": "^16.0.0",
@@ -36,6 +38,7 @@
     "firebase": "^9.14.0",
     "ionicons": "^6.0.3",
     "lottie-web": "^5.9.6",
+    "ng-gallery": "^8.0.4",
     "ngx-lottie": "^10.0.0",
     "ol": "^7.2.2",
     "rxjs": "~7.5.0",

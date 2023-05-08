@@ -11,6 +11,8 @@ import { ServicesModule } from './core/services/services.module';
 import { LottieModule } from 'ngx-lottie';
 import { playerFactory } from './modules/users/users.module';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GalleryModule } from 'ng-gallery';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,8 @@ import { SharedModule } from './shared/shared.module';
     ServicesModule,
     LottieModule.forRoot({ player: playerFactory }),
     SharedModule,
+    BrowserAnimationsModule,
+    GalleryModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
