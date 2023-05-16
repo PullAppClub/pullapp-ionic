@@ -11,6 +11,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   public title: string | undefined;
 
   @Input()
+  public leftTitle: string | undefined;
+
+  @Input()
   public showMenu: boolean = false;
 
   @Input()

@@ -15,6 +15,7 @@ import { LoadMoreButtonComponent } from './components/atoms/load-more-button/loa
 import { ChallengeCardMdComponent } from './components/molecules/challenge-card-md/challenge-card-md.component';
 import { SpotCardMdComponent } from './components/molecules/spot-card-md/spot-card-md.component';
 import { GalleryModule } from 'ng-gallery';
+import { OfficialChallengeCardComponent } from './components/molecules/official-challenge-card/official-challenge-card.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { GalleryModule } from 'ng-gallery';
     LoadMoreButtonComponent,
     ChallengeCardMdComponent,
     SpotCardMdComponent,
+    OfficialChallengeCardComponent,
   ],
   imports: [CommonModule, IonicModule, FormsModule, GalleryModule],
   exports: [
@@ -45,6 +47,7 @@ import { GalleryModule } from 'ng-gallery';
     LoadMoreButtonComponent,
     ChallengeCardMdComponent,
     SpotCardMdComponent,
+    OfficialChallengeCardComponent,
   ],
 })
 export class SharedModule {}

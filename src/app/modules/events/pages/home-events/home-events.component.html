@@ -1,10 +1,7 @@
 <app-header
   [showMenu]="false"
-  rightMenuLabelForId="filter-modal"
   [showProfilePreferences]="false"
-  [profilePreferencesCallback]="
-    tabBarService.setShowTabBar.bind(tabBarService, false)
-  "></app-header>
+  leftTitle="PullApp"></app-header>
 
 <ion-content scrollEvents="true">
   <!-- Container -->
@@ -13,7 +10,11 @@
     <div class="grid grid-cols-5 justify-items-center">
       <!-- Scroll Left Button -->
       <div class="max-w-lg mr-auto">
-        <button class="btn btn-ghost btn-circle text-2xl" #rightScrollButton>
+        <button
+          class="btn btn-ghost btn-circle text-2xl"
+          #rightScrollButton
+          style="display: none">
+          <!-- display:none by default, it will be shown when the scroll is not at the start -->
           <ion-icon
             (click)="scrollLeft()"
             name="chevron-back-outline"
@@ -22,7 +23,7 @@
       </div>
       <!-- ./Scroll Left Button -->
       <div class="grid col-span-3 content-center">
-        <h1 class="text-xl font-medium text-slate-900">Official Challenges</h1>
+        <h1 class="text-xl font-bold text-slate-900">Official Challenges</h1>
       </div>
       <!-- Scroll Right Button -->
       <div class="max-w-lg ml-auto">
@@ -40,9 +41,8 @@
       #widgetsContent>
       <div class="snap-center" *ngFor="let challenge of challenges">
         <!-- Challenge Card -->
-        <app-challenge-card
-          [cardClass]="'w-96'"
-          [challenge]="challenge"></app-challenge-card>
+        <app-official-challenge-card
+          [challenge]="challenge"></app-official-challenge-card>
         <!-- ./Challenge Card -->
       </div>
     </div>
@@ -50,7 +50,7 @@
 
     <!-- Global Challenges Vertical Section -->
     <div class="px-4 mt-12">
-      <h1 class="text-xl font-medium text-left text-slate-900 mb-8">
+      <h1 class="text-xl font-bold text-left text-slate-900 mb-8">
         User Challenges
       </h1>
 

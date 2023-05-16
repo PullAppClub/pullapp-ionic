@@ -37,7 +37,7 @@ export class HomeEventsComponent implements OnInit {
         deadline: new Date(),
         createdAt: new Date(),
         thumbnail:
-          'https://images.unsplash.com/photo-1589988020028-8e8b5b0b1b1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+          'https://img.welt.de/img/regionales/nrw/mobile148426359/4102501097-ci102l-w1024/Man-training-in-crossfit-center.jpg',
         video: 'https://www.youtube.com/watch?v=5qap5aO4i9A',
         user: {} as User,
         level: {
@@ -58,7 +58,7 @@ export class HomeEventsComponent implements OnInit {
         deadline: new Date(),
         createdAt: new Date(),
         thumbnail:
-          'https://images.unsplash.com/photo-1589988020028-8e8b5b0b1b1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+          'https://img.welt.de/img/regionales/nrw/mobile148426359/4102501097-ci102l-w1024/Man-training-in-crossfit-center.jpg',
         video: 'https://www.youtube.com/watch?v=5qap5aO4i9A',
         user: {} as User,
         level: {
@@ -79,7 +79,7 @@ export class HomeEventsComponent implements OnInit {
         deadline: new Date(),
         createdAt: new Date(),
         thumbnail:
-          'https://images.unsplash.com/photo-1589988020028-8e8b5b0b1b1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+          'https://img.welt.de/img/regionales/nrw/mobile148426359/4102501097-ci102l-w1024/Man-training-in-crossfit-center.jpg',
         video: 'https://www.youtube.com/watch?v=5qap5aO4i9A',
         user: {} as User,
         level: {
@@ -98,7 +98,7 @@ export class HomeEventsComponent implements OnInit {
     fromEvent(this.widgetsContent.nativeElement, 'scroll').subscribe({
       next: event => {
         // @ts-ignore
-        if (event?.target['scrollLeft'] >= 300) {
+        if (event?.target['scrollLeft'] >= 170) {
           this.rightScrollButton.nativeElement.style.display = 'flex';
         } else {
           this.rightScrollButton.nativeElement.style.display = 'none';
@@ -109,14 +109,14 @@ export class HomeEventsComponent implements OnInit {
 
   public scrollRight(): void {
     this.widgetsContent.nativeElement.scrollTo({
-      left: this.widgetsContent.nativeElement.scrollLeft + 300,
+      left: this.widgetsContent.nativeElement.scrollLeft + 256,
       behavior: 'smooth',
     });
   }
 
   public scrollLeft(): void {
     this.widgetsContent.nativeElement.scrollTo({
-      left: this.widgetsContent.nativeElement.scrollLeft - 300,
+      left: this.widgetsContent.nativeElement.scrollLeft - 256,
       behavior: 'smooth',
     });
   }
