@@ -1,49 +1,176 @@
-<!-- Challenge Card -->
+<!--<div-->
+<!--  class="card bg-base-100 shadow-xl image-full mb-5"-->
+<!--  [ngClass]="cardClass"-->
+<!--  *ngIf="challenge">-->
+<!--  <figure>-->
+<!--    <img-->
+<!--      src="https://placeimg.com/400/225/arch"-->
+<!--      alt="challenge"-->
+<!--      style="width: 100%" />-->
+<!--  </figure>-->
+<!--  <div class="card-body">-->
+<!--    <h2 class="card-title">{{ challenge.title }}</h2>-->
+<!--    <p>{{ challenge.description }}</p>-->
+
+<!--    <h2 class="text-xl">-->
+<!--      Rewards {{ challenge.level.rewardMusclePoints }} 💪-->
+<!--      <span style="float: right"-->
+<!--        >Required {{ challenge.level.requiredMusclePoints }} 💪</span-->
+<!--      >-->
+<!--    </h2>-->
+<!--    <div class="card-actions justify-end mt-2">-->
+<!--      <button class="btn btn-primary mr-auto">accept</button>-->
+
+<!--      <div class="avatar-group -space-x-6">-->
+<!--        <div class="avatar">-->
+<!--          <div class="w-9">-->
+<!--            <img src="https://placeimg.com/192/192/people" />-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="avatar">-->
+<!--          <div class="w-9">-->
+<!--            <img src="https://placeimg.com/192/192/people" />-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="avatar">-->
+<!--          <div class="w-9">-->
+<!--            <img src="https://placeimg.com/192/192/people" />-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="avatar placeholder">-->
+<!--          <div class="w-9 bg-neutral-focus text-neutral-content">-->
+<!--            <span>+{{ challenge.participants }}</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <div
-  class="card bg-base-100 shadow-xl image-full mb-5"
-  [ngClass]="cardClass"
-  *ngIf="challenge">
-  <figure>
-    <img
-      src="https://placeimg.com/400/225/arch"
-      alt="challenge"
-      style="width: 100%" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">{{ challenge.title }}</h2>
-    <p>{{ challenge.description }}</p>
+  style="
+    background-color: #f2f4f7;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 220px;
+  "
+  class="my-4">
+  <!-- Info Container -->
+  <div class="grid grid-cols-10" *ngIf="!showVideoContainer">
+    <!-- Details Section -->
+    <div class="col-span-9 p-6">
+      <div class="grid grid-rows-4 gap-2">
+        <div>
+          <button
+            class="btn btn-xs normal-case border-none"
+            style="background-color: white; color: #344054">
+            {{ challenge.level.requiredMusclePoints }} 💪 Entry fee
+          </button>
+          <button
+            class="btn btn-xs normal-case border-none ml-2"
+            style="background-color: #d1fadf; color: #027a48">
+            {{ challenge.level.rewardMusclePoints }} 💪 Reward
+          </button>
+        </div>
 
-    <h2 class="text-xl">
-      Rewards {{ challenge.level.rewardMusclePoints }} 💪
-      <span style="float: right"
-        >Required {{ challenge.level.requiredMusclePoints }} 💪</span
-      >
-    </h2>
-    <div class="card-actions justify-end mt-2">
-      <button class="btn btn-primary mr-auto">accept</button>
+        <div>
+          <p class="text-xs lowercase">
+            {{ challenge.sportType }} -
+            <span class="font-semibold">{{ challenge.level.levelName }}</span>
+          </p>
+        </div>
 
-      <div class="avatar-group -space-x-6">
-        <div class="avatar">
-          <div class="w-9">
-            <img src="https://placeimg.com/192/192/people" />
+        <div>
+          <h2 class="font-semibold">{{ challenge.title }}</h2>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2">
+        <div>
+          <button class="btn normal-case">Enter</button>
+        </div>
+        <!-- Participants List -->
+        <div class="ml-auto">
+          <div class="avatar-group -space-x-6">
+            <div class="avatar">
+              <div class="w-9">
+                <img src="https://placeimg.com/192/192/people" />
+              </div>
+            </div>
+            <div class="avatar">
+              <div class="w-9">
+                <img src="https://placeimg.com/192/192/people" />
+              </div>
+            </div>
+            <div class="avatar">
+              <div class="w-9">
+                <img src="https://placeimg.com/192/192/people" />
+              </div>
+            </div>
+            <div class="avatar placeholder">
+              <div class="w-9 bg-neutral-focus text-neutral-content">
+                <span>+{{ challenge.participants }}</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="avatar">
-          <div class="w-9">
-            <img src="https://placeimg.com/192/192/people" />
-          </div>
-        </div>
-        <div class="avatar">
-          <div class="w-9">
-            <img src="https://placeimg.com/192/192/people" />
-          </div>
-        </div>
-        <div class="avatar placeholder">
-          <div class="w-9 bg-neutral-focus text-neutral-content">
-            <span>+{{ challenge.participants }}</span>
-          </div>
-        </div>
+        <!-- ./Participants List -->
+      </div>
+    </div>
+    <!-- ./Details Section -->
+
+    <!-- Picture Container -->
+    <div
+      class="thumbnail-container"
+      [ngStyle]="{
+        'background-image': 'url(' + challenge.thumbnail + ')'
+      }"
+      (click)="toggleVideoContainer()">
+      <div
+        style="background-color: rgba(0, 0, 0, 0.4)"
+        class="h-full flex items-center">
+        <!-- Slide Right Button -->
+        <button class="btn btn-ghost btn-circle text-4xl">
+          <ion-icon
+            name="chevron-forward-outline"
+            style="color: rgb(255, 255, 255)"></ion-icon>
+        </button>
+        <!-- ./Slide Right Button -->
+      </div>
+    </div>
+    <!-- ./Picture Container -->
+  </div>
+  <!-- ./Info Container -->
+
+  <!-- Video Container -->
+  <div
+    class="thumbnail-container"
+    [ngStyle]="{
+      'background-image': 'url(' + challenge.thumbnail + ')'
+    }"
+    *ngIf="showVideoContainer">
+    <div
+      style="background-color: rgba(0, 0, 0, 0.4)"
+      class="grid grid-cols-9 h-full">
+      <div class="h-full flex items-center">
+        <!-- Slide Right Button -->
+        <button class="btn btn-ghost btn-circle text-4xl">
+          <ion-icon
+            name="chevron-back-outline"
+            (click)="toggleVideoContainer()"
+            style="color: rgb(255, 255, 255)"></ion-icon>
+        </button>
+        <!-- ./Slide Right Button -->
+      </div>
+      <div class="col-span-7 h-full flex items-center">
+        <!-- Play Button -->
+        <button class="btn btn-ghost btn-circle mx-auto">
+          <ion-icon
+            name="play-outline"
+            style="color: rgb(255, 255, 255); font-size: 45px"></ion-icon>
+        </button>
+        <!-- ./Play Button -->
       </div>
     </div>
   </div>
+  <!-- ./Video Container -->
 </div>

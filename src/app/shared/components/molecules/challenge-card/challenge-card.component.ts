@@ -8,12 +8,18 @@ import { Challenge } from '../../../../modules/events/interfaces/challenge.inter
 })
 export class ChallengeCardComponent implements OnInit {
   @Input()
-  public challenge: Challenge | undefined;
+  public challenge!: Challenge;
 
   @Input()
   public cardClass!: string;
 
+  public showVideoContainer: boolean = false;
+
   constructor() {}
 
   ngOnInit() {}
+
+  public toggleVideoContainer(): void {
+    this.showVideoContainer = !this.showVideoContainer;
+  }
 }
