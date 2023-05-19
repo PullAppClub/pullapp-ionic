@@ -12,16 +12,11 @@
     <div class="col-span-9 p-6">
       <div class="grid grid-rows-4 gap-2">
         <div>
-          <button
-            class="btn btn-xs normal-case border-none"
-            style="background-color: white; color: #344054">
-            {{ challenge.level.requiredMusclePoints }} 💪 Entry fee
-          </button>
-          <button
-            class="btn btn-xs normal-case border-none ml-2"
-            style="background-color: #d1fadf; color: #027a48">
-            {{ challenge.level.rewardMusclePoints }} 💪 Reward
-          </button>
+          <app-entry-reward
+            [requiredMusclePoints]="challenge.level.rewardMusclePoints"
+            [rewardMusclePoints]="
+              challenge.level.rewardMusclePoints
+            "></app-entry-reward>
         </div>
 
         <div>
@@ -38,7 +33,9 @@
 
       <div class="grid grid-cols-2">
         <div>
-          <button class="btn normal-case">Enter</button>
+          <button class="btn normal-case" (click)="openChallenge()">
+            Enter
+          </button>
         </div>
         <!-- Participants List -->
         <div class="ml-auto">

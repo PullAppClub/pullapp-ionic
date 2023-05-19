@@ -1,0 +1,119 @@
+<app-header></app-header>
+
+<ion-content scrollEvents="true">
+  <!-- Container -->
+  <div class="container max-w-lg mx-auto" *ngIf="challenge">
+    <!-- Video Section -->
+    <div class="m-2 rounded-lg overflow-hidden" style="max-height: 469px">
+      <video class="w-full" controls>
+        <source src="{{ challenge.video }}" type="video/mp4" />
+        <source src="{{ challenge.video }}" type="video/ogg" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <!-- ./Video Section -->
+
+    <div class="m-4">
+      <!-- Info Section -->
+      <div class="grid grid-rows-5 gap-2">
+        <div>
+          <app-entry-reward
+            [requiredMusclePoints]="challenge.level.rewardMusclePoints"
+            [rewardMusclePoints]="
+              challenge.level.rewardMusclePoints
+            "></app-entry-reward>
+        </div>
+
+        <div>
+          <p class="text-xs lowercase">
+            {{ challenge.sportType }} -
+            <span class="font-semibold">{{ challenge.level.levelName }}</span>
+          </p>
+        </div>
+
+        <div>
+          <h1 class="font-semibold">{{ challenge.title }}</h1>
+        </div>
+
+        <div>
+          <p class="text-slate-500">{{ challenge.description }}</p>
+        </div>
+      </div>
+      <!-- ./Info Section -->
+      <!-- Action Section -->
+
+      <!-- Accept Button -->
+      <label class="btn btn-block normal-case" for="acceptChallenge">
+        Enter -{{ challenge.level.requiredMusclePoints }} 💪
+      </label>
+      <!-- ./Accept Button -->
+
+      <!-- ./Action Section -->
+
+      <!-- Completed by Section -->
+      <div
+        class="grid grid-cols-6 mt-5 py-2 rounded-xl"
+        style="background-color: #e8eaea">
+        <div
+          class="col-span-3 text-right h-12 flex items-center justify-center">
+          <p class="text-slate-500">Completed by</p>
+        </div>
+        <div class="col-span-3 h-12">
+          <!-- Participants List -->
+          <div class="ml-auto">
+            <div class="avatar-group -space-x-6">
+              <div class="avatar">
+                <div class="w-9">
+                  <img src="https://placeimg.com/192/192/people" />
+                </div>
+              </div>
+              <div class="avatar">
+                <div class="w-9">
+                  <img src="https://placeimg.com/192/192/people" />
+                </div>
+              </div>
+              <div class="avatar">
+                <div class="w-9">
+                  <img src="https://placeimg.com/192/192/people" />
+                </div>
+              </div>
+              <div class="avatar placeholder">
+                <div class="w-9 bg-neutral-focus text-neutral-content">
+                  <span>+{{ challenge.participants }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ./Participants List -->
+        </div>
+      </div>
+      <!-- ./Completed by Section -->
+    </div>
+  </div>
+  <!-- ./Container -->
+
+  <!-- Accept Challenge Modal -->
+  <input type="checkbox" id="acceptChallenge" class="modal-toggle" />
+  <div class="modal" *ngIf="challenge">
+    <div class="modal-box justify-center">
+      <div class="justify-center">
+        <app-entry-reward
+          [requiredMusclePoints]="challenge.level.requiredMusclePoints"
+          [rewardMusclePoints]="
+            challenge.level.rewardMusclePoints
+          "></app-entry-reward>
+      </div>
+      <h3 class="font-bold text-lg text-center">Enter the challenge?</h3>
+      <div class="modal-action justify-center">
+        <label class="btn normal-case btn-outline mr-2" for="acceptChallenge">
+          Cancel
+        </label>
+
+        <label class="btn normal-case" for="acceptChallenge">
+          Confirm -{{ challenge.level.requiredMusclePoints }} 💪
+        </label>
+      </div>
+    </div>
+  </div>
+  <!-- ./Accept Challenge Modal -->
+</ion-content>

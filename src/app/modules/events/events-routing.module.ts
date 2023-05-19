@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeEventsComponent } from './pages/home-events/home-events.component';
 import { SpotsMapComponent } from './pages/spots-map/spots-map.component';
+import { ChallengeComponent } from './pages/challenge/challenge.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'map',
     component: SpotsMapComponent,
+  },
+  {
+    path: 'challenge/:id',
+    component: ChallengeComponent,
   },
 ];
 

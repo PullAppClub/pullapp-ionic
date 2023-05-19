@@ -8,6 +8,7 @@ import { EventsPageRoutingModule } from './events-routing.module';
 import { HomeEventsComponent } from './pages/home-events/home-events.component';
 import { SpotsMapComponent } from './pages/spots-map/spots-map.component';
 import { SharedModule } from '../../shared/shared.module';
+import { ChallengeComponent } from './pages/challenge/challenge.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { SharedModule } from '../../shared/shared.module';
     EventsPageRoutingModule,
     SharedModule,
   ],
-  declarations: [HomeEventsComponent, SpotsMapComponent],
+  declarations: [HomeEventsComponent, SpotsMapComponent, ChallengeComponent],
 })
 export class EventsPageModule {}

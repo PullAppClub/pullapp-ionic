@@ -8,7 +8,9 @@
     <p>{{ challenge.description }}</p>
 
     <div class="card-actions justify-end mt-2">
-      <button class="btn btn-primary mr-auto">accept</button>
+      <button class="btn btn-primary mr-auto" (click)="openChallenge()">
+        accept
+      </button>
 
       <div class="avatar-group -space-x-6">
         <div class="avatar">
