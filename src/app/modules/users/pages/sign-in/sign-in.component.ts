@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimationOptions } from 'ngx-lottie';
 import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { UserAuthService } from '../../services/user-auth/user-auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,11 +15,33 @@ export class SignInComponent implements OnInit {
     path: '/assets/lottie/flex-arms.json',
   };
 
-  constructor(private readonly navigationHelper: NavigationHelper) {}
+  public loginForm = new FormGroup({
+    email: new FormControl('', [Validators.email]),
+    password: new FormControl('', [Validators.minLength(6)]),
+  });
+
+  constructor(
+    private readonly navigationHelper: NavigationHelper,
+    private readonly userAuthService: UserAuthService,
+    private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper
+  ) {}
 
   ngOnInit() {}
 
-  public async loginWithEmailAndPassword(): Promise<void> {}
+  public async loginWithEmailAndPassword(): Promise<void> {
+    try {
+      if (this.loginForm.invalid) {
+        return;
+      }
+
+      await this.userAuthService.loginWithEmailAndPassword({
+        email: this.loginForm.get('email')?.value as string,
+        password: this.loginForm.get('password')?.value as string,
+      });
+    } catch (e) {
+      this.httpErrorHandlerHelper.handle(e);
+    }
+  }
 
   public async loginWithGoogle(): Promise<void> {}
 

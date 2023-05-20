@@ -17,7 +17,7 @@ export class AuthenticationGuard {
 
     if (!isLogged) {
       this.navigationHelper.openPage({
-        route: '/users/sign-in',
+        route: '/user/sign-in',
       });
     }
 

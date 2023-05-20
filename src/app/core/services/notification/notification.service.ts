@@ -22,10 +22,10 @@ export class NotificationService {
   public observeNotifications(): void {
     this.firebaseService.receiveMessage();
 
-    this.firebaseService.getCurrentMessage().subscribe(notification => {
+    this.firebaseService.getCurrentMessage().subscribe(message => {
       this.toastService.showToast({
-        msg: notification?.body as string,
-        title: notification?.title as string,
+        msg: message?.notification?.body as string,
+        title: message?.notification?.title as string,
         type: ToastType.Info,
       });
     });

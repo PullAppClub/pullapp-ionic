@@ -8,6 +8,7 @@ import {
   PostParams,
   PutParams,
 } from '../../interfaces/http-request.interface';
+import { Error } from '../../interfaces/error.interface';
 
 type RequestOptions = {
   headers?: HttpHeaders;
@@ -84,5 +85,15 @@ export class RequestHelper {
     }
 
     return options;
+  }
+
+  public getErrorMessage(params: Error): string {
+    if (typeof params.error === 'object') {
+      if (Array.isArray(params.error.message))
+        return params.error.message.join(', ');
+      else return params.error.message;
+    }
+
+    return params.message;
   }
 }

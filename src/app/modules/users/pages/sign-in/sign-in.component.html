@@ -25,11 +25,16 @@
 
     <div class="divider"></div>
 
-    <form action="" class="my-5">
+    <form
+      class="my-5"
+      [formGroup]="loginForm"
+      (submit)="loginWithEmailAndPassword()">
       <div class="flex flex-col space-y-5">
         <!-- Email -->
         <div
-          class="flex items-center w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow">
+          class="flex items-center w-full py-3 border rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+          [class.border-rose-600]="loginForm.get('email')?.invalid"
+          [class.border-slate-200]="loginForm.get('email')?.valid">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5 text-gray-400"
@@ -46,14 +51,14 @@
             class="pl-2 outline-none border-none"
             type="text"
             name=""
-            id=""
+            formControlName="email"
             placeholder="Email Address" />
         </div>
         <!-- ./Email -->
 
         <!-- Password -->
         <div
-          class="flex items-center w-full py-3 my-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow">
+          class="flex items-center w-full py-3 my-3 border rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5 text-gray-400"
@@ -68,8 +73,10 @@
             class="pl-2 outline-none border-none"
             type="password"
             name=""
-            id=""
-            placeholder="Password" />
+            formControlName="password"
+            placeholder="Password"
+            [class.border-rose-600]="loginForm.get('password')?.invalid"
+            [class.border-slate-200]="loginForm.get('password')?.valid" />
         </div>
         <!-- ./Password -->
         <div class="flex flex-row justify-between">

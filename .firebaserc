@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "pullapp-39406": {
+      "hosting": {
+        "app": [
+          "pullapp-39406"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pullapp-39406"
+  }
+}

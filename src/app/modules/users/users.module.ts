@@ -9,7 +9,7 @@ import { IonicModule } from '@ionic/angular';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { SharedModule } from '../../shared/shared.module';
 import { RegistrationDetailsComponent } from './pages/registration-details/registration-details.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component';
@@ -34,6 +34,7 @@ export function playerFactory(): any {
     IonicModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [UserAuthService],
 })

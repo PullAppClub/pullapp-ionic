@@ -4,4 +4,5 @@
 export enum ToastType {
   Success = 'alert-success',
   Info = 'alert-info',
+  Error = 'alert-danger',
 }
