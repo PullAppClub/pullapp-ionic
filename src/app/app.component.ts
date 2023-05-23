@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TabBarPages } from './core/enums/pages.enum';
 import { TabBarService } from './core/services/tab-bar/tab-bar.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,6 @@ export class AppComponent {
   public tapBar!: ElementRef;
   private lastScrollPosition = 0;
   private scrollAmount = 10;
-  public showTabBarOnScroll: boolean = true;
 
   constructor(router: Router, public readonly tabBarService: TabBarService) {
     this.showHideTabBar(router);
@@ -24,9 +24,11 @@ export class AppComponent {
    */
   private showHideTabBar(router: Router): void {
     router.events.subscribe(event => {
-      this.showTabBarOnScroll = Object.values(TabBarPages).some(page =>
+      const containsPage = Object.values(TabBarPages).some(page =>
         router.url.includes(page)
       );
+
+      this.tabBarService.setShowTabBar(containsPage);
     });
   }
 

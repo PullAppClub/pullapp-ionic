@@ -6,36 +6,42 @@
   </div>
   <div class="max-w-lg mx-auto my-10 bg-white pl-8 pr-8 rounded-xl">
     <!--    <form>-->
-    <div class="flex flex-col space-y-4">
+    <form
+      class="flex flex-col space-y-4"
+      [formGroup]="signUpForm"
+      (submit)="signUp()">
       <!--      <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>-->
       <p class="text-lg text-slate-500 mb-1">
         Welcome to the largest community of street athletes in the world 🌍️!
       </p>
-      <!-- Full Name -->
-      <div
-        class="flex items-center w-full my-3 py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 text-gray-400"
-          viewBox="0 0 20 20"
-          fill="currentColor">
-          <path
-            fill-rule="evenodd"
-            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-            clip-rule="evenodd" />
-        </svg>
-        <input
-          class="pl-2 outline-none border-none"
-          type="text"
-          name=""
-          id=""
-          placeholder="Full name" />
-      </div>
-      <!-- ./Full Name -->
+      <!--      &lt;!&ndash; Full Name &ndash;&gt;-->
+      <!--      <div-->
+      <!--        class="flex items-center w-full my-3 py-3 border rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"-->
+      <!--        [class.border-rose-600]="signUpForm.get('username')?.invalid"-->
+      <!--        [class.border-slate-200]="signUpForm.get('username')?.valid">-->
+      <!--        <svg-->
+      <!--          xmlns="http://www.w3.org/2000/svg"-->
+      <!--          class="h-5 w-5 text-gray-400"-->
+      <!--          viewBox="0 0 20 20"-->
+      <!--          fill="currentColor">-->
+      <!--          <path-->
+      <!--            fill-rule="evenodd"-->
+      <!--            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"-->
+      <!--            clip-rule="evenodd" />-->
+      <!--        </svg>-->
+      <!--        <input-->
+      <!--          class="pl-2 outline-none border-none"-->
+      <!--          type="text"-->
+      <!--          name=""-->
+      <!--          placeholder="Full name" />-->
+      <!--      </div>-->
+      <!--      &lt;!&ndash; ./Full Name &ndash;&gt;-->
 
       <!-- Username -->
       <div
-        class="flex items-center w-full py-3 my-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow">
+        class="flex items-center w-full py-3 my-3 border rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+        [class.border-rose-600]="signUpForm.get('username')?.invalid"
+        [class.border-slate-200]="signUpForm.get('username')?.valid">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5 text-gray-400"
@@ -51,15 +57,16 @@
         <input
           class="pl-2 outline-none border-none"
           type="text"
-          name=""
-          id=""
+          formControlName="username"
           placeholder="Username" />
       </div>
       <!-- ./Username -->
 
       <!-- Email -->
       <div
-        class="flex items-center w-full py-3 my-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow">
+        class="flex items-center w-full py-3 my-3 border rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+        [class.border-rose-600]="signUpForm.get('email')?.invalid"
+        [class.border-slate-200]="signUpForm.get('email')?.valid">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5 text-gray-400"
@@ -75,15 +82,16 @@
         <input
           class="pl-2 outline-none border-none"
           type="text"
-          name=""
-          id=""
+          formControlName="email"
           placeholder="Email Address" />
       </div>
       <!-- ./Email -->
 
       <!-- Password -->
       <div
-        class="flex items-center w-full py-3 my-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow">
+        class="flex items-center w-full py-3 my-3 border rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+        [class.border-rose-600]="signUpForm.get('password')?.invalid"
+        [class.border-slate-200]="signUpForm.get('password')?.valid">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5 text-gray-400"
@@ -97,20 +105,18 @@
         <input
           class="pl-2 outline-none border-none"
           type="password"
-          name=""
-          id=""
+          formControlName="password"
           placeholder="Password" />
       </div>
       <!-- ./Password -->
 
       <button
         type="submit"
-        (click)="signUp()"
         class="btn bg-indigo-600 space-x-2 items-center justify-center"
         [ngClass]="showSignUpSpinner ? 'loading disabled' : ''">
         <span *ngIf="!showSignUpSpinner">Sing Up</span>
       </button>
-    </div>
+    </form>
     <!--    </form>-->
   </div>
 </ion-content>

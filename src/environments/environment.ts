@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  useFirebaseEmulator: false,
+  useFirebaseEmulator: true,
   firebase: {
     projectId: 'pullapp-39406',
     appId: '1:577169499609:web:713e50ea3fca6fd9da65c8',

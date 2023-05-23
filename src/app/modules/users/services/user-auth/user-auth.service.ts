@@ -9,7 +9,10 @@ import { FirebaseEmailPasswordProvider } from '../../../../core/types/auth.type'
   providedIn: 'root',
 })
 export class UserAuthService {
-  constructor(private readonly firebaseService: FirebaseService) {}
+  constructor(
+    private readonly firebaseService: FirebaseService,
+    private readonly sessionService: SessionService
+  ) {}
 
   public async loginWithEmailAndPassword(params: LoginParams): Promise<void> {
     const loginProvider = (await this.firebaseService.loginProvider(
@@ -31,5 +34,6 @@ export class UserAuthService {
     params: LoginParams
   ): Promise<void> {
     await this.firebaseService.createUserWithEmailAndPassword(params);
+    await this.sessionService.getSessionToken();
   }
 }
