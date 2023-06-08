@@ -5,7 +5,7 @@ interface BaseHttpRequest {
 }
 
 export interface GetParams extends BaseHttpRequest {
-  params?: string;
+  params?: Record<string, string>;
   token?: string;
 }
 

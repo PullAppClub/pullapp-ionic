@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {
   CreateHttpOptionsParams,
   DeleteParams,
@@ -21,8 +21,10 @@ export class RequestHelper {
   constructor(private readonly http: HttpClient) {}
 
   public get<T>(params: GetParams): Promise<T> {
+    const options = { ...this.createOptions(params), params: params.params };
+
     return new Promise<T>((resolve, reject) => {
-      this.http.get(params.url, this.createOptions(params)).subscribe({
+      this.http.get(params.url, options).subscribe({
         next: response => resolve(response as T),
         error: error => reject(error),
       });
@@ -43,7 +45,7 @@ export class RequestHelper {
   public put<T, K = void>(params: PutParams<K>): Promise<T> {
     return new Promise<T>((resolve, reject) => {
       this.http
-        .post(params.url, params.params, this.createOptions(params))
+        .put(params.url, params.params, this.createOptions(params))
         .subscribe({
           next: response => resolve(response as T),
           error: error => reject(error),
@@ -73,7 +75,7 @@ export class RequestHelper {
 
   private createOptions(params: CreateHttpOptionsParams): RequestOptions {
     const headers = new HttpHeaders({
-      Authorization: params.token || '',
+      Authorization: `Bearer ${params.token}`,
     });
 
     const options: RequestOptions = {

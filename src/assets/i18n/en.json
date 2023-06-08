@@ -1,0 +1,12 @@
+{
+  "MODULES": {
+    "USER": {
+      "SIGNUP": {
+        "USERNAME_ALREADY_EXISTS": "Username already exists"
+      }
+    }
+  },
+  "ERROR": {
+    "AGE_LESS_THAN_16": "Age must be greater than 16"
+  }
+}

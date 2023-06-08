@@ -32,4 +32,11 @@ export class TabBarComponent implements OnInit {
   public isCurrentPage(page: TabBarPages): boolean {
     return this.navigationHelper.getCurrentPath().includes(page);
   }
+
+  public isLoginOrProfilePage(): boolean {
+    return (
+      this.navigationHelper.getCurrentPath().includes(TabBarPages.Profile) ||
+      this.navigationHelper.getCurrentPath().includes(TabBarPages.SignIn)
+    );
+  }
 }

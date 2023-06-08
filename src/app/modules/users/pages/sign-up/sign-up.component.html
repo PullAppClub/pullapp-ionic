@@ -38,6 +38,7 @@
       <!--      &lt;!&ndash; ./Full Name &ndash;&gt;-->
 
       <!-- Username -->
+
       <div
         class="flex items-center w-full py-3 my-3 border rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
         [class.border-rose-600]="signUpForm.get('username')?.invalid"
@@ -60,6 +61,14 @@
           formControlName="username"
           placeholder="Username" />
       </div>
+      <label
+        class="label"
+        style="margin-top: -4px"
+        *ngIf="usernameIsValid === false">
+        <span class="label-text-alt text-red-600">
+          {{ 'MODULES.USER.SIGNUP.USERNAME_ALREADY_EXISTS' | translate }}
+        </span>
+      </label>
       <!-- ./Username -->
 
       <!-- Email -->

@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -35,6 +36,7 @@ export function playerFactory(): any {
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
   ],
   providers: [UserAuthService],
 })

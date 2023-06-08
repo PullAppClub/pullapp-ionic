@@ -100,7 +100,8 @@
         <!-- ./Date of Birth Selection -->
 
         <button
-          class="btn bg-indigo-600 space-x-2 items-center justify-center mt-5 ml-auto w-40"
+          class="btn space-x-2 items-center justify-center mt-5 ml-auto w-40 disabled"
+          [class.btn-disabled]="!birthday"
           type="submit"
           (click)="submit()"
           [ngClass]="showSubmitSpinner ? 'loading disabled' : ''">

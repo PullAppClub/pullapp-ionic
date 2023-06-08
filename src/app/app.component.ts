@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TabBarPages } from './core/enums/pages.enum';
 import { TabBarService } from './core/services/tab-bar/tab-bar.service';
-import { Subscription } from 'rxjs';
+import { LangService } from './core/services/lang/lang.service';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +15,14 @@ export class AppComponent {
   private lastScrollPosition = 0;
   private scrollAmount = 10;
 
-  constructor(router: Router, public readonly tabBarService: TabBarService) {
+  constructor(
+    router: Router,
+    public readonly tabBarService: TabBarService,
+    langService: LangService
+  ) {
     this.showHideTabBar(router);
+
+    langService.setupLang();
   }
 
   /**

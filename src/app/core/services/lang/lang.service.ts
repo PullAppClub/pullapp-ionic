@@ -44,8 +44,6 @@ export class LangService {
    * Returns the translated string by key.
    */
   public async t(key: string): Promise<string> {
-    const translated = this.translate.get(key);
-
-    return firstValueFrom(translated);
+    return firstValueFrom(this.translate.get(key));
   }
 }

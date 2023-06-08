@@ -4,6 +4,8 @@ import { FirebaseService } from '../../../../core/services/firebase/firebase.ser
 import { LoginParams } from '../../../../core/interfaces/user-auth.interface';
 import { LoginProvider } from '../../../../core/enums/auth.enum';
 import { FirebaseEmailPasswordProvider } from '../../../../core/types/auth.type';
+import { RequestHelper } from '../../../../core/helpers/request/request.helper';
+import { endpoints } from '../../../../core/constants/endpoints.constant';
 
 @Injectable({
   providedIn: 'root',
