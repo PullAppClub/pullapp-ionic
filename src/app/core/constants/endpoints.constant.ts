@@ -6,5 +6,6 @@ export const endpoints = {
     CHECK_USERNAME: '/user/profile/check-username',
     UPDATE_USERNAME: '/user/profile/update-username',
     UPDATE_INFO: '/user/profile/update-info',
+    GET_PROFILE: '/user/profile',
   },
 };

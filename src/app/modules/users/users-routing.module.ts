@@ -7,6 +7,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { SettingsComponent } from './pages/settings/settings.component';
 import { AuthenticationGuard } from '../../core/guards/authentication/authentication.guard';
 import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component';
+import { PersonalInfoComponent } from './pages/personal-info/personal-info.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,12 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'settings/personal-info',
+    component: PersonalInfoComponent,
+    canActivate: [AuthenticationGuard],
   },
   {
     path: 'hall-of-fame',

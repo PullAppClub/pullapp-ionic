@@ -17,6 +17,7 @@ import { SpotCardMdComponent } from './components/molecules/spot-card-md/spot-ca
 import { GalleryModule } from 'ng-gallery';
 import { OfficialChallengeCardComponent } from './components/molecules/official-challenge-card/official-challenge-card.component';
 import { EntryRewardComponent } from './components/atoms/entry-reward/entry-reward.component';
+import { LoadButtonComponent } from './components/atoms/load-button/load-button.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { EntryRewardComponent } from './components/atoms/entry-reward/entry-rewa
     SpotCardMdComponent,
     OfficialChallengeCardComponent,
     EntryRewardComponent,
+    LoadButtonComponent,
   ],
   imports: [CommonModule, IonicModule, FormsModule, GalleryModule],
   exports: [
@@ -51,6 +53,7 @@ import { EntryRewardComponent } from './components/atoms/entry-reward/entry-rewa
     SpotCardMdComponent,
     OfficialChallengeCardComponent,
     EntryRewardComponent,
+    LoadButtonComponent,
   ],
 })
 export class SharedModule {}

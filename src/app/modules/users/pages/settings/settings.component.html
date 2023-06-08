@@ -18,7 +18,10 @@
       <div class="grid grid-cols-1 justify-items-start mt-5 px-7">
         <!-- Personal Info -->
         <div
-          class="flex items-center text-gray-900 text-xl mt-2 mb-2 space-x-3">
+          class="flex items-center text-gray-900 text-xl mt-2 mb-2 space-x-3"
+          (click)="
+            navigationHelper.openPage({ route: '/user/settings/personal-info' })
+          ">
           <ion-icon name="accessibility-outline"></ion-icon>
           <span>Personal Info</span>
         </div>
@@ -53,6 +56,14 @@
           </select>
         </div>
         <!-- ./Language -->
+
+        <div class="divider mt-2 mb-2 w-full"></div>
+
+        <!-- Logout Btn -->
+        <button class="btn" (click)="logout()">
+          {{ 'MODULES.PROFILE.SETTINGS.LOGOUT' | translate }}
+        </button>
+        <!-- ./Logout Btn -->
       </div>
     </div>
     <!-- ./Settings -->

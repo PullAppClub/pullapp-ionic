@@ -4,7 +4,6 @@ import { UserAuthService } from './services/user-auth/user-auth.service';
 import { UsersRoutingModule } from './users-routing.module';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { LottieModule } from 'ngx-lottie';
-import player from 'lottie-web';
 import { IonicModule } from '@ionic/angular';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { SharedModule } from '../../shared/shared.module';
@@ -14,6 +13,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { SettingsComponent } from './pages/settings/settings.component';
 import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { PersonalInfoComponent } from './pages/personal-info/personal-info.component';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -27,6 +27,7 @@ export function playerFactory(): any {
     UserProfileComponent,
     SettingsComponent,
     HallOfFameComponent,
+    PersonalInfoComponent,
   ],
   imports: [
     CommonModule,

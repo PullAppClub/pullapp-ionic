@@ -4,7 +4,20 @@
       "SIGNUP": {
         "USERNAME_ALREADY_EXISTS": "Username already exists"
       }
+    },
+    "PROFILE": {
+      "HEIGHT": "Height",
+      "WEIGHT": "Weight",
+      "GENDER": "Gender",
+      "DATE_OF_BIRTH": "Date of Birth",
+      "SETTINGS": {
+        "TITLE": "Settings",
+        "LOGOUT": "Logout"
+      }
     }
+  },
+  "COMMON": {
+    "SAVE": "Save"
   },
   "ERROR": {
     "AGE_LESS_THAN_16": "Age must be greater than 16"

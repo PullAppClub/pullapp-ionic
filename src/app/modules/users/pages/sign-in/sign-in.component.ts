@@ -38,6 +38,8 @@ export class SignInComponent implements OnInit {
         email: this.loginForm.get('email')?.value as string,
         password: this.loginForm.get('password')?.value as string,
       });
+
+      this.navigationHelper.openPageWithoutHistory({ route: '/user/profile' });
     } catch (e) {
       this.httpErrorHandlerHelper.handle(e);
     }

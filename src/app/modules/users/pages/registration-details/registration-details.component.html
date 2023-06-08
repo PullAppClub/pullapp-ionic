@@ -50,7 +50,8 @@
         <!-- Height Selection -->
         <div>
           <p class="text-2xl text-slate-800 mb-1 text-left mt-5">
-            Height <span class="float-right"> {{ height }} cm</span>
+            {{ 'MODULES.PROFILE.HEIGHT' | translate }}
+            <span class="float-right"> {{ height }} cm</span>
           </p>
           <input
             type="range"
@@ -64,7 +65,8 @@
         <!-- Weight Selection -->
         <div>
           <p class="text-2xl text-slate-800 mb-1 text-left mt-5">
-            Weight <span class="float-right"> {{ weight }} kg</span>
+            {{ 'MODULES.PROFILE.WEIGHT' | translate }}
+            <span class="float-right"> {{ weight }} kg</span>
           </p>
           <input
             type="range"

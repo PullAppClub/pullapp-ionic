@@ -1,0 +1,91 @@
+<app-header></app-header>
+<ion-content scrollEvents="true">
+  <div class="container max-w-lg mx-auto my-10 pl-8 pr-8" *ngIf="profile">
+    <!-- Gender Selection -->
+    <p class="text-2xl text-slate-800 text-left">Gender</p>
+
+    <div class="btn-group mx-auto">
+      <button
+        class="btn btn-outline"
+        [ngClass]="profile.gender === gender.Male ? 'btn-active' : ''"
+        (click)="setSelectedGenderTab(gender.Male)">
+        Male
+      </button>
+      <button
+        class="btn btn-outline"
+        [ngClass]="profile.gender === gender.Female ? 'btn-active' : ''"
+        (click)="setSelectedGenderTab(gender.Female)">
+        Female
+      </button>
+      <button
+        class="btn btn-outline"
+        [ngClass]="profile.gender === gender.NoBinary ? 'btn-active' : ''"
+        (click)="setSelectedGenderTab(gender.NoBinary)">
+        No binary
+      </button>
+    </div>
+    <!-- ./Gender Selection -->
+
+    <!-- Height Selection -->
+    <div>
+      <p class="text-2xl text-slate-800 mb-1 text-left mt-5">
+        {{ 'MODULES.PROFILE.HEIGHT' | translate }}
+        <span class="float-right"> {{ profile.height }} cm</span>
+      </p>
+      <input
+        type="range"
+        min="100"
+        max="220"
+        [(ngModel)]="profile.height"
+        class="range range-xs mt-2" />
+    </div>
+    <!-- ./Height Selection -->
+
+    <!-- Weight Selection -->
+    <div>
+      <p class="text-2xl text-slate-800 mb-1 text-left mt-5">
+        {{ 'MODULES.PROFILE.WEIGHT' | translate }}
+        <span class="float-right"> {{ profile.weight }} kg</span>
+      </p>
+      <input
+        type="range"
+        min="35"
+        max="160"
+        [(ngModel)]="profile.weight"
+        class="range range-xs mt-2" />
+    </div>
+    <!-- ./Weight Selection -->
+
+    <!-- Date of Birth Selection -->
+    <div>
+      <p class="text-2xl text-slate-800 mb-1 text-left mt-5">
+        {{ 'MODULES.PROFILE.DATE_OF_BIRTH' | translate }}
+      </p>
+      <!-- Calendar Popover -->
+      <div class="dropdown dropdown-top">
+        <button tabindex="0" class="btn btn-outline gap-2">
+          <ion-icon name="calendar" style="font-size: 16px"></ion-icon>
+          {{ profile.birthday | date : 'dd/MM/yyyy' }}
+        </button>
+        <div
+          tabindex="0"
+          class="dropdown-content p-2 shadow menu w-96 bg-base-100 rounded-box">
+          <ion-datetime
+            color="rose"
+            presentation="date"
+            [(ngModel)]="profile.birthday"></ion-datetime>
+        </div>
+      </div>
+      <!-- ./Calendar Popover -->
+    </div>
+    <!-- ./Date of Birth Selection -->
+    <div class="flex justify-center mt-8">
+      <app-load-button
+        tKey="COMMON.SAVE"
+        [callback]="execUpdateProfile"
+        [disabled]="false"
+        [showSpinner]="showSubmitSpinner">
+      </app-load-button>
+    </div>
+  </div>
+</ion-content>

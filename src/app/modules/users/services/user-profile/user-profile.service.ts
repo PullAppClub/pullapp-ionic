@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
 import { RequestHelper } from '../../../../core/helpers/request/request.helper';
 import { SessionService } from '../../../../core/services/session/session.service';
-import { UpdateProfileInfoParams } from '../../types/profile.type';
+import { UpdateProfileInfoParams, UserProfile } from '../../types/profile.type';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserProfileService {
+  private userProfile?: UserProfile;
+
   constructor(
     private readonly requestHelper: RequestHelper,
     private readonly sessionService: SessionService
@@ -36,5 +38,23 @@ export class UserProfileService {
       params,
       token: await this.sessionService.getSessionToken(),
     });
+  }
+
+  public async getProfile(): Promise<UserProfile> {
+    if (this.userProfile) return this.userProfile;
+
+    const profile = await this.requestHelper.get<UserProfile>({
+      url: endpoints.HOST + endpoints.PROFILE.GET_PROFILE,
+      token: await this.sessionService.getSessionToken(),
+    });
+
+    this.userProfile = {
+      ...profile,
+      birthday: new Date(profile.birthday),
+    };
+
+    console.log(this.userProfile);
+
+    return this.userProfile;
   }
 }
