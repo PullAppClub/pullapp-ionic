@@ -8,6 +8,9 @@ import { ChallengeType } from '../../../events/enums/challenge-type.enum';
 import { User } from '../../interfaces/user.interface';
 import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service';
 import { UserChallengesSection } from '../../enums/layout.enum';
+import { UserProfileService } from '../../services/user-profile/user-profile.service';
+import { UserProfile } from '../../types/profile.type';
+import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,8 +24,13 @@ export class UserProfileComponent implements OnInit {
   public showChallenges: UserChallengesSection = UserChallengesSection.Active;
   public userChallengesSection = UserChallengesSection;
   public spots = [];
+  public profile?: UserProfile;
 
-  constructor(public readonly tabBarService: TabBarService) {
+  constructor(
+    public readonly tabBarService: TabBarService,
+    private readonly userProfileService: UserProfileService,
+    private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper
+  ) {
     // temp challenges
     this.challenges.push(
       {
@@ -139,5 +147,15 @@ export class UserProfileComponent implements OnInit {
     ];
   }
 
-  async ngOnInit() {}
+  ngOnInit() {
+    this.loadProfile();
+  }
+
+  private async loadProfile(): Promise<void> {
+    try {
+      this.profile = await this.userProfileService.getProfile();
+    } catch (e) {
+      this.httpErrorHandlerHelper.handle(e);
+    }
+  }
 }

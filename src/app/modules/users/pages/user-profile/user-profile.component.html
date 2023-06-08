@@ -1,10 +1,7 @@
-<app-header
-  [showMenu]="true"
-  [showProfilePreferences]="true"
-  [title]="'Giro Giro'"></app-header>
+<app-header [showMenu]="true" [showProfilePreferences]="true"></app-header>
 
 <ion-content scrollEvents="true">
-  <div class="container max-w-lg mx-auto my-10">
+  <div class="container max-w-lg mx-auto my-10" *ngIf="profile">
     <div class="grid mt-5">
       <!-- User Info Section -->
       <div class="avatar mx-auto">
@@ -14,7 +11,7 @@
       </div>
       <div>
         <p class="text-3xl text-slate-900 font-bold mb-1 text-center mt-5">
-          @username
+          @{{ profile.username }}
         </p>
 
         <p class="text-lg text-slate-900 mb-1 text-center mt-2 pl-2 pr-2">
@@ -28,7 +25,7 @@
         <app-small-stat-card
           [icon]="'💪'"
           [title]="'Muscle Tokens'"
-          [value]="'90'"></app-small-stat-card>
+          [value]="profile.muscleToken.toString()"></app-small-stat-card>
 
         <app-small-stat-card
           [icon]="'🏆️'"

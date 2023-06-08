@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Gender } from '../../../../core/enums/gender.enum';
 import { UserProfileService } from '../../services/user-profile/user-profile.service';
 import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
