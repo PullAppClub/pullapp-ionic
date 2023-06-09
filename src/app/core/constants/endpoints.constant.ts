@@ -8,4 +8,8 @@ export const endpoints = {
     UPDATE_INFO: '/user/profile/update-info',
     GET_PROFILE: '/user/profile',
   },
+  IDENTITY: {
+    CHANGE_EMAIL: '/user/identity/email',
+    GET_EMAIL: '/user/identity/email',
+  },
 };

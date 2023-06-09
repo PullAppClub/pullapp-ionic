@@ -8,6 +8,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { AuthenticationGuard } from '../../core/guards/authentication/authentication.guard';
 import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component';
 import { PersonalInfoComponent } from './pages/personal-info/personal-info.component';
+import { ChangeEmailComponent } from './pages/change-email/change-email.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path: 'settings/personal-info',
     component: PersonalInfoComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'settings/change-email',
+    component: ChangeEmailComponent,
     canActivate: [AuthenticationGuard],
   },
   {

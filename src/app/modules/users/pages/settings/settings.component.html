@@ -29,7 +29,10 @@
 
         <!-- Email -->
         <div
-          class="flex items-center text-gray-900 text-xl mt-2 mb-2 space-x-3">
+          class="flex items-center text-gray-900 text-xl mt-2 mb-2 space-x-3"
+          (click)="
+            navigationHelper.openPage({ route: '/user/settings/change-email' })
+          ">
           <ion-icon name="mail-outline"></ion-icon>
           <span>Email</span>
         </div>

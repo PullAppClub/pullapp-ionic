@@ -11,6 +11,8 @@
       "GENDER": "Gender",
       "BIO": "Bio",
       "DATE_OF_BIRTH": "Date of Birth",
+      "EMAIL_CHANGED_TITLE": "Email Changed",
+      "EMAIL_CHANGED_BODY": "Your email has been changed successfully",
       "SETTINGS": {
         "TITLE": "Settings",
         "LOGOUT": "Logout"

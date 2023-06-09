@@ -14,6 +14,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { PersonalInfoComponent } from './pages/personal-info/personal-info.component';
+import { ChangeEmailComponent } from './pages/change-email/change-email.component';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -28,6 +29,7 @@ export function playerFactory(): any {
     SettingsComponent,
     HallOfFameComponent,
     PersonalInfoComponent,
+    ChangeEmailComponent,
   ],
   imports: [
     CommonModule,
