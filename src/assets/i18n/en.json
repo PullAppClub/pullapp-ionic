@@ -9,6 +9,7 @@
       "HEIGHT": "Height",
       "WEIGHT": "Weight",
       "GENDER": "Gender",
+      "BIO": "Bio",
       "DATE_OF_BIRTH": "Date of Birth",
       "SETTINGS": {
         "TITLE": "Settings",

@@ -14,9 +14,10 @@
           @{{ profile.username }}
         </p>
 
-        <p class="text-lg text-slate-900 mb-1 text-center mt-2 pl-2 pr-2">
-          I will try to update this soon. Since I never received much of
-          comments on this.
+        <p
+          class="text-lg text-slate-900 mb-1 text-center mt-2 pl-2 pr-2"
+          *ngIf="profile.description">
+          {{ profile.description }}
         </p>
       </div>
 
@@ -25,7 +26,7 @@
         <app-small-stat-card
           [icon]="'💪'"
           [title]="'Muscle Tokens'"
-          [value]="profile.muscleToken.toString()"></app-small-stat-card>
+          [value]="profile.muscleTokens.toString()"></app-small-stat-card>
 
         <app-small-stat-card
           [icon]="'🏆️'"

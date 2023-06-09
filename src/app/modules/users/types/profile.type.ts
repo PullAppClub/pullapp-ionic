@@ -7,10 +7,11 @@ export type UserProfile = {
   weight: number;
   avatar: string;
   username: string;
-  muscleToken: number;
+  muscleTokens: number;
+  description?: string;
 };
 
 export type UpdateProfileInfoParams = Omit<
   UserProfile,
-  'avatar' | 'username' | 'muscleToken'
+  'avatar' | 'username' | 'muscleTokens'
 >;
