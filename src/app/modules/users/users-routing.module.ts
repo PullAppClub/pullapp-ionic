@@ -9,6 +9,7 @@ import { AuthenticationGuard } from '../../core/guards/authentication/authentica
 import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component';
 import { PersonalInfoComponent } from './pages/personal-info/personal-info.component';
 import { ChangeEmailComponent } from './pages/change-email/change-email.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,11 @@ const routes: Routes = [
   {
     path: 'settings/change-email',
     component: ChangeEmailComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'settings/change-password',
+    component: ChangePasswordComponent,
     canActivate: [AuthenticationGuard],
   },
   {

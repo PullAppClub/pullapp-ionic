@@ -13,6 +13,8 @@
       "DATE_OF_BIRTH": "Date of Birth",
       "EMAIL_CHANGED_TITLE": "Email Changed",
       "EMAIL_CHANGED_BODY": "Your email has been changed successfully",
+      "PASSWORD_CHANGED_TITLE": "Password Changed",
+      "PASSWORD_CHANGED_BODY": "Your password has been changed successfully",
       "SETTINGS": {
         "TITLE": "Settings",
         "LOGOUT": "Logout"

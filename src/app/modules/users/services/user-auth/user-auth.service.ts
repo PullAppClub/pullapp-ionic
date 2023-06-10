@@ -6,6 +6,7 @@ import { LoginProvider } from '../../../../core/enums/auth.enum';
 import { FirebaseEmailPasswordProvider } from '../../../../core/types/auth.type';
 import { RequestHelper } from '../../../../core/helpers/request/request.helper';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
+import { ThirdPartyProvider } from '../../../../core/enums/third-part-provider';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,8 @@ import { endpoints } from '../../../../core/constants/endpoints.constant';
 export class UserAuthService {
   constructor(
     private readonly firebaseService: FirebaseService,
-    private readonly sessionService: SessionService
+    private readonly sessionService: SessionService,
+    private readonly requestHelper: RequestHelper
   ) {}
 
   public async loginWithEmailAndPassword(params: LoginParams): Promise<void> {
@@ -37,5 +39,18 @@ export class UserAuthService {
   ): Promise<void> {
     await this.firebaseService.createUserWithEmailAndPassword(params);
     await this.sessionService.getSessionToken();
+  }
+
+  public async changePassword(password: string): Promise<void> {
+    const { provider } = await this.requestHelper.get<{
+      provider: string;
+    }>({
+      url: endpoints.HOST + endpoints.IDENTITY.GET_IDENTITY_PROVIDER,
+      token: await this.sessionService.getSessionToken(),
+    });
+
+    if (provider === ThirdPartyProvider.Firebase) {
+      await this.firebaseService.changePassword(password);
+    }
   }
 }

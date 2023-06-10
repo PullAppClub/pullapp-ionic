@@ -40,7 +40,12 @@
 
         <!-- Password -->
         <div
-          class="flex items-center text-gray-900 text-xl mt-2 mb-2 space-x-3">
+          class="flex items-center text-gray-900 text-xl mt-2 mb-2 space-x-3"
+          (click)="
+            navigationHelper.openPage({
+              route: '/user/settings/change-password'
+            })
+          ">
           <ion-icon name="lock-closed-outline"></ion-icon>
           <span>Password</span>
         </div>

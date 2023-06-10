@@ -15,6 +15,7 @@ import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component
 import { TranslateModule } from '@ngx-translate/core';
 import { PersonalInfoComponent } from './pages/personal-info/personal-info.component';
 import { ChangeEmailComponent } from './pages/change-email/change-email.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -30,6 +31,7 @@ export function playerFactory(): any {
     HallOfFameComponent,
     PersonalInfoComponent,
     ChangeEmailComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,

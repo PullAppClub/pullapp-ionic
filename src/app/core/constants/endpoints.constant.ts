@@ -11,5 +11,6 @@ export const endpoints = {
   IDENTITY: {
     CHANGE_EMAIL: '/user/identity/email',
     GET_EMAIL: '/user/identity/email',
+    GET_IDENTITY_PROVIDER: '/user/identity/provider',
   },
 };
