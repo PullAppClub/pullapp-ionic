@@ -17,12 +17,17 @@
       "PASSWORD_CHANGED_BODY": "Your password has been changed successfully",
       "SETTINGS": {
         "TITLE": "Settings",
-        "LOGOUT": "Logout"
+        "LOGOUT": "Logout",
+        "CHANGE_AVATAR": "Change avatar",
+        "AVATAR_CHANGED_TITLE": "Avatar changed",
+        "AVATAR_CHANGED_BODY": "Your avatar has been changed successfully"
       }
     }
   },
   "COMMON": {
-    "SAVE": "Save"
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "UPLOAD": "Upload"
   },
   "ERROR": {
     "AGE_LESS_THAN_16": "Age must be greater than 16"

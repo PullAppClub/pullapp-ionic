@@ -53,7 +53,16 @@ export class UserProfileService {
       birthday: new Date(profile.birthday),
     };
 
-    console.log(this.userProfile);
+    return this.userProfile;
+  }
+
+  public async uploadAvatar(file: File): Promise<UserProfile> {
+    this.userProfile = await this.requestHelper.upload<UserProfile, File>({
+      url: endpoints.HOST + endpoints.PROFILE.UPLOAD_AVATAR,
+      file,
+      token: await this.sessionService.getSessionToken(),
+      fileName: 'files',
+    });
 
     return this.userProfile;
   }

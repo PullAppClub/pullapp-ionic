@@ -13,6 +13,11 @@ export interface PostParams<T = void> extends BaseHttpRequest {
   params?: T;
 }
 
+export interface PostFormDataParams<T = void> extends PostParams<T> {
+  file: File;
+  fileName: string;
+}
+
 export interface PutParams<T = void> extends BaseHttpRequest {
   params?: T;
 }
@@ -23,4 +28,6 @@ export interface PatchParams<T = void> extends BaseHttpRequest {
   params?: T;
 }
 
-export interface CreateHttpOptionsParams extends Omit<BaseHttpRequest, 'url'> {}
+export interface CreateHttpOptionsParams extends Omit<BaseHttpRequest, 'url'> {
+  headers?: Record<any, any>;
+}

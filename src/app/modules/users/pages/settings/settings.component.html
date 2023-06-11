@@ -1,16 +1,18 @@
 <app-header></app-header>
 
 <ion-content>
-  <div class="container max-w-lg mx-auto">
+  <div class="container max-w-lg mx-auto" *ngIf="profile">
     <div class="grid">
       <!-- Change Avatar -->
       <div class="grid grid-cols-1 justify-items-center">
         <div class="avatar">
           <div class="w-24 rounded-full">
-            <img src="https://placeimg.com/192/192/people" />
+            <img src="{{ profile.avatar }}" referrerpolicy="no-referrer" />
           </div>
         </div>
-        <button class="btn btn-sm btn-outline mt-4">Change avatar</button>
+        <label class="btn btn-sm btn-outline mt-4" [for]="uploadLabelId"
+          >Change avatar</label
+        >
       </div>
       <!-- ./Change Avatar -->
 
@@ -75,5 +77,14 @@
       </div>
     </div>
     <!-- ./Settings -->
+
+    <!-- Upload Modal Section -->
+    <app-upload-modal
+      [forLabelId]="uploadLabelId"
+      (file)="uploadFile($event)"
+      [acceptedFileType]="acceptedFileType"
+      [showUploadSpinner]="showUploadSpinner"
+      textKey="MODULES.PROFILE.SETTINGS.CHANGE_AVATAR"></app-upload-modal>
+    <!-- ./Upload Modal Section -->
   </div>
 </ion-content>

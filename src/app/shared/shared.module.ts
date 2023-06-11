@@ -18,6 +18,8 @@ import { GalleryModule } from 'ng-gallery';
 import { OfficialChallengeCardComponent } from './components/molecules/official-challenge-card/official-challenge-card.component';
 import { EntryRewardComponent } from './components/atoms/entry-reward/entry-reward.component';
 import { LoadButtonComponent } from './components/atoms/load-button/load-button.component';
+import { UploadModalComponent } from './components/molecules/upload-modal/upload-modal.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -36,8 +38,15 @@ import { LoadButtonComponent } from './components/atoms/load-button/load-button.
     OfficialChallengeCardComponent,
     EntryRewardComponent,
     LoadButtonComponent,
+    UploadModalComponent,
   ],
-  imports: [CommonModule, IonicModule, FormsModule, GalleryModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    FormsModule,
+    GalleryModule,
+    TranslateModule,
+  ],
   exports: [
     HeaderComponent,
     ToastComponent,
@@ -54,6 +63,7 @@ import { LoadButtonComponent } from './components/atoms/load-button/load-button.
     OfficialChallengeCardComponent,
     EntryRewardComponent,
     LoadButtonComponent,
+    UploadModalComponent,
   ],
 })
 export class SharedModule {}

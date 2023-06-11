@@ -5,6 +5,7 @@ import {
   DeleteParams,
   GetParams,
   PatchParams,
+  PostFormDataParams,
   PostParams,
   PutParams,
 } from '../../interfaces/http-request.interface';
@@ -66,6 +67,33 @@ export class RequestHelper {
     return new Promise<T>((resolve, reject) => {
       this.http
         .patch(params.url, params.params, this.createOptions(params))
+        .subscribe({
+          next: response => resolve(response as T),
+          error: error => reject(error),
+        });
+    });
+  }
+
+  public upload<T, K = void>(params: PostFormDataParams<K>): Promise<T> {
+    return new Promise<T>((resolve, reject) => {
+      const formData = new FormData();
+      formData.append(params.fileName, params.file, params.fileName);
+
+      if (params.params) {
+        for (const [key, value] of Object.entries(params.params)) {
+          formData.append(`${key}`, value as string);
+        }
+      }
+
+      this.http
+        .post(
+          params.url,
+          formData,
+          this.createOptions({
+            ...params,
+            headers: { 'Content-Type': 'multipart/form-data' },
+          })
+        )
         .subscribe({
           next: response => resolve(response as T),
           error: error => reject(error),

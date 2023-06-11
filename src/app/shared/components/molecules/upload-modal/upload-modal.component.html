@@ -1,0 +1,29 @@
+<input type="checkbox" [id]="forLabelId" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box justify-center">
+    <label
+      [for]="forLabelId"
+      class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+      >✕</label
+    >
+
+    <h3 class="font-bold text-lg text-center">{{ textKey | translate }}</h3>
+
+    <input
+      type="file"
+      class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-6"
+      [accept]="acceptedFileType"
+      (change)="onFileSelected($event)" />
+
+    <div class="modal-action flex items-center justify-center mt-1">
+      <label class="btn normal-case btn-outline mr-2 mt-5" [for]="forLabelId">
+        {{ 'COMMON.CANCEL' | translate }}
+      </label>
+
+      <app-load-button
+        tKey="COMMON.UPLOAD"
+        [callback]="emitFileCallback"
+        [showSpinner]="showUploadSpinner"></app-load-button>
+    </div>
+  </div>
+</div>

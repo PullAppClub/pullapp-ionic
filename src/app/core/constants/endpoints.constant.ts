@@ -7,6 +7,7 @@ export const endpoints = {
     UPDATE_USERNAME: '/user/profile/update-username',
     UPDATE_INFO: '/user/profile/update-info',
     GET_PROFILE: '/user/profile',
+    UPLOAD_AVATAR: '/user/profile/upload-avatar',
   },
   IDENTITY: {
     CHANGE_EMAIL: '/user/identity/email',
