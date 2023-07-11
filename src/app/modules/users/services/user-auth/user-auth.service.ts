@@ -7,6 +7,7 @@ import { FirebaseEmailPasswordProvider } from '../../../../core/types/auth.type'
 import { RequestHelper } from '../../../../core/helpers/request/request.helper';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
 import { ThirdPartyProvider } from '../../../../core/enums/third-part-provider';
+import { UserAccountService } from '../user-account/user-account.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ export class UserAuthService {
   constructor(
     private readonly firebaseService: FirebaseService,
     private readonly sessionService: SessionService,
-    private readonly requestHelper: RequestHelper
+    private readonly requestHelper: RequestHelper,
+    private readonly userAccountService: UserAccountService
   ) {}
 
   public async loginWithEmailAndPassword(params: LoginParams): Promise<void> {
@@ -24,6 +26,7 @@ export class UserAuthService {
     )) as FirebaseEmailPasswordProvider;
 
     await loginProvider(params.email, params.password);
+    this.userAccountService.addFCMToken();
   }
 
   public async loginWithPopup(provider: LoginProvider): Promise<void> {
@@ -39,6 +42,8 @@ export class UserAuthService {
   ): Promise<void> {
     await this.firebaseService.createUserWithEmailAndPassword(params);
     await this.sessionService.getSessionToken();
+
+    await this.userAccountService.addFCMToken();
   }
 
   public async changePassword(password: string): Promise<void> {

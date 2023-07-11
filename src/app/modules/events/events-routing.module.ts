@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeEventsComponent } from './pages/home-events/home-events.component';
 import { SpotsMapComponent } from './pages/spots-map/spots-map.component';
 import { ChallengeComponent } from './pages/challenge/challenge.component';
+import { CreateChallengeComponent } from './pages/create-challenge/create-challenge.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
   {
     path: 'challenge/:id',
     component: ChallengeComponent,
+  },
+  {
+    path: 'create-challenge',
+    component: CreateChallengeComponent,
+    title: 'Create Challenge',
   },
 ];
 

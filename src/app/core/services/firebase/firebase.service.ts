@@ -103,7 +103,7 @@ export class FirebaseService {
           resolve(data?.email as string);
         },
         error: error => {
-          console.log('permission denied', error);
+          console.log(error);
           reject(error);
         },
       });
@@ -117,7 +117,7 @@ export class FirebaseService {
           resolve(data?.displayName);
         },
         error: error => {
-          console.log('permission denied', error);
+          console.log(error);
           reject(error);
         },
       });

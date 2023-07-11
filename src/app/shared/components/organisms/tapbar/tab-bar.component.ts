@@ -39,4 +39,10 @@ export class TabBarComponent implements OnInit {
       this.navigationHelper.getCurrentPath().includes(TabBarPages.SignIn)
     );
   }
+
+  public openActionPage(page: string): void {
+    this.navigationHelper.openPage({
+      route: page,
+    });
+  }
 }

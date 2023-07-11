@@ -14,4 +14,14 @@ export const endpoints = {
     GET_EMAIL: '/user/identity/email',
     GET_IDENTITY_PROVIDER: '/user/identity/provider',
   },
+  CHALLENGE: {
+    CREATE_GLOBAL: '/event/challenge/global',
+    LEVELS: '/event/challenge/levels',
+  },
+  ACCOUNT: {
+    FCM_TOKEN: '/account/fcm-token',
+  },
+  ADMIN: {
+    APPROVE_CHALLENGE: '/event/challenge/approve',
+  },
 };

@@ -31,3 +31,7 @@ export interface PatchParams<T = void> extends BaseHttpRequest {
 export interface CreateHttpOptionsParams extends Omit<BaseHttpRequest, 'url'> {
   headers?: Record<any, any>;
 }
+
+export interface HttpMessageResponse {
+  message: string;
+}

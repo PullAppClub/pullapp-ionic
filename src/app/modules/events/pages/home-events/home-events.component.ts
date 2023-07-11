@@ -1,11 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Challenge } from '../../interfaces/challenge.interface';
+import {
+  Challenge,
+  ChallengeLevel,
+} from '../../interfaces/challenge.interface';
 import { SportType } from '../../enums/sport.enum';
 import { ChallengeType } from '../../enums/challenge-type.enum';
 import { User } from '../../../users/interfaces/user.interface';
 import { fromEvent } from 'rxjs';
 import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service';
-import { ChallengeLevel } from '../../enums/challenge-level.enum';
 
 @Component({
   selector: 'app-home-events',

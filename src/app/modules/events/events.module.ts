@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -9,6 +9,8 @@ import { HomeEventsComponent } from './pages/home-events/home-events.component';
 import { SpotsMapComponent } from './pages/spots-map/spots-map.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ChallengeComponent } from './pages/challenge/challenge.component';
+import { CreateChallengeComponent } from './pages/create-challenge/create-challenge.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -17,7 +19,14 @@ import { ChallengeComponent } from './pages/challenge/challenge.component';
     IonicModule,
     EventsPageRoutingModule,
     SharedModule,
+    ReactiveFormsModule,
+    TranslateModule,
   ],
-  declarations: [HomeEventsComponent, SpotsMapComponent, ChallengeComponent],
+  declarations: [
+    HomeEventsComponent,
+    SpotsMapComponent,
+    ChallengeComponent,
+    CreateChallengeComponent,
+  ],
 })
 export class EventsPageModule {}

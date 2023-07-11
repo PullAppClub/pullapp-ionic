@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TabBarPages } from './core/enums/pages.enum';
 import { TabBarService } from './core/services/tab-bar/tab-bar.service';
 import { LangService } from './core/services/lang/lang.service';
+import { FirebaseService } from './core/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,19 @@ export class AppComponent {
   constructor(
     router: Router,
     public readonly tabBarService: TabBarService,
-    langService: LangService
+    langService: LangService,
+    private readonly firebaseService: FirebaseService
   ) {
     this.showHideTabBar(router);
 
     langService.setupLang();
+    this.setFirebaseToken();
+  }
+
+  private async setFirebaseToken(): Promise<void> {
+    await this.firebaseService.requestPermission();
+    const token = await this.firebaseService.getFCMToken();
+    console.log(token);
   }
 
   /**

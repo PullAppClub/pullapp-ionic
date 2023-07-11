@@ -22,12 +22,22 @@
         "AVATAR_CHANGED_TITLE": "Avatar changed",
         "AVATAR_CHANGED_BODY": "Your avatar has been changed successfully"
       }
+    },
+    "CHALLENGE": {
+      "UPLOAD_VIDEO": "Upload video",
+      "SELECT_DISCIPLINE": "Select discipline",
+      "DESCRIPTION": "Description",
+      "CREATE_CHALLENGE": "Create Challenge",
+      "ENTRY_FEE": "Entry fee",
+      "REWARD": "Reward"
     }
   },
   "COMMON": {
     "SAVE": "Save",
     "CANCEL": "Cancel",
-    "UPLOAD": "Upload"
+    "UPLOAD": "Upload",
+    "CONFIRM": "Confirm",
+    "DROP_FILE_TO_ATTACH": " Drop files to Attach, or browse"
   },
   "ERROR": {
     "AGE_LESS_THAN_16": "Age must be greater than 16"
