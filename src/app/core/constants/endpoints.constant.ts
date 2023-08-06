@@ -19,7 +19,7 @@ export const endpoints = {
     LEVELS: '/event/challenge/levels',
   },
   ACCOUNT: {
-    FCM_TOKEN: '/account/fcm-token',
+    FCM_TOKEN: '/user/account/fcm-token',
   },
   ADMIN: {
     APPROVE_CHALLENGE: '/event/challenge/approve',

@@ -29,7 +29,8 @@
       "DESCRIPTION": "Description",
       "CREATE_CHALLENGE": "Create Challenge",
       "ENTRY_FEE": "Entry fee",
-      "REWARD": "Reward"
+      "REWARD": "Reward",
+      "CHALLENGE_UPLOADING_MODAL_TEXT": "We are uploading your challenge, please do not close the app until we notify you."
     }
   },
   "COMMON": {
@@ -37,9 +38,13 @@
     "CANCEL": "Cancel",
     "UPLOAD": "Upload",
     "CONFIRM": "Confirm",
-    "DROP_FILE_TO_ATTACH": " Drop files to Attach, or browse"
+    "DROP_FILE_TO_ATTACH": " Drop files to Attach, or browse",
+    "I_UNDERSTAND": "I understand"
   },
   "ERROR": {
     "AGE_LESS_THAN_16": "Age must be greater than 16"
+  },
+  "MESSAGE": {
+    "CHALLENGE_UNDER_ELABORATION": "Challenge under elaboration"
   }
 }

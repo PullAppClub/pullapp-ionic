@@ -1,31 +1,35 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { BehaviorSubject } from 'rxjs';
 import { GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
-import firebase from 'firebase/compat/app';
 import { LoginProvider } from '../../enums/auth.enum';
 import { LoginProviderResponse } from '../../types/auth.type';
 import { LoginParams } from '../../interfaces/user-auth.interface';
 import { environment } from '../../../../environments/environment';
+import { ToastService } from '../toast/toast.service';
+import { ToastType } from '../../enums/toast.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseService {
-  private currentMessage: BehaviorSubject<firebase.messaging.MessagePayload> =
-    new BehaviorSubject(null as any);
-
   constructor(
     private readonly angularFireAuth: AngularFireAuth,
-    private readonly angularFireMessaging: AngularFireMessaging
+    private readonly angularFireMessaging: AngularFireMessaging,
+    private readonly toastService: ToastService
   ) {
     if (environment?.useFirebaseEmulator) {
       angularFireAuth.useEmulator('http://localhost:9099');
     }
 
     angularFireMessaging.messages.subscribe(payload => {
-      console.log('constructor received. ', payload);
+      console.log('message received. ', payload);
+
+      toastService.showToast({
+        msg: payload?.notification?.body as string,
+        title: payload?.notification?.title as string,
+        type: ToastType.Info,
+      });
     });
   }
 
@@ -159,17 +163,6 @@ export class FirebaseService {
         },
       });
     });
-  }
-
-  public receiveMessage(): void {
-    this.angularFireMessaging.messages.subscribe(payload => {
-      console.log('Message received. ', payload);
-      this.currentMessage.next(payload);
-    });
-  }
-
-  public getCurrentMessage(): BehaviorSubject<firebase.messaging.MessagePayload> {
-    return this.currentMessage;
   }
 
   public getFCMToken(): Promise<string> {

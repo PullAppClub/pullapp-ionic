@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FirebaseService } from '../firebase/firebase.service';
 import { ToastService } from '../toast/toast.service';
-import { ToastType } from '../../enums/toast.enum';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
@@ -13,21 +12,13 @@ export class NotificationService {
     private readonly toastService: ToastService
   ) {
     if (!environment.production) {
-      this.firebaseService
-        .getFCMToken()
-        .then(token => console.log('FCM token', token));
+      this.setMessagesReceiving();
     }
   }
 
-  public observeNotifications(): void {
-    this.firebaseService.receiveMessage();
+  private async setMessagesReceiving(): Promise<void> {
+    const token = await this.firebaseService.getFCMToken();
 
-    this.firebaseService.getCurrentMessage().subscribe(message => {
-      this.toastService.showToast({
-        msg: message?.notification?.body as string,
-        title: message?.notification?.title as string,
-        type: ToastType.Info,
-      });
-    });
+    console.log('FCM token', token);
   }
 }

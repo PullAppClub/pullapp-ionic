@@ -11,6 +11,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ChallengeComponent } from './pages/challenge/challenge.component';
 import { CreateChallengeComponent } from './pages/create-challenge/create-challenge.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { LottieComponent } from 'ngx-lottie';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
     SharedModule,
     ReactiveFormsModule,
     TranslateModule,
+    LottieComponent,
   ],
   declarations: [
     HomeEventsComponent,

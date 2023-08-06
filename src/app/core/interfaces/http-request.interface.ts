@@ -2,6 +2,7 @@ interface BaseHttpRequest {
   url: string;
   token?: string;
   getHeaders?: boolean;
+  showProgressBar?: boolean;
 }
 
 export interface GetParams extends BaseHttpRequest {

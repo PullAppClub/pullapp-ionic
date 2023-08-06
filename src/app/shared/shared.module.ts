@@ -20,6 +20,8 @@ import { EntryRewardComponent } from './components/atoms/entry-reward/entry-rewa
 import { LoadButtonComponent } from './components/atoms/load-button/load-button.component';
 import { UploadModalComponent } from './components/molecules/upload-modal/upload-modal.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ProgressBarComponent } from './components/atoms/progress-bar/progress-bar.component';
+import { NgProgressComponent } from 'ngx-progressbar';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { TranslateModule } from '@ngx-translate/core';
     EntryRewardComponent,
     LoadButtonComponent,
     UploadModalComponent,
+    ProgressBarComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +49,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     GalleryModule,
     TranslateModule,
+    NgProgressComponent,
   ],
   exports: [
     HeaderComponent,
@@ -64,6 +68,7 @@ import { TranslateModule } from '@ngx-translate/core';
     EntryRewardComponent,
     LoadButtonComponent,
     UploadModalComponent,
+    ProgressBarComponent,
   ],
 })
 export class SharedModule {}

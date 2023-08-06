@@ -4,6 +4,9 @@ import { SessionService } from '../../../../core/services/session/session.servic
 import { CreateChallengeParams } from '../../interfaces/challenge.interface';
 import { HttpMessageResponse } from '../../../../core/interfaces/http-request.interface';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
+import { ToastService } from '../../../../core/services/toast/toast.service';
+import { ToastType } from '../../../../core/enums/toast.enum';
+import { LangService } from '../../../../core/services/lang/lang.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,14 +14,16 @@ import { endpoints } from '../../../../core/constants/endpoints.constant';
 export class ChallengeService {
   constructor(
     private readonly requestHelper: RequestHelper,
-    private readonly sessionService: SessionService
+    private readonly sessionService: SessionService,
+    private readonly toastService: ToastService,
+    private readonly langService: LangService
   ) {}
 
   public async createGlobalChallenge(
     params: CreateChallengeParams
-  ): Promise<HttpMessageResponse> {
+  ): Promise<void> {
     const { video, ...body } = params;
-    return this.requestHelper.upload<
+    const { message } = await this.requestHelper.upload<
       HttpMessageResponse,
       Omit<CreateChallengeParams, 'video'>
     >({
@@ -27,6 +32,13 @@ export class ChallengeService {
       params: body,
       file: params.video,
       fileName: 'video',
+      showProgressBar: true,
+    });
+
+    this.toastService.showToast({
+      msg: await this.langService.t(message),
+      type: ToastType.Info,
+      title: 'Challenge',
     });
   }
 }

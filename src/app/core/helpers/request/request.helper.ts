@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   CreateHttpOptionsParams,
   DeleteParams,
@@ -10,6 +10,7 @@ import {
   PutParams,
 } from '../../interfaces/http-request.interface';
 import { Error } from '../../interfaces/error.interface';
+import { firstValueFrom } from 'rxjs';
 
 type RequestOptions = {
   headers?: HttpHeaders;
@@ -21,15 +22,9 @@ type RequestOptions = {
 export class RequestHelper {
   constructor(private readonly http: HttpClient) {}
 
-  public get<T>(params: GetParams): Promise<T> {
+  public async get<T>(params: GetParams): Promise<T> {
     const options = { ...this.createOptions(params), params: params.params };
-
-    return new Promise<T>((resolve, reject) => {
-      this.http.get(params.url, options).subscribe({
-        next: response => resolve(response as T),
-        error: error => reject(error),
-      });
-    });
+    return firstValueFrom<T>(this.http.get<T>(params.url, options));
   }
 
   public post<T, K = void>(params: PostParams<K>): Promise<T> {
@@ -75,36 +70,33 @@ export class RequestHelper {
   }
 
   public upload<T, K = void>(params: PostFormDataParams<K>): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-      const formData = new FormData();
-      formData.append(params.fileName, params.file, params.fileName);
+    const formData = new FormData();
+    formData.append(params.fileName, params.file, params.fileName);
 
-      if (params.params) {
-        for (const [key, value] of Object.entries(params.params)) {
-          formData.append(`${key}`, value as string);
-        }
+    if (params.params) {
+      for (const [key, value] of Object.entries(params.params)) {
+        formData.append(`${key}`, value as string);
       }
+    }
 
-      this.http
-        .post(
-          params.url,
-          formData,
-          this.createOptions({
-            ...params,
-            headers: { 'Content-Type': 'multipart/form-data' },
-          })
-        )
-        .subscribe({
-          next: response => resolve(response as T),
-          error: error => reject(error),
-        });
+    const request = this.http.post<T>(params.url, formData, {
+      ...this.createOptions({
+        ...params,
+        headers: { 'Content-Type': 'multipart/form-data' },
+      }),
     });
+
+    return firstValueFrom(request);
   }
 
   private createOptions(params: CreateHttpOptionsParams): RequestOptions {
-    const headers = new HttpHeaders({
+    let headers = new HttpHeaders({
       Authorization: `Bearer ${params.token}`,
     });
+
+    if (!params.showProgressBar) {
+      headers = headers.append('ignoreProgressBar', '');
+    }
 
     const options: RequestOptions = {
       headers,

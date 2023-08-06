@@ -99,4 +99,35 @@
       </div>
     </form>
   </div>
+
+  <!-- Uploading Modal -->
+  <label for="uploadingModal" class="btn hidden" #openModalBtn id="openModalBtn"
+    >open modal</label
+  >
+  <input type="checkbox" id="uploadingModal" class="modal-toggle" />
+  <div class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-center justify-center">
+      <!-- Warns Lottie -->
+      <ng-lottie
+        width="220px"
+        containerClass="mx-auto mb-5"
+        [options]="lottieOptions">
+      </ng-lottie>
+      <!-- ./Warns Lottie -->
+
+      <h2 class="font-medium text-slate-800 text-center">
+        {{ 'MODULES.CHALLENGE.CHALLENGE_UPLOADING_MODAL_TEXT' | translate }}
+      </h2>
+      <div class="modal-action max-w-md">
+        <!-- Understand Button -->
+        <button
+          class="btn btn-warning normal-case mx-auto"
+          (click)="closeModal()">
+          {{ 'COMMON.I_UNDERSTAND' | translate }}
+        </button>
+        <!-- ./Understand Button -->
+      </div>
+    </div>
+  </div>
+  <!-- ./Uploading Modal -->
 </ion-content>

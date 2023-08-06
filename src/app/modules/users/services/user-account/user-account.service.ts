@@ -16,7 +16,7 @@ export class UserAccountService {
 
   public async addFCMToken(): Promise<void> {
     const fcmToken = await this.firebaseService.getFCMToken();
-    await this.requestHelper.post({
+    await this.requestHelper.post<void, { fcmToken: string }>({
       url: endpoints.HOST + endpoints.ACCOUNT.FCM_TOKEN,
       params: {
         fcmToken,
