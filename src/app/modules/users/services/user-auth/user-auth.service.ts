@@ -43,7 +43,7 @@ export class UserAuthService {
     await this.firebaseService.createUserWithEmailAndPassword(params);
     await this.sessionService.getSessionToken();
 
-    await this.userAccountService.addFCMToken();
+    this.userAccountService.addFCMToken().catch(error => console.log(error));
   }
 
   public async changePassword(password: string): Promise<void> {

@@ -30,7 +30,10 @@ export class AppComponent {
 
   private async setFirebaseToken(): Promise<void> {
     await this.firebaseService.requestPermission();
-    await this.firebaseService.getFCMToken().catch(console.log);
+    await this.firebaseService
+      .getFCMToken()
+      .then(console.log)
+      .catch(console.log);
   }
 
   /**

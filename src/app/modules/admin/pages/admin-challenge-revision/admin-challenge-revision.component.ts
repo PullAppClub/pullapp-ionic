@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Challenge } from '../../../events/interfaces/challenge.interface';
+import { AdminChallengeService } from '../../services/admin-challenge/admin-challenge.service';
 
 @Component({
   selector: 'app-admin-challenge-revision',
@@ -6,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-challenge-revision.component.scss'],
 })
 export class AdminChallengeRevisionComponent implements OnInit {
-  constructor() {}
+  public challenges: Challenge[] = [];
 
-  ngOnInit() {}
+  constructor(private readonly adminChallengeService: AdminChallengeService) {}
+
+  ngOnInit() {
+    this.getChallengesToApprove();
+  }
+
+  private async getChallengesToApprove(): Promise<void> {
+    try {
+      this.challenges =
+        await this.adminChallengeService.getChallengesToApprove();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

@@ -71,6 +71,8 @@ export class CreateChallengeComponent implements OnInit {
   public closeModal(): void {
     this.openModalBtn.nativeElement.click();
 
-    this.navigationHelper.goBack();
+    this.navigationHelper.openPageWithoutHistory({
+      route: '/events/home',
+    });
   }
 }
