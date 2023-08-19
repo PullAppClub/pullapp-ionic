@@ -22,6 +22,7 @@ import { UploadModalComponent } from './components/molecules/upload-modal/upload
 import { TranslateModule } from '@ngx-translate/core';
 import { ProgressBarComponent } from './components/atoms/progress-bar/progress-bar.component';
 import { NgProgressComponent } from 'ngx-progressbar';
+import { VideoPlayerModalComponent } from './components/molecules/video-player-modal/video-player-modal.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { NgProgressComponent } from 'ngx-progressbar';
     LoadButtonComponent,
     UploadModalComponent,
     ProgressBarComponent,
+    VideoPlayerModalComponent,
   ],
   imports: [
     CommonModule,
@@ -69,6 +71,7 @@ import { NgProgressComponent } from 'ngx-progressbar';
     LoadButtonComponent,
     UploadModalComponent,
     ProgressBarComponent,
+    VideoPlayerModalComponent,
   ],
 })
 export class SharedModule {}

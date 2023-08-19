@@ -14,3 +14,9 @@ export interface User {
   meetings?: Meeting[];
   events?: (Challenge | Meeting)[];
 }
+
+export interface ProfileBasicInfo {
+  userId: string; // uuid
+  avatar: string;
+  username: string;
+}

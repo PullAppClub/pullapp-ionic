@@ -1,13 +1,13 @@
 import { SportType } from '../enums/sport.enum';
 import { ChallengeType } from '../enums/challenge-type.enum';
-import { User } from '../../users/interfaces/user.interface';
+import { ProfileBasicInfo, User } from '../../users/interfaces/user.interface';
 import { ChallengeLevel as ChallengeLevelEnum } from '../enums/challenge-level.enum';
+import { ParticipationStatus } from '../enums/challenge-participant.enum';
 
 export interface Challenge {
   id: string;
-  user: User;
-  participants: number;
-  comments: number;
+  owner: ProfileBasicInfo;
+  participants: ChallengeParticipant[];
   level: Level;
   title: string;
   description: string;
@@ -16,6 +16,14 @@ export interface Challenge {
   challengeType: ChallengeType;
   sportType: SportType;
   deadline: Date;
+}
+
+export interface ChallengeParticipant {
+  id: string;
+  user: ProfileBasicInfo;
+  video: string;
+  thumbnail: string;
+  status: ParticipationStatus;
   createdAt: Date;
 }
 

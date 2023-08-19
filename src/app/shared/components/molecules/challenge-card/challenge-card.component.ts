@@ -15,6 +15,7 @@ export class ChallengeCardComponent implements OnInit {
   public cardClass!: string;
 
   public showVideoContainer: boolean = false;
+  public videoPlayerLabelId = 'videoPlayerLabelId';
 
   constructor(private readonly navigationHelper: NavigationHelper) {}
 

@@ -25,74 +25,7 @@ export class HomeEventsComponent implements OnInit {
   private levelFilter!: ChallengeLevel;
   private sportFilter!: SportType;
 
-  constructor(public readonly tabBarService: TabBarService) {
-    // temp challenges
-    this.challenges.push(
-      {
-        id: '1',
-        title: 'Challenge 1',
-        description: 'Challenge 1 description',
-        participants: 4,
-        sportType: SportType.Skating,
-        challengeType: ChallengeType.Global,
-        comments: 2,
-        deadline: new Date(),
-        createdAt: new Date(),
-        thumbnail:
-          'https://img.welt.de/img/regionales/nrw/mobile148426359/4102501097-ci102l-w1024/Man-training-in-crossfit-center.jpg',
-        video: 'https://www.youtube.com/watch?v=5qap5aO4i9A',
-        user: {} as User,
-        level: {
-          id: '1',
-          levelName: 'Beginner',
-          rewardMusclePoints: 10,
-          requiredMusclePoints: 10,
-        },
-      },
-      {
-        id: '1',
-        title: 'Challenge 1',
-        description: 'Challenge 1 description',
-        participants: 4,
-        sportType: SportType.Skating,
-        challengeType: ChallengeType.Global,
-        comments: 2,
-        deadline: new Date(),
-        createdAt: new Date(),
-        thumbnail:
-          'https://img.welt.de/img/regionales/nrw/mobile148426359/4102501097-ci102l-w1024/Man-training-in-crossfit-center.jpg',
-        video: 'https://www.youtube.com/watch?v=5qap5aO4i9A',
-        user: {} as User,
-        level: {
-          id: '1',
-          levelName: 'Beginner',
-          rewardMusclePoints: 10,
-          requiredMusclePoints: 10,
-        },
-      },
-      {
-        id: '1',
-        title: 'Challenge 1',
-        description: 'Challenge 1 description',
-        participants: 4,
-        sportType: SportType.Skating,
-        challengeType: ChallengeType.Global,
-        comments: 2,
-        deadline: new Date(),
-        createdAt: new Date(),
-        thumbnail:
-          'https://img.welt.de/img/regionales/nrw/mobile148426359/4102501097-ci102l-w1024/Man-training-in-crossfit-center.jpg',
-        video: 'https://www.youtube.com/watch?v=5qap5aO4i9A',
-        user: {} as User,
-        level: {
-          id: '1',
-          levelName: 'Beginner',
-          rewardMusclePoints: 10,
-          requiredMusclePoints: 10,
-        },
-      }
-    );
-  }
+  constructor(public readonly tabBarService: TabBarService) {}
 
   ngOnInit() {}
 

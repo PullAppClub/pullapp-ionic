@@ -112,14 +112,22 @@
       </div>
       <div class="col-span-7 h-full flex items-center">
         <!-- Play Button -->
-        <button class="btn btn-ghost btn-circle mx-auto">
+        <label
+          class="btn btn-ghost btn-circle mx-auto"
+          [for]="videoPlayerLabelId">
           <ion-icon
             name="play-outline"
             style="color: rgb(255, 255, 255); font-size: 45px"></ion-icon>
-        </button>
+        </label>
         <!-- ./Play Button -->
       </div>
     </div>
   </div>
   <!-- ./Video Container -->
 </div>
+
+<!-- Video Player Modal -->
+<app-video-player-modal
+  [url]="challenge.video"
+  [forLabelId]="videoPlayerLabelId"></app-video-player-modal>
+<!-- ./Video Player Modal -->

@@ -2,13 +2,21 @@
 
 <ion-content scrollEvents="true">
   <!-- Container -->
-  <div class="container max-w-2xl mx-auto">
+  <div class="container max-w-xl mx-auto p-3">
     <!-- Challenges To Approve -->
     <div *ngFor="let challenge of challenges">
       <app-challenge-card [challenge]="challenge"></app-challenge-card>
 
-      <button class="btn error">Reject</button>
-      <button class="btn btn-primary">Approve</button>
+      <div class="flex justify-between">
+        <!-- Reject Button -->
+        <button class="btn btn-error">{{ 'COMMON.REJECT' | translate }}</button>
+        <!-- ./Reject Button -->
+        <!-- Approve Button -->
+        <button class="btn btn-primary">
+          {{ 'COMMON.APPROVE' | translate }}
+        </button>
+        <!-- ./Approve Button -->
+      </div>
     </div>
     <!-- ./Challenges To Approve -->
   </div>

@@ -1,0 +1,13 @@
+<input
+  type="checkbox"
+  [id]="forLabelId"
+  class="modal-toggle"
+  (click)="modalToggle()" />
+<label [for]="forLabelId" class="modal cursor-pointer">
+  <div class="rounded-lg overflow-hidden">
+    <video class="w-full" controls #video>
+      <source src="{{ url }}" type="video/mp4" />
+      <source src="{{ url }}" type="video/ogg" />
+    </video>
+  </div>
+</label>

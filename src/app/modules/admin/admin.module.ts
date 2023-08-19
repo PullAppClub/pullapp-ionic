@@ -4,9 +4,16 @@ import { AdminChallengeRevisionComponent } from './pages/admin-challenge-revisio
 import { EventsPageRoutingModule } from './admin-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [AdminChallengeRevisionComponent],
-  imports: [CommonModule, EventsPageRoutingModule, IonicModule, SharedModule],
+  imports: [
+    CommonModule,
+    EventsPageRoutingModule,
+    IonicModule,
+    SharedModule,
+    TranslateModule,
+  ],
 })
 export class AdminModule {}
