@@ -17,7 +17,7 @@ export class AdminChallengeService {
     return this.requestHelper.get<Challenge[]>({
       url: endpoints.HOST + endpoints.ADMIN.GET_CHALLENGES_TO_APPROVE,
       token: await this.sessionService.getSessionToken(),
-    })
+    });
   }
 
   public async approveChallenge(challengeId: string): Promise<void> {
@@ -25,6 +25,19 @@ export class AdminChallengeService {
       url: `${
         endpoints.HOST + endpoints.ADMIN.APPROVE_CHALLENGE
       }/${challengeId}`,
+      token: await this.sessionService.getSessionToken(),
+    });
+  }
+
+  public async rejectChallenge(
+    challengeId: string,
+    text: string
+  ): Promise<void> {
+    await this.requestHelper.put<void, { text: string }>({
+      url: `${
+        endpoints.HOST + endpoints.ADMIN.REJECT_CHALLENGE
+      }/${challengeId}`,
+      params: { text },
       token: await this.sessionService.getSessionToken(),
     });
   }

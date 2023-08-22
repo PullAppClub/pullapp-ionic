@@ -23,6 +23,7 @@ export const endpoints = {
   },
   ADMIN: {
     APPROVE_CHALLENGE: '/event/challenge/approve',
+    REJECT_CHALLENGE: '/event/challenge/reject',
     GET_CHALLENGES_TO_APPROVE: '/event/challenge/approve',
   },
 };

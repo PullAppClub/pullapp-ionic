@@ -30,6 +30,8 @@ export class AdminChallengeRevisionComponent implements OnInit {
   public async approve(challengeId: string): Promise<void> {
     try {
       await this.adminChallengeService.approveChallenge(challengeId);
+
+      this.removeChallengeFromList(challengeId);
     } catch (error) {
       console.log(error);
     }
@@ -37,10 +39,21 @@ export class AdminChallengeRevisionComponent implements OnInit {
 
   public async reject(text: string): Promise<void> {
     try {
-      console.log(this.challengeToReject?.id, text);
+      await this.adminChallengeService.rejectChallenge(
+        this.challengeToReject!.id,
+        text
+      );
+
+      this.removeChallengeFromList(this.challengeToReject!.id);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  private removeChallengeFromList(challengeId: string): void {
+    this.challenges = this.challenges.filter(
+      (challenge: Challenge) => challenge.id !== challengeId
+    );
   }
 
   public setChallengeToReject(challenge: Challenge): void {
