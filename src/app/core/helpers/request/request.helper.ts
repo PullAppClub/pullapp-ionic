@@ -28,45 +28,27 @@ export class RequestHelper {
   }
 
   public post<T, K = void>(params: PostParams<K>): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-      this.http
-        .post(params.url, params.params, this.createOptions(params))
-        .subscribe({
-          next: response => resolve(response as T),
-          error: error => reject(error),
-        });
-    });
+    return firstValueFrom<T>(
+      this.http.put<T>(params.url, params.params, this.createOptions(params))
+    );
   }
 
   public put<T, K = void>(params: PutParams<K>): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-      this.http
-        .put(params.url, params.params, this.createOptions(params))
-        .subscribe({
-          next: response => resolve(response as T),
-          error: error => reject(error),
-        });
-    });
+    return firstValueFrom<T>(
+      this.http.put<T>(params.url, params.params, this.createOptions(params))
+    );
   }
 
   public delete<T>(params: DeleteParams): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-      this.http.delete(params.url, this.createOptions(params)).subscribe({
-        next: response => resolve(response as T),
-        error: error => reject(error),
-      });
-    });
+    return firstValueFrom<T>(
+      this.http.get<T>(params.url, this.createOptions(params))
+    );
   }
 
   public patch<T, K = void>(params: PatchParams<K>): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-      this.http
-        .patch(params.url, params.params, this.createOptions(params))
-        .subscribe({
-          next: response => resolve(response as T),
-          error: error => reject(error),
-        });
-    });
+    return firstValueFrom<T>(
+      this.http.put<T>(params.url, params.params, this.createOptions(params))
+    );
   }
 
   public upload<T, K = void>(params: PostFormDataParams<K>): Promise<T> {
