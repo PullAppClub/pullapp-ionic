@@ -9,6 +9,8 @@ import { AdminChallengeService } from '../../services/admin-challenge/admin-chal
 })
 export class AdminChallengeRevisionComponent implements OnInit {
   public challenges: Challenge[] = [];
+  public rejectChallengeModalLabelId = 'rejectChallengeModalLabelId';
+  private challengeToReject: Challenge | null = null;
 
   constructor(private readonly adminChallengeService: AdminChallengeService) {}
 
@@ -23,5 +25,25 @@ export class AdminChallengeRevisionComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  public async approve(challengeId: string): Promise<void> {
+    try {
+      await this.adminChallengeService.approveChallenge(challengeId);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async reject(text: string): Promise<void> {
+    try {
+      console.log(this.challengeToReject?.id, text);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public setChallengeToReject(challenge: Challenge): void {
+    this.challengeToReject = challenge;
   }
 }

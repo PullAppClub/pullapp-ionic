@@ -8,7 +8,7 @@ import { TabBarComponent } from './components/organisms/tapbar/tab-bar.component
 import { MapComponent } from './components/organisms/map/map.component';
 import { SelectSportComponent } from './components/atoms/select-sport/select-sport.component';
 import { SelectLevelComponent } from './components/atoms/select-level/select-level.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SmallStatCardComponent } from './components/atoms/small-stat-card/small-stat-card.component';
 import { AnimatedTabsComponent } from './components/molecules/animated-tabs/animated-tabs.component';
 import { LoadMoreButtonComponent } from './components/atoms/load-more-button/load-more-button.component';
@@ -23,6 +23,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ProgressBarComponent } from './components/atoms/progress-bar/progress-bar.component';
 import { NgProgressComponent } from 'ngx-progressbar';
 import { VideoPlayerModalComponent } from './components/molecules/video-player-modal/video-player-modal.component';
+import { TextModalComponent } from './components/molecules/text-modal/text-modal.component';
+import { LottieComponent } from 'ngx-lottie';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { VideoPlayerModalComponent } from './components/molecules/video-player-m
     UploadModalComponent,
     ProgressBarComponent,
     VideoPlayerModalComponent,
+    TextModalComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +55,8 @@ import { VideoPlayerModalComponent } from './components/molecules/video-player-m
     GalleryModule,
     TranslateModule,
     NgProgressComponent,
+    ReactiveFormsModule,
+    LottieComponent,
   ],
   exports: [
     HeaderComponent,
@@ -72,6 +77,7 @@ import { VideoPlayerModalComponent } from './components/molecules/video-player-m
     UploadModalComponent,
     ProgressBarComponent,
     VideoPlayerModalComponent,
+    TextModalComponent,
   ],
 })
 export class SharedModule {}

@@ -9,10 +9,18 @@
 
       <div class="flex justify-between">
         <!-- Reject Button -->
-        <button class="btn btn-error">{{ 'COMMON.REJECT' | translate }}</button>
+        <label
+          [for]="rejectChallengeModalLabelId"
+          (click)="setChallengeToReject(challenge)"
+          class="btn btn-error normal-case"
+          >{{ 'COMMON.REJECT' | translate }}</label
+        >
         <!-- ./Reject Button -->
+
         <!-- Approve Button -->
-        <button class="btn btn-primary">
+        <button
+          class="btn btn-primary normal-case"
+          (click)="approve(challenge.id)">
           {{ 'COMMON.APPROVE' | translate }}
         </button>
         <!-- ./Approve Button -->
@@ -21,4 +29,11 @@
     <!-- ./Challenges To Approve -->
   </div>
   <!-- ./Container -->
+
+  <app-text-modal
+    [showWarningAnimation]="true"
+    textKey="MODULES.ADMIN.REJECT_CHALLENGE_TITLE"
+    acceptButtonKey="MODULES.ADMIN.CONFIRM_REJECTION"
+    [forLabelId]="rejectChallengeModalLabelId"
+    (textEmitter)="reject($event)"></app-text-modal>
 </ion-content>

@@ -31,6 +31,10 @@
       "ENTRY_FEE": "Entry fee",
       "REWARD": "Reward",
       "CHALLENGE_UPLOADING_MODAL_TEXT": "We are uploading your challenge, please do not close the app until we notify you."
+    },
+    "ADMIN": {
+      "REJECT_CHALLENGE_TITLE": "Explain why you are rejecting this challenge",
+      "CONFIRM_REJECTION": "Confirm rejection"
     }
   },
   "COMMON": {

@@ -1,0 +1,45 @@
+<input type="checkbox" [id]="forLabelId" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box justify-center">
+    <label
+      [for]="forLabelId"
+      class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+      ✕
+    </label>
+
+    <!-- Warns Lottie -->
+    <ng-lottie
+      *ngIf="showWarningAnimation"
+      width="220px"
+      containerClass="mx-auto mb-5"
+      [options]="lottieOptions">
+    </ng-lottie>
+    <!-- ./Warns Lottie -->
+
+    <h2 class="font-bold text-lg text-center">{{ textKey | translate }}</h2>
+
+    <form [formGroup]="textFormGroup" class="mt-3">
+      <textarea
+        class="textarea w-full textarea-bordered"
+        maxlength="400"
+        rows="3"
+        formControlName="text"></textarea>
+
+      <!-- Accept and Deny Buttons -->
+      <div class="modal-action flex items-center justify-center mt-1">
+        <label class="btn normal-case btn-outline mr-2 mt-5" [for]="forLabelId">
+          {{ 'COMMON.CANCEL' | translate }}
+        </label>
+
+        <label
+          class="btn btn-primary mr-2 mt-5 normal-case"
+          (click)="emitText()"
+          [for]="forLabelId"
+          [class.btn-disabled]="textFormGroup.get('text')?.invalid">
+          {{ acceptButtonKey | translate }}
+        </label>
+      </div>
+      <!-- ./Accept and Deny Buttons -->
+    </form>
+  </div>
+</div>
