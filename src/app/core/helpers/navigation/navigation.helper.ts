@@ -22,7 +22,7 @@ export class NavigationHelper {
 
   public openPage(params: GoToParams): void {
     this.navController
-      .navigateForward(params.route)
+      .navigateForward(params.route, { queryParams: params.params })
       .then(() => this.history.push(params.route));
   }
 

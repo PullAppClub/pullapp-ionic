@@ -16,6 +16,11 @@ export interface Challenge {
   challengeType: ChallengeType;
   sportType: SportType;
   deadline: Date;
+  /**
+   * Status related to this challenge for the user that made the request.
+   * Required to change the enter button text and action.
+   */
+  participationStatus?: ParticipationStatus;
 }
 
 export interface ChallengeParticipant {
@@ -58,3 +63,8 @@ export interface ChallengeLevel {
   requiredMusclePoints: number;
   id: string;
 }
+
+export type HomePageChallenges = {
+  global: Challenge[];
+  official: Challenge[];
+};

@@ -33,9 +33,28 @@
 
       <div class="grid grid-cols-2">
         <div>
+          <!-- Enter Button -->
           <button class="btn normal-case" (click)="openChallenge()">
-            Enter
+            <!-- Enter Text -->
+            <span
+              *ngIf="
+                challenge.owner.userId !== userId &&
+                (!challenge.participationStatus ||
+                  challenge.participationStatus === participationStatus.Decline)
+              ">
+              {{ 'COMMON.ENTER' | translate }} -{{
+                challenge.level.requiredMusclePoints
+              }}
+              💪
+            </span>
+            <!-- ./Enter Text -->
+            <!-- Details Text -->
+            <span *ngIf="challenge.owner.userId === userId">
+              {{ 'COMMON.DETAILS' | translate }}
+            </span>
+            <!-- ./Details Text -->
           </button>
+          <!-- ./Enter Button -->
         </div>
         <!-- Participants List -->
         <div class="ml-auto">

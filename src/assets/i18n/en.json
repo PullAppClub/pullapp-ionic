@@ -45,7 +45,9 @@
     "DROP_FILE_TO_ATTACH": " Drop files to Attach, or browse",
     "I_UNDERSTAND": "I understand",
     "APPROVE": "Approve",
-    "REJECT": "Reject"
+    "REJECT": "Reject",
+    "ENTER": "Enter",
+    "DETAILS": "Details"
   },
   "ERROR": {
     "AGE_LESS_THAN_16": "Age must be greater than 16"

@@ -25,6 +25,7 @@ import { NgProgressComponent } from 'ngx-progressbar';
 import { VideoPlayerModalComponent } from './components/molecules/video-player-modal/video-player-modal.component';
 import { TextModalComponent } from './components/molecules/text-modal/text-modal.component';
 import { LottieComponent } from 'ngx-lottie';
+import { SpinnerComponent } from './components/atoms/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { LottieComponent } from 'ngx-lottie';
     ProgressBarComponent,
     VideoPlayerModalComponent,
     TextModalComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -78,6 +80,7 @@ import { LottieComponent } from 'ngx-lottie';
     ProgressBarComponent,
     VideoPlayerModalComponent,
     TextModalComponent,
+    SpinnerComponent,
   ],
 })
 export class SharedModule {}

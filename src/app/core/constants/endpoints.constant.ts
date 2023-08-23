@@ -17,6 +17,8 @@ export const endpoints = {
   CHALLENGE: {
     CREATE_GLOBAL: '/event/challenge/global',
     LEVELS: '/event/challenge/levels',
+    GET_HOME_PAGE_CHALLENGES: '/event/challenge/home-page',
+    GET_CHALLENGE: '/event/challenge/',
   },
   ACCOUNT: {
     FCM_TOKEN: '/user/account/fcm-token',

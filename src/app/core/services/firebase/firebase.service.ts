@@ -8,6 +8,7 @@ import { LoginParams } from '../../interfaces/user-auth.interface';
 import { environment } from '../../../../environments/environment';
 import { ToastService } from '../toast/toast.service';
 import { ToastType } from '../../enums/toast.enum';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -63,14 +64,10 @@ export class FirebaseService {
     await this.angularFireAuth.signOut();
   }
 
-  public getIdToken(): Promise<string> {
-    return new Promise(resolve => {
-      this.angularFireAuth.idToken.subscribe(token => {
-        console.log(token);
-
-        resolve(token as string);
-      });
-    });
+  public async getIdToken(): Promise<string> {
+    return (await firstValueFrom(
+      this.angularFireAuth.idToken
+    )) as unknown as Promise<string>;
   }
 
   public refreshIdToken(): Promise<string> {
