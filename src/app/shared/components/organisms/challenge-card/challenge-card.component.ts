@@ -4,6 +4,7 @@ import { NavigationHelper } from '../../../../core/helpers/navigation/navigation
 import { SessionService } from '../../../../core/services/session/session.service';
 import { ChallengeService } from '../../../../modules/events/services/challenge/challenge.service';
 import { ParticipationStatus } from '../../../../modules/events/enums/challenge-participant.enum';
+import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service';
 
 @Component({
   selector: 'app-challenge-card',

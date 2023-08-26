@@ -1,0 +1,14 @@
+<div class="ml-auto flex justify-center">
+  <div class="avatar-group -space-x-6">
+    <div class="avatar" *ngFor="let participants of challengeParticipantsGroup">
+      <div class="w-9">
+        <img ngSrc="{{ participants.avatar }}" fill="true" alt="avatar" />
+      </div>
+    </div>
+    <div class="avatar placeholder">
+      <div class="w-9 bg-neutral-focus text-neutral-content">
+        <span>+{{ challenge.participants.length }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import { StorageHelper } from './storage/storage.helper';
 import { NavigationHelper } from './navigation/navigation.helper';
 import { HttpErrorHandlerHelper } from './http-error-handler/http-error-handler.helper';
 import { CryptoHelper } from './crypto/crypto.helper';
+import { DateHelper } from './date/date.helper';
 
 @NgModule({
   providers: [
@@ -12,6 +13,7 @@ import { CryptoHelper } from './crypto/crypto.helper';
     NavigationHelper,
     HttpErrorHandlerHelper,
     CryptoHelper,
+    DateHelper,
   ],
 })
 export class HelperModule {}

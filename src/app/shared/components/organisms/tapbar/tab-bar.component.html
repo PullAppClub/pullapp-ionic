@@ -67,9 +67,22 @@
       </div>
 
       <div
+        *ngIf="userId"
         class="navbar__item -grey"
         [ngClass]="isLoginOrProfilePage() ? 'active' : ''"
         (click)="openPage(tabBarPages.Profile)">
+        <span class="navbar__icon">
+          <svg class="icon">
+            <use xlink:href="#icon-user"></use>
+          </svg>
+        </span>
+      </div>
+
+      <div
+        *ngIf="!userId"
+        class="navbar__item -grey"
+        [ngClass]="isLoginOrProfilePage() ? 'active' : ''"
+        (click)="openPage(tabBarPages.SignIn)">
         <span class="navbar__icon">
           <svg class="icon">
             <use xlink:href="#icon-user"></use>

@@ -29,7 +29,7 @@ export interface ChallengeParticipant {
   video: string;
   thumbnail: string;
   status: ParticipationStatus;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export interface UserProfileChallenge {

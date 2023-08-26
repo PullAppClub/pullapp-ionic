@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HeaderComponent } from './components/organisms/header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { ToastComponent } from './components/molecules/toast/toast.component';
-import { ChallengeCardComponent } from './components/molecules/challenge-card/challenge-card.component';
+import { ChallengeCardComponent } from './components/organisms/challenge-card/challenge-card.component';
 import { TabBarComponent } from './components/organisms/tapbar/tab-bar.component';
 import { MapComponent } from './components/organisms/map/map.component';
 import { SelectSportComponent } from './components/atoms/select-sport/select-sport.component';
@@ -26,6 +26,9 @@ import { VideoPlayerModalComponent } from './components/molecules/video-player-m
 import { TextModalComponent } from './components/molecules/text-modal/text-modal.component';
 import { LottieComponent } from 'ngx-lottie';
 import { SpinnerComponent } from './components/atoms/spinner/spinner.component';
+import { AvatarGroupComponent } from './components/molecules/avatar-group/avatar-group.component';
+import { ChallengeParticipantsListModalComponent } from './components/molecules/challenge-participants-list-modal/challenge-participants-list-modal.component';
+import { ChallengeAvatarGroupComponent } from './components/organisms/challenge-avatar-group/challenge-avatar-group.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { SpinnerComponent } from './components/atoms/spinner/spinner.component';
     VideoPlayerModalComponent,
     TextModalComponent,
     SpinnerComponent,
+    AvatarGroupComponent,
+    ChallengeParticipantsListModalComponent,
+    ChallengeAvatarGroupComponent,
   ],
   imports: [
     CommonModule,
@@ -59,6 +65,7 @@ import { SpinnerComponent } from './components/atoms/spinner/spinner.component';
     NgProgressComponent,
     ReactiveFormsModule,
     LottieComponent,
+    NgOptimizedImage,
   ],
   exports: [
     HeaderComponent,
@@ -81,6 +88,9 @@ import { SpinnerComponent } from './components/atoms/spinner/spinner.component';
     VideoPlayerModalComponent,
     TextModalComponent,
     SpinnerComponent,
+    AvatarGroupComponent,
+    ChallengeParticipantsListModalComponent,
+    ChallengeAvatarGroupComponent,
   ],
 })
 export class SharedModule {}

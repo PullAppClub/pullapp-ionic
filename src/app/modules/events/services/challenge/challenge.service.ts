@@ -3,6 +3,7 @@ import { RequestHelper } from '../../../../core/helpers/request/request.helper';
 import { SessionService } from '../../../../core/services/session/session.service';
 import {
   Challenge,
+  ChallengeParticipant,
   CreateChallengeParams,
   HomePageChallenges,
 } from '../../interfaces/challenge.interface';
@@ -11,6 +12,7 @@ import { endpoints } from '../../../../core/constants/endpoints.constant';
 import { ToastService } from '../../../../core/services/toast/toast.service';
 import { ToastType } from '../../../../core/enums/toast.enum';
 import { LangService } from '../../../../core/services/lang/lang.service';
+import { ProfileBasicInfo } from '../../../users/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',

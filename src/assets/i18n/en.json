@@ -47,7 +47,9 @@
     "APPROVE": "Approve",
     "REJECT": "Reject",
     "ENTER": "Enter",
-    "DETAILS": "Details"
+    "DETAILS": "Details",
+    "BY": "by",
+    "AGO": "ago"
   },
   "ERROR": {
     "AGE_LESS_THAN_16": "Age must be greater than 16"

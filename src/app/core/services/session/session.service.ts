@@ -3,13 +3,12 @@ import { FirebaseService } from '../firebase/firebase.service';
 import { Role } from '../../../modules/users/enums/role.enum';
 import { DecodedToken } from '../../types/auth.type';
 import { CryptoHelper } from '../../helpers/crypto/crypto.helper';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SessionService {
-  private isAdmin = false;
-
   constructor(
     private readonly firebaseService: FirebaseService,
     private readonly cryptoHelper: CryptoHelper
@@ -17,6 +16,10 @@ export class SessionService {
 
   public async getSessionToken(): Promise<string> {
     return this.firebaseService.getIdToken();
+  }
+
+  public observeSessionToken(): Observable<string | null> {
+    return this.firebaseService.observeIdToken();
   }
 
   public async getParsedSessionToken(): Promise<DecodedToken> {

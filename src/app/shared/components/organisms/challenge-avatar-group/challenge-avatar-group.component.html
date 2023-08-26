@@ -1,0 +1,16 @@
+<div *ngIf="challenge">
+  <!-- Challenge Avatar Group -->
+  <label
+    [for]="forLabelId"
+    class="cursor-pointer"
+    (click)="tabBarService.setShowTabBar(false)">
+    <app-avatar-group [challenge]="challenge"></app-avatar-group>
+  </label>
+  <!-- ./Challenge Avatar Group -->
+
+  <!-- Challenge Participants List -->
+  <app-challenge-participants-list-modal
+    [forLabelId]="forLabelId"
+    [challenge]="challenge"></app-challenge-participants-list-modal>
+  <!-- ./Challenge Participants List -->
+</div>

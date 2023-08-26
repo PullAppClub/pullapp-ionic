@@ -1,0 +1,55 @@
+<input type="checkbox" [id]="forLabelId" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box justify-center">
+    <label
+      [for]="forLabelId"
+      (click)="this.tabBarService.setShowTabBar(true)"
+      class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+      ✕
+    </label>
+
+    <!-- Participants Section -->
+    <div class="mt-4">
+      <!-- Challenge Participant Cards -->
+      <div
+        class="card card-compact bg-base-100 shadow-xl"
+        *ngFor="let participant of participants">
+        <figure>
+          <video class="w-full" controls>
+            <source src="{{ participant.video }}" type="video/mp4" />
+            <source src="{{ participant.video }}" type="video/ogg" />
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <div class="card-body">
+          <p class="text-slate-500 mt-2">
+            {{ 'COMMON.BY' | translate }}
+            <span class="text-lg text-slate-900 cursor-pointer"
+              >{{ participant.user.username }}
+            </span>
+
+            <span class="ml-auto float-right">
+              {{ createAgoString(participant.createdAt) }}
+            </span>
+          </p>
+          <div
+            class="card-actions justify-center mt-3"
+            *ngIf="
+              participant.status === participationStatus.UnderReview &&
+              userId &&
+              challenge.owner.userId === userId
+            ">
+            <button class="btn btn-secondary normal-case mr-auto">
+              {{ 'COMMON.REJECT' | translate }}
+            </button>
+            <button class="btn btn-primary normal-case">
+              {{ 'COMMON.APPROVE' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- ./Challenge Participant Cards -->
+    </div>
+    <!-- ./Participants Section -->
+  </div>
+</div>
