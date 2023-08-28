@@ -21,7 +21,7 @@ export class AdminChallengeService {
   }
 
   public async approveChallenge(challengeId: string): Promise<void> {
-    await this.requestHelper.put({
+    await this.requestHelper.patch({
       url: `${
         endpoints.HOST + endpoints.ADMIN.APPROVE_CHALLENGE
       }/${challengeId}`,
@@ -33,7 +33,7 @@ export class AdminChallengeService {
     challengeId: string,
     text: string
   ): Promise<void> {
-    await this.requestHelper.put<void, { text: string }>({
+    await this.requestHelper.patch<void, { text: string }>({
       url: `${
         endpoints.HOST + endpoints.ADMIN.REJECT_CHALLENGE
       }/${challengeId}`,

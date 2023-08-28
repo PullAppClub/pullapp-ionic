@@ -51,3 +51,11 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
   z-index: 99;
   color: #027a48;
 }
+
+.small-avatar-container {
+  height: 25px;
+  width: 25px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #ffffff;
+}

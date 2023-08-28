@@ -22,6 +22,18 @@ export class SessionService {
     return this.firebaseService.observeIdToken();
   }
 
+  public observeParsedSessionToken(): Observable<DecodedToken | null> {
+    return new Observable<DecodedToken | null>(subscriber => {
+      this.firebaseService.observeIdToken().subscribe(value => {
+        if (value) {
+          subscriber.next(this.cryptoHelper.jwtDecode(value));
+        } else {
+          subscriber.next(null);
+        }
+      });
+    });
+  }
+
   public async getParsedSessionToken(): Promise<DecodedToken> {
     return this.cryptoHelper.jwtDecode(await this.getSessionToken());
   }

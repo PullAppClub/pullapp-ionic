@@ -29,6 +29,7 @@ import { SpinnerComponent } from './components/atoms/spinner/spinner.component';
 import { AvatarGroupComponent } from './components/molecules/avatar-group/avatar-group.component';
 import { ChallengeParticipantsListModalComponent } from './components/molecules/challenge-participants-list-modal/challenge-participants-list-modal.component';
 import { ChallengeAvatarGroupComponent } from './components/organisms/challenge-avatar-group/challenge-avatar-group.component';
+import { VideoInputComponent } from './components/atoms/video-input/video-input.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ChallengeAvatarGroupComponent } from './components/organisms/challenge-
     AvatarGroupComponent,
     ChallengeParticipantsListModalComponent,
     ChallengeAvatarGroupComponent,
+    VideoInputComponent,
   ],
   imports: [
     CommonModule,
@@ -91,6 +93,7 @@ import { ChallengeAvatarGroupComponent } from './components/organisms/challenge-
     AvatarGroupComponent,
     ChallengeParticipantsListModalComponent,
     ChallengeAvatarGroupComponent,
+    VideoInputComponent,
   ],
 })
 export class SharedModule {}

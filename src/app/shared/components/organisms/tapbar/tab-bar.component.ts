@@ -37,7 +37,7 @@ export class TabBarComponent implements OnInit {
 
     this.navigationHelper.openPageWithoutHistory({
       route: page,
-      options: { animationDirection },
+      options: { animationDirection, animated: true },
     });
   }
 

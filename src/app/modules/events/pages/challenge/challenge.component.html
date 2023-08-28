@@ -4,7 +4,10 @@
   <!-- Container -->
   <div class="container max-w-lg mx-auto" *ngIf="challenge">
     <!-- Video Section -->
-    <div class="m-2 rounded-lg overflow-hidden" style="max-height: 469px">
+    <div
+      class="m-2 rounded-lg overflow-hidden"
+      style="max-height: 469px"
+      *ngIf="challenge.video">
       <video class="w-full" controls>
         <source src="{{ challenge.video }}" type="video/mp4" />
         <source src="{{ challenge.video }}" type="video/ogg" />
@@ -14,14 +17,41 @@
     <!-- ./Video Section -->
 
     <div class="m-4">
+      <!-- Approve Button -->
+      <button
+        class="btn btn-outline w-full normal-case mb-3"
+        *ngIf="challenge.owner.userId === userId">
+        {{ 'MODULES.CHALLENGE.REVIEW_PARTICIPANTS' | translate }}
+      </button>
+      <!-- ./Approve Button -->
+
       <!-- Info Section -->
       <div class="grid grid-rows-5 gap-2">
-        <div>
+        <div class="flex">
           <app-entry-reward
-            [requiredMusclePoints]="challenge.level.rewardMusclePoints"
+            [requiredMusclePoints]="challenge.level.requiredMusclePoints"
             [rewardMusclePoints]="
               challenge.level.rewardMusclePoints
             "></app-entry-reward>
+
+          <!-- Owner Section -->
+          <div class="flex ml-auto items-center">
+            <p class="text-sm mr-2">
+              <span class="text-slate-500">{{ 'COMMON.BY' | translate }}</span>
+              <a class="link">
+                {{ challenge.owner.username }}
+              </a>
+            </p>
+            <div class="avatar small-avatar-container">
+              <div class="w-8 rounded-full">
+                <img
+                  ngSrc="{{ challenge.owner.avatar }}"
+                  fill="true"
+                  alt="avatar" />
+              </div>
+            </div>
+          </div>
+          <!-- ./Owner Section -->
         </div>
 
         <div>
@@ -43,7 +73,10 @@
       <!-- Action Section -->
 
       <!-- Accept Button -->
-      <label class="btn btn-block normal-case" for="acceptChallenge">
+      <label
+        class="btn btn-block normal-case"
+        for="acceptChallenge"
+        *ngIf="challenge.owner.userId !== userId">
         Enter -{{ challenge.level.requiredMusclePoints }} 💪
       </label>
       <!-- ./Accept Button -->
@@ -75,6 +108,16 @@
   <input type="checkbox" id="acceptChallenge" class="modal-toggle" />
   <div class="modal" *ngIf="challenge">
     <div class="modal-box justify-center">
+      <!-- Accept Challenge Picture -->
+      <div class="mb-4">
+        <img
+          src="assets/img/challenge.svg"
+          alt="HallOfFame"
+          class="w-2/3 mx-auto" />
+      </div>
+      <!-- ./Accept Challenge Picture -->
+
+      <!-- Challenge Price and Reward -->
       <div class="justify-center">
         <app-entry-reward
           [requiredMusclePoints]="challenge.level.requiredMusclePoints"
@@ -82,14 +125,29 @@
             challenge.level.rewardMusclePoints
           "></app-entry-reward>
       </div>
-      <h3 class="font-bold text-lg text-center">Enter the challenge?</h3>
+      <!-- ./Challenge Price and Reward -->
+
+      <h3 class="font-bold text-lg text-slate-800 text-center mt-1">
+        {{ 'MODULES.CHALLENGE.WANT_TO_PARTICIPATE' | translate }}
+      </h3>
+      <p class="text-slate-500 text-center mb-1">
+        {{ 'MODULES.CHALLENGE.UPLOAD_YOUR_VIDEO' | translate }}
+      </p>
+
+      <!-- Video Section -->
+      <app-video-input></app-video-input>
+      <!-- ./Video Section -->
+
       <div class="modal-action justify-center">
         <label class="btn normal-case btn-outline mr-2" for="acceptChallenge">
           Cancel
         </label>
 
         <label class="btn normal-case" for="acceptChallenge">
-          Confirm -{{ challenge.level.requiredMusclePoints }} 💪
+          {{ 'COMMON.CONFIRM' | translate }} -{{
+            challenge.level.requiredMusclePoints
+          }}
+          💪
         </label>
       </div>
     </div>

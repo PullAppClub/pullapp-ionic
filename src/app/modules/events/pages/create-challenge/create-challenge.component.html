@@ -3,7 +3,15 @@
 
 <ion-content scrollEvents="true">
   <!-- Container -->
-  <div class="container max-w-lg mx-auto">
+  <div class="container max-w-lg mx-auto mb-4">
+    <!-- Challenge Picture -->
+    <div class="mb-4">
+      <img
+        src="assets/img/challenge.svg"
+        alt="HallOfFame"
+        class="w-2/3 mx-auto" />
+    </div>
+    <!-- ./Challenge Picture -->
     <form
       class="flex flex-col space-y-4 mx-4 my-2"
       [formGroup]="createChallengeForm"
@@ -23,33 +31,7 @@
         <p class="text-xl text-slate-800">
           {{ 'MODULES.CHALLENGE.UPLOAD_VIDEO' | translate }}
         </p>
-
-        <label
-          class="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-100 rounded-xl appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-          <span class="flex items-center space-x-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-6 h-6 text-gray-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-            </svg>
-            <span class="font-medium text-gray-600">
-              {{ video?.name ?? 'COMMON.DROP_FILE_TO_ATTACH' | translate }}
-            </span>
-          </span>
-          <input
-            type="file"
-            accept="video/*"
-            name="file_upload"
-            class="hidden"
-            (change)="handleVideo($event)" />
-        </label>
+        <app-video-input (videoEmitter)="handleVideo($event)"></app-video-input>
       </div>
       <!-- ./ Video Section -->
 

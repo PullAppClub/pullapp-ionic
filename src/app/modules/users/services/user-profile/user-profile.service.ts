@@ -25,7 +25,7 @@ export class UserProfileService {
   }
 
   public async updateUsername(username: string): Promise<void> {
-    await this.requestHelper.put<void, { username: string }>({
+    await this.requestHelper.patch<void, { username: string }>({
       url: endpoints.HOST + endpoints.PROFILE.UPDATE_USERNAME,
       params: { username },
       token: await this.sessionService.getSessionToken(),
@@ -33,7 +33,7 @@ export class UserProfileService {
   }
 
   public async updateInfo(params: UpdateProfileInfoParams): Promise<void> {
-    await this.requestHelper.put<void, UpdateProfileInfoParams>({
+    await this.requestHelper.patch<void, UpdateProfileInfoParams>({
       url: endpoints.HOST + endpoints.PROFILE.UPDATE_INFO,
       params,
       token: await this.sessionService.getSessionToken(),

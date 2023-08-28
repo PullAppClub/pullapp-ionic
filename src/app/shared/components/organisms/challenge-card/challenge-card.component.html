@@ -11,14 +11,13 @@
     <!-- Details Section -->
     <div class="col-span-9 p-6">
       <div class="grid grid-rows-4 gap-2">
-        <div>
+        <div class="flex">
           <app-entry-reward
             [requiredMusclePoints]="challenge.level.rewardMusclePoints"
             [rewardMusclePoints]="
               challenge.level.rewardMusclePoints
             "></app-entry-reward>
         </div>
-
         <div>
           <p class="text-xs lowercase">
             {{ challenge.sportType }} -
@@ -29,6 +28,25 @@
         <div>
           <h2 class="font-semibold">{{ challenge.title }}</h2>
         </div>
+
+        <!-- Owner Section -->
+        <div class="flex items-center">
+          <p class="text-sm mr-2">
+            <span class="text-slate-500">{{ 'COMMON.BY' | translate }}</span>
+            <a class="link">
+              {{ challenge.owner.username }}
+            </a>
+          </p>
+          <!--          <div class="avatar small-avatar-container">-->
+          <!--            <div class="w-8 rounded-full">-->
+          <!--              <img-->
+          <!--                ngSrc="{{ challenge.owner.avatar }}"-->
+          <!--                fill="true"-->
+          <!--                alt="avatar" />-->
+          <!--            </div>-->
+          <!--          </div>-->
+        </div>
+        <!-- ./Owner Section -->
       </div>
 
       <div class="grid grid-cols-2">

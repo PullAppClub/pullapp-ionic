@@ -29,7 +29,7 @@ export class RequestHelper {
 
   public post<T, K = void>(params: PostParams<K>): Promise<T> {
     return firstValueFrom<T>(
-      this.http.put<T>(params.url, params.params, this.createOptions(params))
+      this.http.post<T>(params.url, params.params, this.createOptions(params))
     );
   }
 
@@ -47,7 +47,7 @@ export class RequestHelper {
 
   public patch<T, K = void>(params: PatchParams<K>): Promise<T> {
     return firstValueFrom<T>(
-      this.http.put<T>(params.url, params.params, this.createOptions(params))
+      this.http.patch<T>(params.url, params.params, this.createOptions(params))
     );
   }
 

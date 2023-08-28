@@ -50,6 +50,10 @@ export class AppComponent {
   }
 
   public onContentScroll(event: any) {
+    if (!this.tabBarService.showTabBar) {
+      return;
+    }
+
     const scrollPosition = event.detail.scrollTop;
 
     if (scrollPosition > this.lastScrollPosition + this.scrollAmount) {

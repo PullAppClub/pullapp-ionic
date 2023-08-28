@@ -7,19 +7,22 @@ import { AcceptedFileType } from '../../../../core/enums/file-type.enum';
   styleUrls: ['./upload-modal.component.scss'],
 })
 export class UploadModalComponent implements OnInit {
-  @Input()
+  @Input({ required: true })
   public forLabelId!: string;
 
   @Input()
-  public textKey!: string;
+  public textKey: string | undefined;
+
+  @Input()
+  public confirmButtonText: string | undefined;
 
   @Output()
   public file = new EventEmitter<File>();
 
-  @Input()
+  @Input({ required: true })
   public acceptedFileType!: AcceptedFileType;
 
-  @Input()
+  @Input({ required: true })
   public showUploadSpinner!: boolean;
 
   public selectedFile!: File;

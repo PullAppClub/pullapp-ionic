@@ -39,8 +39,8 @@ export class CreateChallengeComponent implements OnInit {
     this.levelFilter = level;
   }
 
-  public handleVideo(event: any): void {
-    this.video = event.target.files[0];
+  public handleVideo(video: File): void {
+    this.video = video;
   }
 
   public setSportFilter(sport: SportType): void {
@@ -49,6 +49,7 @@ export class CreateChallengeComponent implements OnInit {
 
   public async createChallenge(): Promise<void> {
     try {
+      console.log(this.createChallengeForm.invalid, this.video);
       if (this.createChallengeForm.invalid || !this.video) {
         return;
       }

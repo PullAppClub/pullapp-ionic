@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   Challenge,
   ChallengeParticipant,
@@ -24,16 +31,29 @@ export class ChallengeParticipantsListModalComponent implements OnInit {
 
   public participationStatus = ParticipationStatus;
   public userId: string | undefined;
+  @ViewChild('participantsSection', { static: true })
+  private participantsSection!: ElementRef;
 
   constructor(
     public readonly tabBarService: TabBarService,
     public readonly dateHelper: DateHelper,
-    public readonly sessionService: SessionService
+    public readonly sessionService: SessionService,
+    private readonly elementRef: ElementRef
   ) {}
 
   async ngOnInit(): Promise<void> {
     this.participants = this.challenge.participants;
     this.userId = (await this.sessionService.getParsedSessionToken()).userId;
+  }
+
+  public onClose(): void {
+    this.tabBarService.setShowTabBar(true);
+
+    const videoTags = this.elementRef.nativeElement.querySelectorAll('video');
+    videoTags.forEach((videoTag: HTMLVideoElement): void => {
+      videoTag.currentTime = 0;
+      videoTag.pause();
+    });
   }
 
   public createAgoString(createdAt: string): string {

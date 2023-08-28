@@ -7,7 +7,9 @@
       ✕
     </label>
 
-    <h3 class="font-bold text-lg text-center">{{ textKey | translate }}</h3>
+    <h3 class="font-bold text-lg text-center" *ngIf="textKey">
+      {{ textKey | translate }}
+    </h3>
 
     <input
       type="file"
@@ -21,7 +23,7 @@
       </label>
 
       <app-load-button
-        tKey="COMMON.UPLOAD"
+        [tKey]="confirmButtonText ?? 'COMMON.UPLOAD'"
         [callback]="emitFileCallback"
         [showSpinner]="showUploadSpinner"></app-load-button>
     </div>

@@ -21,7 +21,7 @@ export class ChallengeCardComponent implements OnInit {
 
   public showVideoContainer: boolean = false;
   public videoPlayerLabelId = 'videoPlayerLabelId';
-  public userId: string | null = null;
+  public userId: string | undefined;
 
   constructor(
     private readonly navigationHelper: NavigationHelper,
@@ -30,7 +30,9 @@ export class ChallengeCardComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.userId = (await this.sessionService.getParsedSessionToken()).uid;
+    this.sessionService
+      .observeParsedSessionToken()
+      .subscribe(value => (this.userId = value?.userId));
   }
 
   public toggleVideoContainer(): void {
