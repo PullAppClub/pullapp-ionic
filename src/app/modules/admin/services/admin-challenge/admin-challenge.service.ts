@@ -3,6 +3,7 @@ import { SessionService } from '../../../../core/services/session/session.servic
 import { RequestHelper } from '../../../../core/helpers/request/request.helper';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
 import { Challenge } from '../../../events/interfaces/challenge.interface';
+import { map, Observable, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,32 +14,29 @@ export class AdminChallengeService {
     private readonly requestHelper: RequestHelper
   ) {}
 
-  public async getChallengesToApprove(): Promise<Challenge[]> {
+  public getChallengesToApprove(): Observable<Challenge[]> {
     return this.requestHelper.get<Challenge[]>({
       url: endpoints.HOST + endpoints.ADMIN.GET_CHALLENGES_TO_APPROVE,
-      token: await this.sessionService.getSessionToken(),
+      token$: this.sessionService.getSessionToken(),
     });
   }
 
-  public async approveChallenge(challengeId: string): Promise<void> {
-    await this.requestHelper.patch({
+  public approveChallenge(challengeId: string): Observable<void> {
+    return this.requestHelper.patch({
       url: `${
         endpoints.HOST + endpoints.ADMIN.APPROVE_CHALLENGE
       }/${challengeId}`,
-      token: await this.sessionService.getSessionToken(),
+      token$: this.sessionService.getSessionToken(),
     });
   }
 
-  public async rejectChallenge(
-    challengeId: string,
-    text: string
-  ): Promise<void> {
-    await this.requestHelper.patch<void, { text: string }>({
+  public rejectChallenge(challengeId: string, text: string): Observable<void> {
+    return this.requestHelper.patch<void, { text: string }>({
       url: `${
         endpoints.HOST + endpoints.ADMIN.REJECT_CHALLENGE
       }/${challengeId}`,
       params: { text },
-      token: await this.sessionService.getSessionToken(),
+      token$: this.sessionService.getSessionToken(),
     });
   }
 }

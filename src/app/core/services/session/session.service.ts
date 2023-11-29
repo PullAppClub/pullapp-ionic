@@ -3,7 +3,7 @@ import { FirebaseService } from '../firebase/firebase.service';
 import { Role } from '../../../modules/users/enums/role.enum';
 import { DecodedToken } from '../../types/auth.type';
 import { CryptoHelper } from '../../helpers/crypto/crypto.helper';
-import { Observable } from 'rxjs';
+import { catchError, first, map, Observable, switchMap, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +14,11 @@ export class SessionService {
     private readonly cryptoHelper: CryptoHelper
   ) {}
 
-  public async getSessionToken(): Promise<string> {
-    return this.firebaseService.getIdToken();
-  }
-
-  public observeSessionToken(): Observable<string | null> {
-    return this.firebaseService.observeIdToken();
+  public getSessionToken(): Observable<string> {
+    return this.firebaseService
+      .getIdToken()
+      .pipe(take(1))
+      .pipe(switchMap(token => this.checkSessionToken(token)));
   }
 
   public observeParsedSessionToken(): Observable<DecodedToken | null> {
@@ -34,17 +33,31 @@ export class SessionService {
     });
   }
 
-  public async getParsedSessionToken(): Promise<DecodedToken> {
-    return this.cryptoHelper.jwtDecode(await this.getSessionToken());
+  public getParsedSessionToken(): Observable<DecodedToken> {
+    return this.getSessionToken().pipe(
+      map(token => this.cryptoHelper.jwtDecode(token))
+    );
   }
 
-  public async checkRole(roles: Role[]): Promise<boolean> {
-    const { role } = await this.getParsedSessionToken();
+  public checkRole(roles: Role[]): Observable<boolean> {
+    return this.getParsedSessionToken().pipe(
+      map(({ role }) => (role ? roles.includes(role) : false))
+    );
+  }
 
-    if (!role) {
+  private checkSessionToken(token: string | null): Observable<string> | string {
+    return this.isSessionTokenValid(token)
+      ? (token as string)
+      : this.firebaseService.refreshIdToken();
+  }
+
+  private isSessionTokenValid(token: string | null): boolean {
+    if (!token) {
       return false;
     }
 
-    return roles.includes(role);
+    const jwt = this.cryptoHelper.jwtDecode(token);
+
+    return new Date() >= new Date(jwt.exp * 1000);
   }
 }

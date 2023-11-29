@@ -1,20 +1,7 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn } from '@angular/router';
 import { SessionService } from '../../services/session/session.service';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthorizationGuard {
-  constructor(private session: SessionService) {}
-
-  public async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
-    try {
-      return this.session.checkRole(route.data['allowedRoles']);
-    } catch (error) {
-      console.log(error);
-
-      return false;
-    }
-  }
-}
+export const authorizationGuard: CanActivateFn = (route, state) => {
+  return inject(SessionService).checkRole(route.data['allowedRoles']);
+};

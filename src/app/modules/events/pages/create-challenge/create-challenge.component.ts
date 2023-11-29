@@ -6,6 +6,9 @@ import { ChallengeService } from '../../services/challenge/challenge.service';
 import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 import { AnimationOptions } from 'ngx-lottie';
 import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
+import { ToastType } from '../../../../core/enums/toast.enum';
+import { ToastService } from '../../../../core/services/toast/toast.service';
+import { LangService } from '../../../../core/services/lang/lang.service';
 
 @Component({
   selector: 'app-create-challenge',
@@ -30,7 +33,9 @@ export class CreateChallengeComponent implements OnInit {
   constructor(
     private readonly challengeService: ChallengeService,
     private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper,
-    private readonly navigationHelper: NavigationHelper
+    private readonly navigationHelper: NavigationHelper,
+    private readonly toastService: ToastService,
+    private readonly langService: LangService
   ) {}
 
   ngOnInit() {}
@@ -47,26 +52,30 @@ export class CreateChallengeComponent implements OnInit {
     this.sportFilter = sport;
   }
 
-  public async createChallenge(): Promise<void> {
-    try {
-      console.log(this.createChallengeForm.invalid, this.video);
-      if (this.createChallengeForm.invalid || !this.video) {
-        return;
-      }
-
-      this.openModalBtn.nativeElement.click();
-
-      await this.challengeService.createGlobalChallenge({
-        title: this.createChallengeForm.get('title')?.value as string,
-        description: this.createChallengeForm.get('description')
-          ?.value as string,
-        levelId: this.levelFilter.id,
-        sportType: this.sportFilter,
-        video: this.video,
-      });
-    } catch (e) {
-      this.httpErrorHandlerHelper.handle(e);
+  public createChallenge(): void {
+    if (this.createChallengeForm.invalid || !this.video) {
+      return;
     }
+
+    this.openModalBtn.nativeElement.click();
+
+    const createChallenge$ = this.challengeService.createGlobalChallenge({
+      title: this.createChallengeForm.get('title')?.value as string,
+      description: this.createChallengeForm.get('description')?.value as string,
+      levelId: this.levelFilter.id,
+      sportType: this.sportFilter,
+      video: this.video,
+    });
+
+    createChallenge$.subscribe({
+      next: ({ message }) =>
+        this.toastService.showToast({
+          message,
+          type: ToastType.Success,
+          title: 'Challenge',
+        }),
+      error: error => this.httpErrorHandlerHelper.handle(error),
+    });
   }
 
   public closeModal(): void {

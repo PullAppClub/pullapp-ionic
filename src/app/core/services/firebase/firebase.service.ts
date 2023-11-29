@@ -8,7 +8,16 @@ import { LoginParams } from '../../interfaces/user-auth.interface';
 import { environment } from '../../../../environments/environment';
 import { ToastService } from '../toast/toast.service';
 import { ToastType } from '../../enums/toast.enum';
-import { firstValueFrom, Observable } from 'rxjs';
+import {
+  defer,
+  firstValueFrom,
+  from,
+  map,
+  mergeAll,
+  mergeMap,
+  Observable,
+  of,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +36,7 @@ export class FirebaseService {
       console.log('message received. ', payload);
 
       toastService.showToast({
-        msg: payload?.notification?.body as string,
+        message: payload?.notification?.body as string,
         title: payload?.notification?.title as string,
         type: ToastType.Info,
       });
@@ -64,24 +73,20 @@ export class FirebaseService {
     await this.angularFireAuth.signOut();
   }
 
-  public async getIdToken(): Promise<string> {
-    return (await firstValueFrom(
-      this.angularFireAuth.idToken
-    )) as unknown as Promise<string>;
+  public getIdToken(): Observable<string | null> {
+    return this.angularFireAuth.idToken;
   }
 
   public observeIdToken(): Observable<string | null> {
     return this.angularFireAuth.idToken;
   }
 
-  public refreshIdToken(): Promise<string> {
-    return new Promise(resolve => {
-      this.angularFireAuth.user.subscribe(user => {
-        user
-          ?.getIdTokenResult(true)
-          ?.then(idTokenResult => resolve(idTokenResult.token));
-      });
-    });
+  public refreshIdToken(): Observable<string> {
+    return from(
+      this.angularFireAuth.currentUser.then(user =>
+        user?.getIdTokenResult(true)
+      )
+    ).pipe(map(token => token?.token as string));
   }
 
   public async forgotPassword(email: string): Promise<void> {
@@ -90,54 +95,16 @@ export class FirebaseService {
       .then(data => console.log(data));
   }
 
-  public async changeEmail(email: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.angularFireAuth.user.subscribe(user => {
-        user
-          ?.updateEmail(email)
-          ?.then(data => resolve(data))
-          ?.catch(error => reject(error));
-      });
-    });
-  }
+  public changePassword(password: string): Observable<void> {
+    return this.angularFireAuth.user.pipe(
+      mergeMap(user => {
+        if (user) {
+          return from(user.updatePassword(password));
+        }
 
-  public async getEmail(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      this.angularFireAuth.user.subscribe({
-        next: data => {
-          resolve(data?.email as string);
-        },
-        error: error => {
-          console.log(error);
-          reject(error);
-        },
-      });
-    });
-  }
-
-  public async getUsername(): Promise<string | null | undefined> {
-    return new Promise((resolve, reject) => {
-      this.angularFireAuth.user.subscribe({
-        next: data => {
-          resolve(data?.displayName);
-        },
-        error: error => {
-          console.log(error);
-          reject(error);
-        },
-      });
-    });
-  }
-
-  public async changePassword(password: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.angularFireAuth.user.subscribe(user => {
-        user
-          ?.updatePassword(password)
-          ?.then(data => resolve(data))
-          ?.catch(error => reject(error));
-      });
-    });
+        throw new Error('User not found');
+      })
+    );
   }
 
   public async deleteUser(): Promise<void> {
@@ -166,15 +133,7 @@ export class FirebaseService {
     });
   }
 
-  public getFCMToken(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      this.angularFireMessaging.requestToken.subscribe({
-        next: token => {
-          if (token) resolve(token);
-          else reject('No token');
-        },
-        error: error => reject(error),
-      });
-    });
+  public getFCMToken(): Observable<string | null> {
+    return this.angularFireMessaging.requestToken;
   }
 }

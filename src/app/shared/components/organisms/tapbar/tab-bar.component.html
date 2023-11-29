@@ -28,7 +28,7 @@
       <!-- ./Map Button -->
 
       <!-- Plus Button -->
-      <div class="dropdown dropdown-top dropdown-center" *ngIf="userId">
+      <div class="dropdown dropdown-top dropdown-center" *ngIf="userLoggedIn">
         <div class="navbar__item -grey" tabindex="0">
           <span class="navbar__icon">
             <svg class="icon">
@@ -74,7 +74,7 @@
 
       <!-- Profile Button -->
       <div
-        *ngIf="userId"
+        *ngIf="userLoggedIn"
         class="navbar__item -grey"
         [ngClass]="isLoginOrProfilePage() ? 'active' : ''"
         (click)="openPage(tabBarPages.Profile)">
@@ -88,7 +88,7 @@
 
       <!-- Login Button -->
       <div
-        *ngIf="!userId"
+        *ngIf="!userLoggedIn"
         class="navbar__item -grey"
         [ngClass]="isLoginOrProfilePage() ? 'active' : ''"
         (click)="openPage(tabBarPages.SignIn)">
@@ -102,7 +102,7 @@
 
       <!-- More Button -->
       <div
-        *ngIf="!userId"
+        *ngIf="!userLoggedIn"
         class="navbar__item -grey"
         [ngClass]="isCurrentPage(tabBarPages.HallOfFame) ? 'active' : ''"
         (click)="openPage(tabBarPages.HallOfFame)">

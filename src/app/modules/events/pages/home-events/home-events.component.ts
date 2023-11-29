@@ -51,18 +51,14 @@ export class HomeEventsComponent implements OnInit {
     });
   }
 
-  private async getHomePageChallenges(): Promise<void> {
-    try {
-      this.showGlobalChallengesSpinner = true;
-      const { global, official } =
-        await this.challengeService.getHomePageChallenges();
+  private getHomePageChallenges(): Promise<void> {
+    this.showGlobalChallengesSpinner = true;
 
-      this.globalChallenges = global;
-    } catch (e) {
-      this.httpErrorHandlerHelper.handle(e);
-    } finally {
-      this.showGlobalChallengesSpinner = false;
-    }
+    await this.challengeService.getHomePageChallenges();
+
+    this.globalChallenges = global;
+    this.httpErrorHandlerHelper.handle(e);
+    this.showGlobalChallengesSpinner = false;
   }
 
   public scrollRight(): void {

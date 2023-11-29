@@ -4,6 +4,7 @@ import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-hand
 import { ToastService } from '../../../../core/services/toast/toast.service';
 import { ToastType } from '../../../../core/enums/toast.enum';
 import { LangService } from '../../../../core/services/lang/lang.service';
+import { catchError, combineLatest, take } from 'rxjs';
 
 @Component({
   selector: 'app-change-email',
@@ -11,7 +12,7 @@ import { LangService } from '../../../../core/services/lang/lang.service';
   styleUrls: ['./change-email.component.scss'],
 })
 export class ChangeEmailComponent implements OnInit {
-  public email?: string;
+  public email: string | undefined;
   public showSaveSpinner = false;
 
   constructor(
@@ -25,41 +26,44 @@ export class ChangeEmailComponent implements OnInit {
     this.getEmail();
   }
 
-  public async changeEmail(): Promise<void> {
-    try {
-      this.showSaveSpinner = true;
+  public changeEmail(): void {
+    this.showSaveSpinner = true;
 
-      await this.userIdentityService.changeEmail({
+    const changeEmail$ = this.userIdentityService
+      .changeEmail({
         email: this.email as string,
-      });
+      })
+      .pipe(catchError(e => this.httpErrorHandlerHelper.handle(e)));
 
-      this.showSaveSpinner = false;
+    const title$ = this.langService.t('MODULES.PROFILE.EMAIL_CHANGED_TITLE');
+    const message$ = this.langService.t('MODULES.PROFILE.EMAIL_CHANGED_BODY');
 
-      this.toastService.showToast({
-        title: await this.langService.t('MODULES.PROFILE.EMAIL_CHANGED_TITLE'),
-        msg: await this.langService.t('MODULES.PROFILE.EMAIL_CHANGED_BODY'),
-        type: ToastType.Success,
-      });
-    } catch (error) {
-      this.showSaveSpinner = false;
-
-      this.httpErrorHandlerHelper.handle(error);
-    }
+    combineLatest([changeEmail$, title$, message$])
+      .subscribe({
+        next: ([, title, message]) => {
+          this.toastService.showToast({
+            title,
+            message,
+            type: ToastType.Success,
+          });
+        },
+        complete: () => (this.showSaveSpinner = false),
+      })
+      .unsubscribe();
   }
 
   public changeEmailCallback = () => this.changeEmail();
 
-  public async getEmail(): Promise<void> {
-    try {
-      this.showSaveSpinner = true;
+  public getEmail(): void {
+    this.showSaveSpinner = true;
 
-      this.email = await this.userIdentityService.getEmail();
-
-      this.showSaveSpinner = false;
-    } catch (error) {
-      this.showSaveSpinner = false;
-
-      this.httpErrorHandlerHelper.handle(error);
-    }
+    this.userIdentityService
+      .getEmail()
+      .pipe(take(1))
+      .subscribe({
+        next: email => (this.email = email),
+        error: e => this.httpErrorHandlerHelper.handle(e),
+        complete: () => (this.showSaveSpinner = false),
+      });
   }
 }

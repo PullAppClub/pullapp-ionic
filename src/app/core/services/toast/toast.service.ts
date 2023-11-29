@@ -3,7 +3,7 @@ import { ToastType } from '../../enums/toast.enum';
 
 interface ShowToastParams {
   title: string;
-  msg: string;
+  message: string;
   time?: number;
   type: ToastType;
 }
@@ -29,7 +29,7 @@ export class ToastService {
 
   public showToast(params: ShowToastParams): void {
     this.title = params.title;
-    this.msg = params.msg;
+    this.msg = params.message;
     this.toastOnScreen = true;
     this.type = params.type;
 

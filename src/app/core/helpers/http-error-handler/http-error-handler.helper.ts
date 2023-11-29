@@ -22,7 +22,7 @@ export class HttpErrorHandlerHelper {
     const msg = await this.langService.t(key);
 
     this.toastService.showToast({
-      msg,
+      message: msg,
       title: 'Error',
       type: ToastType.Error,
     });

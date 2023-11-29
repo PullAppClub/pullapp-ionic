@@ -5,7 +5,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { RegistrationDetailsComponent } from './pages/registration-details/registration-details.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-import { AuthenticationGuard } from '../../core/guards/authentication/authentication.guard';
+import { authenticationGuard } from '../../core/guards/authentication/authentication.guard';
 import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component';
 import { PersonalInfoComponent } from './pages/personal-info/personal-info.component';
 import { ChangeEmailComponent } from './pages/change-email/change-email.component';
@@ -32,27 +32,27 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
-    canActivate: [AuthenticationGuard],
+    canActivate: [authenticationGuard],
   },
   {
     path: 'settings',
     component: SettingsComponent,
-    canActivate: [AuthenticationGuard],
+    canActivate: [authenticationGuard],
   },
   {
     path: 'settings/personal-info',
     component: PersonalInfoComponent,
-    canActivate: [AuthenticationGuard],
+    canActivate: [authenticationGuard],
   },
   {
     path: 'settings/change-email',
     component: ChangeEmailComponent,
-    canActivate: [AuthenticationGuard],
+    canActivate: [authenticationGuard],
   },
   {
     path: 'settings/change-password',
     component: ChangePasswordComponent,
-    canActivate: [AuthenticationGuard],
+    canActivate: [authenticationGuard],
   },
   {
     path: 'hall-of-fame',

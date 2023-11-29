@@ -12,20 +12,22 @@ import { Observable } from 'rxjs';
 export class TabBarComponent implements OnInit {
   public tabBarPages = TabBarPages;
   private tabPagesArray = Object.values(TabBarPages);
-  public userId: string | null = null;
+  public userLoggedIn: boolean = false;
 
   constructor(
     private readonly navigationHelper: NavigationHelper,
     private readonly sessionService: SessionService
   ) {
-    this.sessionService.observeSessionToken().subscribe({
-      next: value => {
-        this.userId = value;
-      },
-    });
+    this.sessionService
+      .getSessionToken()
+      .subscribe(token => this.setUserLoggedIn(!!token));
   }
 
   ngOnInit() {}
+
+  private setUserLoggedIn(value: boolean): void {
+    this.userLoggedIn = value;
+  }
 
   public openPage(page: TabBarPages): void {
     const currentPathIndex = this.tabPagesArray.indexOf(

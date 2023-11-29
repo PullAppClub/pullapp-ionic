@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 import { UserProfileService } from '../../services/user-profile/user-profile.service';
 import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -28,10 +29,10 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {}
 
-  public async signUp() {
+  public signUp(): void {
     try {
       this.showSignUpSpinner = true;
-      await this.checkUsername();
+      this.checkUsername();
 
       if (this.signUpForm.invalid && !this.usernameIsValid) {
         this.showSignUpSpinner = false;
@@ -39,8 +40,8 @@ export class SignUpComponent implements OnInit {
         return;
       }
 
-      await this.createUser();
-      await this.saveUsername();
+      this.createUser();
+      this.saveUsername();
       this.navigationHelper.openPage({ route: '/user/registration-details' });
     } catch (e) {
       this.httpErrorHandlerHelper.handle(e);
@@ -49,33 +50,32 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  private async saveUsername(): Promise<void> {
-    await this.userProfileService.updateUsername(
+  private saveUsername(): Observable<void> {
+    return this.userProfileService.updateUsername(
       this.signUpForm.get('username')?.value as string
     );
   }
 
-  private async createUser(): Promise<void> {
-    await this.userAuthService.registerWithEmailAndPassword({
+  private createUser(): Observable<void> {
+    return this.userAuthService.registerWithEmailAndPassword({
       email: this.signUpForm.get('email')?.value as string,
       password: this.signUpForm.get('password')?.value as string,
     });
   }
 
-  public async checkUsername(): Promise<void> {
-    try {
-      const username = this.signUpForm.get('username')?.value as string;
+  private checkUsername(): void {
+    const username = this.signUpForm.get('username')?.value as string;
 
-      if (!username || username.length < 3 || username.length > 20) {
-        return;
-      }
-
-      await this.userProfileService.checkUsername(username);
-
-      this.usernameIsValid = true;
-    } catch (e) {
-      this.usernameIsValid = false;
-      throw e;
+    if (!username || username.length < 3 || username.length > 20) {
+      return;
     }
+
+    this.userProfileService
+      .checkUsername(username)
+      .subscribe({
+        next: () => (this.usernameIsValid = true),
+        error: () => (this.usernameIsValid = false),
+      })
+      .unsubscribe();
   }
 }

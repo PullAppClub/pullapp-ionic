@@ -3,6 +3,7 @@ import { RequestHelper } from '../../../../core/helpers/request/request.helper';
 import { SessionService } from '../../../../core/services/session/session.service';
 import { ChallengeLevel } from '../../interfaces/challenge.interface';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +14,10 @@ export class ChallengeLevelService {
     private readonly sessionService: SessionService
   ) {}
 
-  public async getAll(): Promise<ChallengeLevel[]> {
-    return await this.requestHelper.get<ChallengeLevel[]>({
+  public getAll(): Observable<ChallengeLevel[]> {
+    return this.requestHelper.get<ChallengeLevel[]>({
       url: endpoints.HOST + endpoints.CHALLENGE.LEVELS,
-      token: await this.sessionService.getSessionToken(),
+      token$: this.sessionService.getSessionToken(),
     });
   }
 }

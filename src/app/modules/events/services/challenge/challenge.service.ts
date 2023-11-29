@@ -13,6 +13,7 @@ import { ToastService } from '../../../../core/services/toast/toast.service';
 import { ToastType } from '../../../../core/enums/toast.enum';
 import { LangService } from '../../../../core/services/lang/lang.service';
 import { ProfileBasicInfo } from '../../../users/interfaces/user.interface';
+import { map, Observable, switchMap, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -38,40 +39,35 @@ export class ChallengeService {
     return this.passedChallenge;
   }
 
-  public async createGlobalChallenge(
+  public createGlobalChallenge(
     params: CreateChallengeParams
-  ): Promise<void> {
+  ): Observable<HttpMessageResponse> {
     const { video, ...body } = params;
-    const { message } = await this.requestHelper.upload<
+
+    return this.requestHelper.upload<
       HttpMessageResponse,
       Omit<CreateChallengeParams, 'video'>
     >({
       url: endpoints.HOST + endpoints.CHALLENGE.CREATE_GLOBAL,
-      token: await this.sessionService.getSessionToken(),
+      token$: this.sessionService.getSessionToken(),
       params: body,
       file: params.video,
       fileName: 'video',
       showProgressBar: true,
     });
-
-    this.toastService.showToast({
-      msg: await this.langService.t(message),
-      type: ToastType.Info,
-      title: 'Challenge',
-    });
   }
 
-  public async getHomePageChallenges(): Promise<HomePageChallenges> {
+  public getHomePageChallenges(): Observable<HomePageChallenges> {
     return this.requestHelper.get<HomePageChallenges>({
       url: endpoints.HOST + endpoints.CHALLENGE.GET_HOME_PAGE_CHALLENGES,
-      token: await this.sessionService.getSessionToken(),
+      token$: this.sessionService.getSessionToken(),
     });
   }
 
-  public async getChallenge(id: string): Promise<Challenge> {
+  public getChallenge(id: string): Observable<Challenge> {
     return this.requestHelper.get<Challenge>({
       url: endpoints.HOST + endpoints.CHALLENGE.GET_CHALLENGE + id,
-      token: await this.sessionService.getSessionToken(),
+      token$: this.sessionService.getSessionToken(),
     });
   }
 }

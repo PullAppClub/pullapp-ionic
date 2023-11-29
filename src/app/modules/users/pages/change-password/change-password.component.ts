@@ -5,6 +5,7 @@ import { UserAuthService } from '../../services/user-auth/user-auth.service';
 import { ToastService } from '../../../../core/services/toast/toast.service';
 import { LangService } from '../../../../core/services/lang/lang.service';
 import { ToastType } from '../../../../core/enums/toast.enum';
+import { catchError, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-change-password',
@@ -39,36 +40,38 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit() {}
 
-  public async changePassword(): Promise<void> {
-    try {
-      this.showSpinner = true;
+  public changePassword(): void {
+    const password = this.changePasswordForm?.get('password')?.value;
+    const repeatedPassword =
+      this.changePasswordForm?.get('repeatPassword')?.value;
 
-      const password = this.changePasswordForm?.get('password')?.value;
-      const repeatedPassword =
-        this.changePasswordForm?.get('repeatPassword')?.value;
-
-      if (this.changePasswordForm.invalid && password !== repeatedPassword) {
-        this.showSpinner = false;
-
-        return;
-      }
-
-      await this.userAuthService.changePassword(password as string);
-
-      this.showSpinner = false;
-
-      this.toastService.showToast({
-        title: await this.langService.t(
-          'MODULES.PROFILE.PASSWORD_CHANGED_TITLE'
-        ),
-        msg: await this.langService.t('MODULES.PROFILE.PASSWORD_CHANGED_BODY'),
-        type: ToastType.Success,
-      });
-    } catch (e) {
-      this.httpErrorHandlerHelper.handle(e);
-
-      this.showSpinner = false;
+    if (this.changePasswordForm.invalid && password !== repeatedPassword) {
+      return;
     }
+
+    this.showSpinner = true;
+
+    const passwordChanged$ = this.userAuthService
+      .changePassword(password as string)
+      .pipe(catchError(e => this.httpErrorHandlerHelper.handle(e)));
+    const title$ = this.langService.t('MODULES.PROFILE.PASSWORD_CHANGED_TITLE');
+    const message$ = this.langService.t(
+      'MODULES.PROFILE.PASSWORD_CHANGED_BODY'
+    );
+
+    combineLatest([passwordChanged$, title$, message$])
+      .subscribe({
+        next: ([_, title, message]) =>
+          this.toastService.showToast({
+            title,
+            message,
+            type: ToastType.Success,
+          }),
+        complete: () => {
+          this.showSpinner = false;
+        },
+      })
+      .unsubscribe();
   }
 
   public changePasswordCallback = () => this.changePassword();

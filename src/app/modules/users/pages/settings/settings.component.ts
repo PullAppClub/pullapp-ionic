@@ -8,6 +8,7 @@ import { UserProfile } from '../../types/profile.type';
 import { ToastService } from '../../../../core/services/toast/toast.service';
 import { ToastType } from '../../../../core/enums/toast.enum';
 import { LangService } from '../../../../core/services/lang/lang.service';
+import { catchError, Observable, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
@@ -17,7 +18,10 @@ import { LangService } from '../../../../core/services/lang/lang.service';
 export class SettingsComponent implements OnInit {
   public uploadLabelId: string = 'uploadLabelId';
   public acceptedFileType: AcceptedFileType = AcceptedFileType.Image;
-  public profile!: UserProfile;
+  public profile: Observable<UserProfile | void> = this.userProfileService
+    .getProfile()
+    .pipe(catchError(e => this.httpErrorHandlerHelper.handle(e)));
+
   public showUploadSpinner: boolean = false;
 
   constructor(
@@ -29,44 +33,35 @@ export class SettingsComponent implements OnInit {
     private readonly langService: LangService
   ) {}
 
-  ngOnInit() {
-    this.getProfile();
-  }
+  ngOnInit() {}
 
   public async logout(): Promise<void> {
     this.userAuthService.logout();
     this.navigationHelper.openPageWithoutHistory({ route: '/user/sign-in' });
   }
 
-  private async getProfile(): Promise<void> {
-    try {
-      this.profile = await this.userProfileService.getProfile();
-    } catch (e) {
-      this.httpErrorHandlerHelper.handle(e);
-    }
-  }
+  public uploadFile(file: File): void {
+    this.showUploadSpinner = true;
 
-  public async uploadFile(file: File): Promise<void> {
-    try {
-      this.showUploadSpinner = true;
+    const uploadAvatar$ = this.userProfileService
+      .uploadAvatar(file)
+      .pipe(catchError(e => this.httpErrorHandlerHelper.handle(e)));
+    const title$ = this.langService.t(
+      'MODULES.PROFILE.SETTINGS.AVATAR_CHANGED_TITLE'
+    );
+    const message$ = this.langService.t(
+      'MODULES.PROFILE.SETTINGS.AVATAR_CHANGED_BODY'
+    );
 
-      this.profile = await this.userProfileService.uploadAvatar(file);
-
-      this.toastService.showToast({
-        msg: await this.langService.t(
-          'MODULES.PROFILE.SETTINGS.AVATAR_CHANGED_BODY'
-        ),
-        title: await this.langService.t(
-          'MODULES.PROFILE.SETTINGS.AVATAR_CHANGED_TITLE'
-        ),
-        type: ToastType.Success,
-      });
-
-      this.showUploadSpinner = false;
-    } catch (e) {
-      this.showUploadSpinner = false;
-
-      this.httpErrorHandlerHelper.handle(e);
-    }
+    combineLatest([uploadAvatar$, title$, message$]).subscribe({
+      next: ([, title, message]) => {
+        this.toastService.showToast({
+          message,
+          title,
+          type: ToastType.Success,
+        });
+      },
+      complete: () => (this.showUploadSpinner = false),
+    });
   }
 }

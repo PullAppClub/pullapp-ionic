@@ -1,13 +1,14 @@
+import { Observable } from 'rxjs';
+
 interface BaseHttpRequest {
   url: string;
-  token?: string;
   getHeaders?: boolean;
   showProgressBar?: boolean;
+  token$?: Observable<string>;
 }
 
 export interface GetParams extends BaseHttpRequest {
   params?: Record<string, string>;
-  token?: string;
 }
 
 export interface PostParams<T = void> extends BaseHttpRequest {

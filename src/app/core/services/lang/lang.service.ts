@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { StorageHelper } from '../../helpers/storage/storage.helper';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageKey } from '../../enums/storage-key.enum';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -43,7 +43,7 @@ export class LangService {
   /**
    * Returns the translated string by key.
    */
-  public async t(key: string): Promise<string> {
-    return firstValueFrom(this.translate.get(key));
+  public t(key: string): Observable<string> {
+    return this.translate.get(key);
   }
 }

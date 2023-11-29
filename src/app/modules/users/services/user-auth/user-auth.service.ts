@@ -8,6 +8,7 @@ import { RequestHelper } from '../../../../core/helpers/request/request.helper';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
 import { ThirdPartyProvider } from '../../../../core/enums/third-part-provider';
 import { UserAccountService } from '../user-account/user-account.service';
+import { from, map, mergeMap, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -37,25 +38,39 @@ export class UserAuthService {
     await this.firebaseService.logout();
   }
 
-  public async registerWithEmailAndPassword(
-    params: LoginParams
-  ): Promise<void> {
-    await this.firebaseService.createUserWithEmailAndPassword(params);
-    await this.sessionService.getSessionToken();
+  public registerWithEmailAndPassword(params: LoginParams): Observable<void> {
+    const createUserWithEmailAndPassword = from(
+      this.firebaseService.createUserWithEmailAndPassword(params)
+    );
 
-    this.userAccountService.addFCMToken().catch(error => console.log(error));
+    return createUserWithEmailAndPassword.pipe(
+      tap(() => this.sessionService.getSessionToken()),
+      tap(() => this.userAccountService.addFCMToken())
+    );
   }
 
-  public async changePassword(password: string): Promise<void> {
-    const { provider } = await this.requestHelper.get<{
-      provider: string;
-    }>({
-      url: endpoints.HOST + endpoints.IDENTITY.GET_IDENTITY_PROVIDER,
-      token: await this.sessionService.getSessionToken(),
-    });
+  public changePassword(password: string): Observable<void> {
+    return this.requestHelper
+      .get<{
+        provider: ThirdPartyProvider;
+      }>({
+        url: endpoints.HOST + endpoints.IDENTITY.GET_IDENTITY_PROVIDER,
+        token$: this.sessionService.getSessionToken(),
+      })
+      .pipe(
+        map(({ provider }) => provider),
+        mergeMap(provider => this.changePasswordByProvider(provider, password))
+      );
+  }
 
+  private changePasswordByProvider(
+    provider: ThirdPartyProvider,
+    password: string
+  ): Observable<void> {
     if (provider === ThirdPartyProvider.Firebase) {
-      await this.firebaseService.changePassword(password);
+      return this.firebaseService.changePassword(password);
     }
+
+    throw new Error('Unknown provider');
   }
 }

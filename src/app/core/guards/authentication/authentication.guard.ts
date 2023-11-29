@@ -1,26 +1,25 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { SessionService } from '../../services/session/session.service';
 import { NavigationHelper } from '../../helpers/navigation/navigation.helper';
+import { CanActivateFn } from '@angular/router';
+import { map, tap } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthenticationGuard {
-  constructor(
-    private readonly sessionService: SessionService,
-    private readonly navigationHelper: NavigationHelper
-  ) {}
+export const authenticationGuard: CanActivateFn = (route, state) => {
+  return inject(SessionService)
+    .getSessionToken()
+    .pipe(
+      tap(token => {
+        if (!token) {
+          openSignInPage();
+        }
+      }),
+      map(token => !!token)
+    );
+};
 
-  async canActivate(): Promise<boolean> {
-    const isLogged = !!(await this.sessionService.getSessionToken());
-
-    if (!isLogged) {
-      this.navigationHelper.openPage({
-        route: '/user/sign-in',
-      });
-    }
-
-    return isLogged;
-  }
-}
+const openSignInPage = () => {
+  inject(NavigationHelper).openPage({
+    route: '/user/sign-in',
+  });
+};

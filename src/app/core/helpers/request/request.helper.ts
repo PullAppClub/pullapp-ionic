@@ -10,7 +10,7 @@ import {
   PutParams,
 } from '../../interfaces/http-request.interface';
 import { Error } from '../../interfaces/error.interface';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable, switchMap } from 'rxjs';
 
 type RequestOptions = {
   headers?: HttpHeaders;
@@ -22,36 +22,41 @@ type RequestOptions = {
 export class RequestHelper {
   constructor(private readonly http: HttpClient) {}
 
-  public async get<T>(params: GetParams): Promise<T> {
-    const options = { ...this.createOptions(params), params: params.params };
-    return firstValueFrom<T>(this.http.get<T>(params.url, options));
-  }
-
-  public post<T, K = void>(params: PostParams<K>): Promise<T> {
-    return firstValueFrom<T>(
-      this.http.post<T>(params.url, params.params, this.createOptions(params))
+  public get<T>(params: GetParams): Observable<T> {
+    return this.createOptions(params).pipe(
+      switchMap(options => this.http.get<T>(params.url, options))
     );
   }
 
-  public put<T, K = void>(params: PutParams<K>): Promise<T> {
-    return firstValueFrom<T>(
-      this.http.put<T>(params.url, params.params, this.createOptions(params))
+  public post<T, K = void>(params: PostParams<K>): Observable<T> {
+    return this.createOptions(params).pipe(
+      switchMap(options =>
+        this.http.post<T>(params.url, params.params, options)
+      )
     );
   }
 
-  public delete<T>(params: DeleteParams): Promise<T> {
-    return firstValueFrom<T>(
-      this.http.get<T>(params.url, this.createOptions(params))
+  public put<T, K = void>(params: PutParams<K>): Observable<T> {
+    return this.createOptions(params).pipe(
+      switchMap(options => this.http.put<T>(params.url, params.params, options))
     );
   }
 
-  public patch<T, K = void>(params: PatchParams<K>): Promise<T> {
-    return firstValueFrom<T>(
-      this.http.patch<T>(params.url, params.params, this.createOptions(params))
+  public delete<T>(params: DeleteParams): Observable<T> {
+    return this.createOptions(params).pipe(
+      switchMap(options => this.http.delete<T>(params.url, options))
     );
   }
 
-  public upload<T, K = void>(params: PostFormDataParams<K>): Promise<T> {
+  public patch<T, K = void>(params: PatchParams<K>): Observable<T> {
+    return this.createOptions(params).pipe(
+      switchMap(options =>
+        this.http.patch<T>(params.url, params.params, options)
+      )
+    );
+  }
+
+  public upload<T, K = void>(params: PostFormDataParams<K>): Observable<T> {
     const formData = new FormData();
     formData.append(params.fileName, params.file, params.fileName);
 
@@ -61,20 +66,40 @@ export class RequestHelper {
       }
     }
 
-    const request = this.http.post<T>(params.url, formData, {
-      ...this.createOptions({
-        ...params,
-        headers: { 'Content-Type': 'multipart/form-data' },
-      }),
-    });
-
-    return firstValueFrom(request);
+    return this.createOptions({
+      ...params,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    }).pipe(
+      switchMap(options =>
+        this.http.post<T>(params.url, params.params, options)
+      )
+    );
   }
 
-  private createOptions(params: CreateHttpOptionsParams): RequestOptions {
-    let headers = new HttpHeaders({
-      Authorization: `Bearer ${params.token}`,
+  private createOptions(
+    params: CreateHttpOptionsParams
+  ): Observable<RequestOptions> {
+    return new Observable(observer => {
+      if (params.token$) {
+        params.token$.subscribe(token => {
+          observer.next(this.createOptionsFromToken({ ...params, token }));
+          observer.complete();
+        });
+      } else {
+        observer.next(this.createOptionsFromToken(params));
+        observer.complete();
+      }
     });
+  }
+
+  private createOptionsFromToken(
+    params: Omit<CreateHttpOptionsParams, 'token$'> & { token?: string }
+  ): RequestOptions {
+    let headers = new HttpHeaders();
+
+    if (params.token) {
+      headers = headers.append('Authorization', `Bearer ${params.token}`);
+    }
 
     if (!params.showProgressBar) {
       headers = headers.append('ignoreProgressBar', '');
