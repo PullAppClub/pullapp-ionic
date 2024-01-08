@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <ion-content>
-  <div class="container max-w-lg mx-auto" *ngIf="profile">
+  <div class="container max-w-lg mx-auto" *ngIf="profile$ | async as profile">
     <div class="grid">
       <!-- Change Avatar -->
       <div class="grid grid-cols-1 justify-items-center">

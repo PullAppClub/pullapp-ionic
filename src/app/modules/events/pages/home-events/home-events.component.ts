@@ -2,13 +2,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   Challenge,
   ChallengeLevel,
+  HomePageChallenges,
 } from '../../interfaces/challenge.interface';
 import { SportType } from '../../enums/sport.enum';
 import { ChallengeType } from '../../enums/challenge-type.enum';
 import { User } from '../../../users/interfaces/user.interface';
 import { fromEvent } from 'rxjs';
 import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service';
-import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 import { ChallengeService } from '../../services/challenge/challenge.service';
 
 @Component({
@@ -17,7 +17,7 @@ import { ChallengeService } from '../../services/challenge/challenge.service';
   styleUrls: ['./home-events.component.scss'],
 })
 export class HomeEventsComponent implements OnInit {
-  public globalChallenges: Challenge[] = [];
+  public homePageChallenges?: HomePageChallenges;
   @ViewChild('widgetsContent', { read: ElementRef })
   public widgetsContent!: ElementRef;
 
@@ -30,7 +30,6 @@ export class HomeEventsComponent implements OnInit {
 
   constructor(
     public readonly tabBarService: TabBarService,
-    private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper,
     private readonly challengeService: ChallengeService
   ) {}
 
@@ -51,14 +50,11 @@ export class HomeEventsComponent implements OnInit {
     });
   }
 
-  private getHomePageChallenges(): Promise<void> {
-    this.showGlobalChallengesSpinner = true;
-
-    await this.challengeService.getHomePageChallenges();
-
-    this.globalChallenges = global;
-    this.httpErrorHandlerHelper.handle(e);
-    this.showGlobalChallengesSpinner = false;
+  private getHomePageChallenges(): void {
+    this.challengeService.getHomePageChallenges().subscribe({
+      next: (challenges: HomePageChallenges) =>
+        (this.homePageChallenges = challenges),
+    });
   }
 
   public scrollRight(): void {

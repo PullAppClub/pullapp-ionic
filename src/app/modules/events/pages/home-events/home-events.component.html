@@ -39,7 +39,9 @@
     <div
       class="container-snap snap-proximity pb-8 w-full flex gap-8 snap-x overflow-x-auto self-center p-5"
       #widgetsContent>
-      <div class="snap-center" *ngFor="let challenge of globalChallenges">
+      <div
+        class="snap-center"
+        *ngFor="let challenge of homePageChallenges?.official">
         <!-- Challenge Card -->
         <app-official-challenge-card
           [challenge]="challenge"></app-official-challenge-card>
@@ -70,12 +72,12 @@
       </div>
 
       <!-- Challenge Loading Spinner -->
-      <app-spinner *ngIf="showGlobalChallengesSpinner"></app-spinner>
+      <app-spinner *ngIf="!homePageChallenges"></app-spinner>
       <!-- ./Challenge LoadingSpinner -->
 
       <!-- Challenge Card -->
       <app-challenge-card
-        *ngFor="let challenge of globalChallenges"
+        *ngFor="let challenge of homePageChallenges?.global"
         [challenge]="challenge"></app-challenge-card>
       <!-- ./Challenge Card -->
     </div>

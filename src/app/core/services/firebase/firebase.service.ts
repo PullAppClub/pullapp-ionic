@@ -82,11 +82,12 @@ export class FirebaseService {
   }
 
   public refreshIdToken(): Observable<string> {
-    return from(
-      this.angularFireAuth.currentUser.then(user =>
-        user?.getIdTokenResult(true)
-      )
-    ).pipe(map(token => token?.token as string));
+    const getIdToken = async () => {
+      const user = await this.angularFireAuth.currentUser;
+      return user?.getIdToken(true);
+    };
+
+    return from(getIdToken()).pipe(map(token => token as string));
   }
 
   public async forgotPassword(email: string): Promise<void> {
@@ -107,30 +108,8 @@ export class FirebaseService {
     );
   }
 
-  public async deleteUser(): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.angularFireAuth.user.subscribe(user => {
-        user
-          ?.delete()
-          ?.then(() => resolve())
-          ?.catch(error => reject(error));
-      });
-    });
-  }
-
-  public async requestPermission(): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.angularFireMessaging.requestPermission.subscribe({
-        next: data => {
-          console.log('permission allowed', data);
-          resolve();
-        },
-        error: error => {
-          console.log('permission denied', error);
-          reject(error);
-        },
-      });
-    });
+  public requestPermission(): Observable<NotificationPermission> {
+    return this.angularFireMessaging.requestPermission;
   }
 
   public getFCMToken(): Observable<string | null> {

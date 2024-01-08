@@ -44,30 +44,33 @@ export class ChallengeService {
   ): Observable<HttpMessageResponse> {
     const { video, ...body } = params;
 
-    return this.requestHelper.upload<
-      HttpMessageResponse,
-      Omit<CreateChallengeParams, 'video'>
-    >({
-      url: endpoints.HOST + endpoints.CHALLENGE.CREATE_GLOBAL,
-      token$: this.sessionService.getSessionToken(),
-      params: body,
-      file: params.video,
-      fileName: 'video',
-      showProgressBar: true,
-    });
+    return this.requestHelper
+      .upload<HttpMessageResponse, Omit<CreateChallengeParams, 'video'>>({
+        url: endpoints.HOST + endpoints.CHALLENGE.CREATE_GLOBAL,
+        token$: this.sessionService.getSessionToken(),
+        body,
+        file: params.video,
+        fileName: 'video',
+        showProgressBar: true,
+      })
+      .pipe(take(1));
   }
 
   public getHomePageChallenges(): Observable<HomePageChallenges> {
-    return this.requestHelper.get<HomePageChallenges>({
-      url: endpoints.HOST + endpoints.CHALLENGE.GET_HOME_PAGE_CHALLENGES,
-      token$: this.sessionService.getSessionToken(),
-    });
+    return this.requestHelper
+      .get<HomePageChallenges>({
+        url: endpoints.HOST + endpoints.CHALLENGE.GET_HOME_PAGE_CHALLENGES,
+        token$: this.sessionService.getSessionToken(),
+      })
+      .pipe(take(1));
   }
 
   public getChallenge(id: string): Observable<Challenge> {
-    return this.requestHelper.get<Challenge>({
-      url: endpoints.HOST + endpoints.CHALLENGE.GET_CHALLENGE + id,
-      token$: this.sessionService.getSessionToken(),
-    });
+    return this.requestHelper
+      .get<Challenge>({
+        url: endpoints.HOST + endpoints.CHALLENGE.GET_CHALLENGE + id,
+        token$: this.sessionService.getSessionToken(),
+      })
+      .pipe(take(1));
   }
 }

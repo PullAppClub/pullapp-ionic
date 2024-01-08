@@ -64,7 +64,7 @@
       <label
         class="label"
         style="margin-top: -4px"
-        *ngIf="usernameIsValid === false">
+        *ngIf="isUsernameValid === false">
         <span class="label-text-alt text-red-600">
           {{ 'MODULES.USER.SIGNUP.USERNAME_ALREADY_EXISTS' | translate }}
         </span>
@@ -121,8 +121,11 @@
 
       <button
         type="submit"
-        class="btn bg-indigo-600 space-x-2 items-center justify-center"
-        [ngClass]="showSignUpSpinner ? 'loading disabled' : ''">
+        class="btn space-x-2 items-center justify-center"
+        [ngClass]="[
+          showSignUpSpinner ? 'loading btn-disabled' : '',
+          signUpForm.invalid ? 'btn-disabled' : 'bg-indigo-600'
+        ]">
         <span *ngIf="!showSignUpSpinner">Sing Up</span>
       </button>
     </form>

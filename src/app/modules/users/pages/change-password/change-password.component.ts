@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 import { UserAuthService } from '../../services/user-auth/user-auth.service';
 import { ToastService } from '../../../../core/services/toast/toast.service';
 import { LangService } from '../../../../core/services/lang/lang.service';
 import { ToastType } from '../../../../core/enums/toast.enum';
-import { catchError, combineLatest } from 'rxjs';
+import { catchError, combineLatest, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-change-password',
@@ -32,7 +31,6 @@ export class ChangePasswordComponent implements OnInit {
   public showSpinner: boolean = false;
 
   constructor(
-    private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper,
     private readonly userAuthService: UserAuthService,
     private readonly toastService: ToastService,
     private readonly langService: LangService
@@ -51,15 +49,16 @@ export class ChangePasswordComponent implements OnInit {
 
     this.showSpinner = true;
 
-    const passwordChanged$ = this.userAuthService
-      .changePassword(password as string)
-      .pipe(catchError(e => this.httpErrorHandlerHelper.handle(e)));
+    const passwordChanged$ = this.userAuthService.changePassword(
+      password as string
+    );
     const title$ = this.langService.t('MODULES.PROFILE.PASSWORD_CHANGED_TITLE');
     const message$ = this.langService.t(
       'MODULES.PROFILE.PASSWORD_CHANGED_BODY'
     );
 
     combineLatest([passwordChanged$, title$, message$])
+      .pipe(finalize(() => (this.showSpinner = false)))
       .subscribe({
         next: ([_, title, message]) =>
           this.toastService.showToast({
@@ -67,9 +66,6 @@ export class ChangePasswordComponent implements OnInit {
             message,
             type: ToastType.Success,
           }),
-        complete: () => {
-          this.showSpinner = false;
-        },
       })
       .unsubscribe();
   }

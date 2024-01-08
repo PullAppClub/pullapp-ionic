@@ -12,7 +12,7 @@ export interface GetParams extends BaseHttpRequest {
 }
 
 export interface PostParams<T = void> extends BaseHttpRequest {
-  params?: T;
+  body?: T;
 }
 
 export interface PostFormDataParams<T = void> extends PostParams<T> {
@@ -21,17 +21,18 @@ export interface PostFormDataParams<T = void> extends PostParams<T> {
 }
 
 export interface PutParams<T = void> extends BaseHttpRequest {
-  params?: T;
+  body?: T;
 }
 
 export interface DeleteParams extends BaseHttpRequest {}
 
 export interface PatchParams<T = void> extends BaseHttpRequest {
-  params?: T;
+  body?: T;
 }
 
 export interface CreateHttpOptionsParams extends Omit<BaseHttpRequest, 'url'> {
   headers?: Record<any, any>;
+  params?: Record<string, string>;
 }
 
 export interface HttpMessageResponse {

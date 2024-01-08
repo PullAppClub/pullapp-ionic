@@ -7,7 +7,7 @@ import { LangService } from '../../../../core/services/lang/lang.service';
   styleUrls: ['./load-button.component.scss'],
 })
 export class LoadButtonComponent implements OnInit {
-  public text!: string;
+  public text?: string;
 
   @Input()
   public tKey!: string;
@@ -26,9 +26,11 @@ export class LoadButtonComponent implements OnInit {
 
   constructor(private readonly langService: LangService) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     if (this.tKey) {
-      this.text = await this.langService.t(this.tKey);
+      this.langService.t(this.tKey).subscribe({
+        next: (text: string) => (this.text = text),
+      });
     } else {
       this.text = this.inputText;
     }

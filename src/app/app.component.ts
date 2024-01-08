@@ -4,6 +4,7 @@ import { TabBarPages } from './core/enums/pages.enum';
 import { TabBarService } from './core/services/tab-bar/tab-bar.service';
 import { LangService } from './core/services/lang/lang.service';
 import { FirebaseService } from './core/services/firebase/firebase.service';
+import { concat } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -28,12 +29,11 @@ export class AppComponent {
     this.setFirebaseToken();
   }
 
-  private async setFirebaseToken(): Promise<void> {
-    await this.firebaseService.requestPermission();
-    await this.firebaseService
-      .getFCMToken()
-      .then(console.log)
-      .catch(console.log);
+  private setFirebaseToken(): void {
+    concat(
+      this.firebaseService.requestPermission(),
+      this.firebaseService.getFCMToken()
+    ).subscribe();
   }
 
   /**

@@ -8,7 +8,7 @@ import { UserProfile } from '../../types/profile.type';
 import { ToastService } from '../../../../core/services/toast/toast.service';
 import { ToastType } from '../../../../core/enums/toast.enum';
 import { LangService } from '../../../../core/services/lang/lang.service';
-import { catchError, Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
@@ -18,9 +18,8 @@ import { catchError, Observable, combineLatest } from 'rxjs';
 export class SettingsComponent implements OnInit {
   public uploadLabelId: string = 'uploadLabelId';
   public acceptedFileType: AcceptedFileType = AcceptedFileType.Image;
-  public profile: Observable<UserProfile | void> = this.userProfileService
-    .getProfile()
-    .pipe(catchError(e => this.httpErrorHandlerHelper.handle(e)));
+  public profile$: Observable<UserProfile> =
+    this.userProfileService.getProfile();
 
   public showUploadSpinner: boolean = false;
 
@@ -43,9 +42,7 @@ export class SettingsComponent implements OnInit {
   public uploadFile(file: File): void {
     this.showUploadSpinner = true;
 
-    const uploadAvatar$ = this.userProfileService
-      .uploadAvatar(file)
-      .pipe(catchError(e => this.httpErrorHandlerHelper.handle(e)));
+    const uploadAvatar$ = this.userProfileService.uploadAvatar(file);
     const title$ = this.langService.t(
       'MODULES.PROFILE.SETTINGS.AVATAR_CHANGED_TITLE'
     );
@@ -53,15 +50,16 @@ export class SettingsComponent implements OnInit {
       'MODULES.PROFILE.SETTINGS.AVATAR_CHANGED_BODY'
     );
 
-    combineLatest([uploadAvatar$, title$, message$]).subscribe({
-      next: ([, title, message]) => {
-        this.toastService.showToast({
-          message,
-          title,
-          type: ToastType.Success,
-        });
-      },
-      complete: () => (this.showUploadSpinner = false),
-    });
+    combineLatest([uploadAvatar$, title$, message$])
+      .pipe(finalize(() => (this.showUploadSpinner = false)))
+      .subscribe({
+        next: ([, title, message]) => {
+          this.toastService.showToast({
+            message,
+            title,
+            type: ToastType.Success,
+          });
+        },
+      });
   }
 }

@@ -35,7 +35,7 @@ export class AdminChallengeService {
       url: `${
         endpoints.HOST + endpoints.ADMIN.REJECT_CHALLENGE
       }/${challengeId}`,
-      params: { text },
+      body: { text },
       token$: this.sessionService.getSessionToken(),
     });
   }

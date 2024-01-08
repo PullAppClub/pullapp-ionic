@@ -4,6 +4,7 @@ import { RequestHelper } from '../request/request.helper';
 import { Injectable } from '@angular/core';
 import { ToastType } from '../../enums/toast.enum';
 import { Error } from '../../interfaces/error.interface';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,16 +16,19 @@ export class HttpErrorHandlerHelper {
     private readonly requestHelper: RequestHelper
   ) {}
 
-  public async handle(params: Error): Promise<void> {
+  public handle(params: Error): Observable<any> {
     console.log(params);
 
     const key = this.requestHelper.getErrorMessage(params);
-    const msg = await this.langService.t(key);
 
-    this.toastService.showToast({
-      message: msg,
-      title: 'Error',
-      type: ToastType.Error,
+    this.langService.t(key).subscribe(message => {
+      this.toastService.showToast({
+        message,
+        title: 'Error',
+        type: ToastType.Error,
+      });
     });
+
+    return of(null);
   }
 }

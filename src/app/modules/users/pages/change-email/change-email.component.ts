@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserIdentityService } from '../../services/user-identity/user-identity.service';
-import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 import { ToastService } from '../../../../core/services/toast/toast.service';
 import { ToastType } from '../../../../core/enums/toast.enum';
 import { LangService } from '../../../../core/services/lang/lang.service';
-import { catchError, combineLatest, take } from 'rxjs';
+import { catchError, combineLatest, finalize, take } from 'rxjs';
 
 @Component({
   selector: 'app-change-email',
@@ -17,7 +16,6 @@ export class ChangeEmailComponent implements OnInit {
 
   constructor(
     private readonly userIdentityService: UserIdentityService,
-    private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper,
     private readonly toastService: ToastService,
     private readonly langService: LangService
   ) {}
@@ -29,16 +27,15 @@ export class ChangeEmailComponent implements OnInit {
   public changeEmail(): void {
     this.showSaveSpinner = true;
 
-    const changeEmail$ = this.userIdentityService
-      .changeEmail({
-        email: this.email as string,
-      })
-      .pipe(catchError(e => this.httpErrorHandlerHelper.handle(e)));
+    const changeEmail$ = this.userIdentityService.changeEmail({
+      email: this.email as string,
+    });
 
     const title$ = this.langService.t('MODULES.PROFILE.EMAIL_CHANGED_TITLE');
     const message$ = this.langService.t('MODULES.PROFILE.EMAIL_CHANGED_BODY');
 
     combineLatest([changeEmail$, title$, message$])
+      .pipe(finalize(() => (this.showSaveSpinner = false)))
       .subscribe({
         next: ([, title, message]) => {
           this.toastService.showToast({
@@ -47,7 +44,6 @@ export class ChangeEmailComponent implements OnInit {
             type: ToastType.Success,
           });
         },
-        complete: () => (this.showSaveSpinner = false),
       })
       .unsubscribe();
   }
@@ -59,11 +55,12 @@ export class ChangeEmailComponent implements OnInit {
 
     this.userIdentityService
       .getEmail()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => (this.showSaveSpinner = false))
+      )
       .subscribe({
         next: email => (this.email = email),
-        error: e => this.httpErrorHandlerHelper.handle(e),
-        complete: () => (this.showSaveSpinner = false),
       });
   }
 }

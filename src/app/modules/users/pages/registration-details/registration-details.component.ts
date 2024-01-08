@@ -3,6 +3,7 @@ import { Gender } from '../../../../core/enums/gender.enum';
 import { UserProfileService } from '../../services/user-profile/user-profile.service';
 import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-registration-details',
@@ -19,7 +20,6 @@ export class RegistrationDetailsComponent implements OnInit {
 
   constructor(
     private readonly profileService: UserProfileService,
-    private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper,
     private readonly navigationHelper: NavigationHelper
   ) {}
 
@@ -29,30 +29,26 @@ export class RegistrationDetailsComponent implements OnInit {
     this.selectedGenderTab = gender;
   }
 
-  public async submit() {
-    try {
-      if (!this.birthday) {
-        return;
-      }
+  public submit(): void {
+    if (!this.birthday) {
+      return;
+    }
 
-      this.showSubmitSpinner = true;
+    this.showSubmitSpinner = true;
 
-      await this.profileService.updateInfo({
+    this.profileService
+      .updateInfo({
         height: this.height,
         weight: this.weight,
         birthday: this.birthday as Date,
         gender: this.selectedGenderTab,
+      })
+      .pipe(finalize(() => (this.showSubmitSpinner = false)))
+      .subscribe({
+        next: () =>
+          this.navigationHelper.openPageWithoutHistory({
+            route: '/user/profile',
+          }),
       });
-
-      this.showSubmitSpinner = true;
-
-      this.navigationHelper.openPageWithoutHistory({
-        route: '/user/profile',
-      });
-    } catch (e) {
-      this.showSubmitSpinner = false;
-
-      this.httpErrorHandlerHelper.handle(e);
-    }
   }
 }

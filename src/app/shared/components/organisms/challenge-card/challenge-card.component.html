@@ -13,9 +13,9 @@
       <div class="grid grid-rows-4 gap-2">
         <div class="flex">
           <app-entry-reward
-            [requiredMusclePoints]="challenge.level.rewardMusclePoints"
-            [rewardMusclePoints]="
-              challenge.level.rewardMusclePoints
+            [requiredMuscleTokens]="challenge.level.rewardMuscleTokens"
+            [rewardMuscleTokens]="
+              challenge.level.rewardMuscleTokens
             "></app-entry-reward>
         </div>
         <div>
@@ -61,7 +61,7 @@
                   challenge.participationStatus === participationStatus.Decline)
               ">
               {{ 'COMMON.ENTER' | translate }} -{{
-                challenge.level.requiredMusclePoints
+                challenge.level.requiredMuscleTokens
               }}
               💪
             </span>

@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SportType } from '../../enums/sport.enum';
 import { ChallengeLevel } from '../../interfaces/challenge.interface';
 import { ChallengeService } from '../../services/challenge/challenge.service';
-import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 import { AnimationOptions } from 'ngx-lottie';
 import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
 import { ToastType } from '../../../../core/enums/toast.enum';
@@ -32,7 +31,6 @@ export class CreateChallengeComponent implements OnInit {
 
   constructor(
     private readonly challengeService: ChallengeService,
-    private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper,
     private readonly navigationHelper: NavigationHelper,
     private readonly toastService: ToastService,
     private readonly langService: LangService
@@ -74,7 +72,6 @@ export class CreateChallengeComponent implements OnInit {
           type: ToastType.Success,
           title: 'Challenge',
         }),
-      error: error => this.httpErrorHandlerHelper.handle(error),
     });
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Challenge } from '../../../events/interfaces/challenge.interface';
 import { AdminChallengeService } from '../../services/admin-challenge/admin-challenge.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-admin-challenge-revision',
@@ -15,39 +16,34 @@ export class AdminChallengeRevisionComponent implements OnInit {
   constructor(private readonly adminChallengeService: AdminChallengeService) {}
 
   ngOnInit() {
-    this.getChallengesToApprove();
+    this.getChallenges();
   }
 
-  private async getChallengesToApprove(): Promise<void> {
-    try {
-      this.challenges =
-        await this.adminChallengeService.getChallengesToApprove();
-    } catch (error) {
-      console.log(error);
-    }
+  public getChallenges(): void {
+    this.adminChallengeService
+      .getChallengesToApprove()
+      .subscribe({
+        next: (challenges: Challenge[]) => (this.challenges = challenges),
+      })
+      .unsubscribe();
   }
 
-  public async approve(challengeId: string): Promise<void> {
-    try {
-      await this.adminChallengeService.approveChallenge(challengeId);
-
-      this.removeChallengeFromList(challengeId);
-    } catch (error) {
-      console.log(error);
-    }
+  public approve(challengeId: string): void {
+    this.adminChallengeService
+      .approveChallenge(challengeId)
+      .subscribe({
+        next: () => this.removeChallengeFromList(challengeId),
+      })
+      .unsubscribe();
   }
 
-  public async reject(text: string): Promise<void> {
-    try {
-      await this.adminChallengeService.rejectChallenge(
-        this.challengeToReject!.id,
-        text
-      );
-
-      this.removeChallengeFromList(this.challengeToReject!.id);
-    } catch (error) {
-      console.log(error);
-    }
+  public reject(text: string): void {
+    this.adminChallengeService
+      .rejectChallenge(this.challengeToReject!.id, text)
+      .pipe(take(1))
+      .subscribe({
+        next: () => this.removeChallengeFromList(this.challengeToReject!.id),
+      });
   }
 
   private removeChallengeFromList(challengeId: string): void {

@@ -47,11 +47,11 @@ export class SessionService {
 
   private checkSessionToken(token: string | null): Observable<string> | string {
     return this.isSessionTokenValid(token)
-      ? (token as string)
+      ? token
       : this.firebaseService.refreshIdToken();
   }
 
-  private isSessionTokenValid(token: string | null): boolean {
+  private isSessionTokenValid(token: string | null): token is string {
     if (!token) {
       return false;
     }

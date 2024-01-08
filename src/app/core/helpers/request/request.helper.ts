@@ -10,7 +10,7 @@ import {
   PutParams,
 } from '../../interfaces/http-request.interface';
 import { Error } from '../../interfaces/error.interface';
-import { firstValueFrom, Observable, switchMap } from 'rxjs';
+import { firstValueFrom, map, mergeMap, Observable, switchMap } from 'rxjs';
 
 type RequestOptions = {
   headers?: HttpHeaders;
@@ -30,15 +30,13 @@ export class RequestHelper {
 
   public post<T, K = void>(params: PostParams<K>): Observable<T> {
     return this.createOptions(params).pipe(
-      switchMap(options =>
-        this.http.post<T>(params.url, params.params, options)
-      )
+      switchMap(options => this.http.post<T>(params.url, params.body, options))
     );
   }
 
   public put<T, K = void>(params: PutParams<K>): Observable<T> {
     return this.createOptions(params).pipe(
-      switchMap(options => this.http.put<T>(params.url, params.params, options))
+      switchMap(options => this.http.put<T>(params.url, params.body, options))
     );
   }
 
@@ -50,9 +48,7 @@ export class RequestHelper {
 
   public patch<T, K = void>(params: PatchParams<K>): Observable<T> {
     return this.createOptions(params).pipe(
-      switchMap(options =>
-        this.http.patch<T>(params.url, params.params, options)
-      )
+      switchMap(options => this.http.patch<T>(params.url, params.body, options))
     );
   }
 
@@ -60,8 +56,8 @@ export class RequestHelper {
     const formData = new FormData();
     formData.append(params.fileName, params.file, params.fileName);
 
-    if (params.params) {
-      for (const [key, value] of Object.entries(params.params)) {
+    if (params.body) {
+      for (const [key, value] of Object.entries(params.body)) {
         formData.append(`${key}`, value as string);
       }
     }
@@ -70,9 +66,7 @@ export class RequestHelper {
       ...params,
       headers: { 'Content-Type': 'multipart/form-data' },
     }).pipe(
-      switchMap(options =>
-        this.http.post<T>(params.url, params.params, options)
-      )
+      switchMap(options => this.http.post<T>(params.url, formData, options))
     );
   }
 
@@ -95,7 +89,7 @@ export class RequestHelper {
   private createOptionsFromToken(
     params: Omit<CreateHttpOptionsParams, 'token$'> & { token?: string }
   ): RequestOptions {
-    let headers = new HttpHeaders();
+    let headers = new HttpHeaders(params.headers);
 
     if (params.token) {
       headers = headers.append('Authorization', `Bearer ${params.token}`);
@@ -111,6 +105,10 @@ export class RequestHelper {
 
     if (params.getHeaders) {
       options['observe'] = 'response';
+    }
+
+    if (params.params) {
+      options['params'] = params.params;
     }
 
     return options;

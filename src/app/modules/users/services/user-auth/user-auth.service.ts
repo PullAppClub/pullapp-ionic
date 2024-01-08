@@ -8,7 +8,16 @@ import { RequestHelper } from '../../../../core/helpers/request/request.helper';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
 import { ThirdPartyProvider } from '../../../../core/enums/third-part-provider';
 import { UserAccountService } from '../user-account/user-account.service';
-import { from, map, mergeMap, Observable, tap } from 'rxjs';
+import {
+  catchError,
+  from,
+  map,
+  mergeMap,
+  Observable,
+  tap,
+  throwError,
+} from 'rxjs';
+import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 
 @Injectable({
   providedIn: 'root',

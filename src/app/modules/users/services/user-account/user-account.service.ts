@@ -21,7 +21,6 @@ export class UserAccountService {
     this.firebaseService
       .getFCMToken()
       .pipe(switchMap(fcmToken => this.sendFCMToken(fcmToken as string)))
-      .pipe(catchError(error => this.httpErrorHandlerHelper.handle(error)))
       .subscribe()
       .unsubscribe();
   }
@@ -29,7 +28,7 @@ export class UserAccountService {
   private sendFCMToken(fcmToken: string): Observable<void> {
     return this.requestHelper.post<void, { fcmToken: string }>({
       url: endpoints.HOST + endpoints.ACCOUNT.FCM_TOKEN,
-      params: {
+      body: {
         fcmToken,
       },
       token$: this.sessionService.getSessionToken(),

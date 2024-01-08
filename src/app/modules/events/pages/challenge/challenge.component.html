@@ -29,9 +29,9 @@
       <div class="grid grid-rows-5 gap-2">
         <div class="flex">
           <app-entry-reward
-            [requiredMusclePoints]="challenge.level.requiredMusclePoints"
-            [rewardMusclePoints]="
-              challenge.level.rewardMusclePoints
+            [requiredMuscleTokens]="challenge.level.requiredMuscleTokens"
+            [rewardMuscleTokens]="
+              challenge.level.rewardMuscleTokens
             "></app-entry-reward>
 
           <!-- Owner Section -->
@@ -77,7 +77,7 @@
         class="btn btn-block normal-case"
         for="acceptChallenge"
         *ngIf="challenge.owner.userId !== userId">
-        Enter -{{ challenge.level.requiredMusclePoints }} 💪
+        Enter -{{ challenge.level.requiredMuscleTokens }} 💪
       </label>
       <!-- ./Accept Button -->
 
@@ -120,9 +120,9 @@
       <!-- Challenge Price and Reward -->
       <div class="justify-center">
         <app-entry-reward
-          [requiredMusclePoints]="challenge.level.requiredMusclePoints"
-          [rewardMusclePoints]="
-            challenge.level.rewardMusclePoints
+          [requiredMuscleTokens]="challenge.level.requiredMuscleTokens"
+          [rewardMuscleTokens]="
+            challenge.level.rewardMuscleTokens
           "></app-entry-reward>
       </div>
       <!-- ./Challenge Price and Reward -->
@@ -145,7 +145,7 @@
 
         <label class="btn normal-case" for="acceptChallenge">
           {{ 'COMMON.CONFIRM' | translate }} -{{
-            challenge.level.requiredMusclePoints
+            challenge.level.requiredMuscleTokens
           }}
           💪
         </label>

@@ -14,6 +14,7 @@ import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service
 import { DateHelper } from '../../../../core/helpers/date/date.helper';
 import { ParticipationStatus } from '../../../../modules/events/enums/challenge-participant.enum';
 import { SessionService } from '../../../../core/services/session/session.service';
+import { DecodedToken } from '../../../../core/types/auth.type';
 
 @Component({
   selector: 'app-challenge-participants-list-modal',
@@ -41,9 +42,13 @@ export class ChallengeParticipantsListModalComponent implements OnInit {
     private readonly elementRef: ElementRef
   ) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.participants = this.challenge.participants;
-    this.userId = (await this.sessionService.getParsedSessionToken()).userId;
+    this.sessionService
+      .getParsedSessionToken()
+      .subscribe((session: DecodedToken) => {
+        this.userId = session.userId;
+      });
   }
 
   public onClose(): void {

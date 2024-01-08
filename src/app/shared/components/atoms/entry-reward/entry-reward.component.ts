@@ -7,10 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EntryRewardComponent implements OnInit {
   @Input()
-  public requiredMusclePoints!: number;
+  public requiredMuscleTokens!: number;
 
   @Input()
-  public rewardMusclePoints!: number;
+  public rewardMuscleTokens!: number;
 
   constructor() {}
 

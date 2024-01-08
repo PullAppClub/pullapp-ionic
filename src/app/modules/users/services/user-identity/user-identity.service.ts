@@ -17,7 +17,7 @@ export class UserIdentityService {
   public changeEmail(params: ChangeEmailParams): Observable<void> {
     return this.requestHelper.put<void, ChangeEmailParams>({
       url: endpoints.HOST + endpoints.IDENTITY.CHANGE_EMAIL,
-      params,
+      body: params,
       token$: this.sessionService.getSessionToken(),
     });
   }
