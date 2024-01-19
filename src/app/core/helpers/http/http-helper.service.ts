@@ -65,7 +65,6 @@ export class HttpHelper {
 
     return this.createOptions({
       ...params,
-      headers: { 'Content-Type': 'multipart/form-data' },
     }).pipe(
       switchMap(options => this.http.post<T>(params.url, formData, options))
     );
