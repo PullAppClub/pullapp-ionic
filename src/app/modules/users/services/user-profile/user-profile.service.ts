@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
-import { RequestHelper } from '../../../../core/helpers/request/request.helper';
+import { HttpHelper } from '../../../../core/helpers/http/http-helper.service';
 import { SessionService } from '../../../../core/services/session/session.service';
 import { UpdateProfileInfoParams, UserProfile } from '../../types/profile.type';
 import { Observable, take } from 'rxjs';
@@ -10,7 +10,7 @@ import { Observable, take } from 'rxjs';
 })
 export class UserProfileService {
   constructor(
-    private readonly requestHelper: RequestHelper,
+    private readonly requestHelper: HttpHelper,
     private readonly sessionService: SessionService
   ) {}
 
@@ -29,6 +29,7 @@ export class UserProfileService {
         url: endpoints.HOST + endpoints.PROFILE.UPDATE_USERNAME,
         body: { username },
         token$: this.sessionService.getSessionToken(),
+        skipErrorHandlerInterceptor: true,
       })
       .pipe(take(1));
   }

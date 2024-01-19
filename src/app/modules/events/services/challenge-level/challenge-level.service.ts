@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RequestHelper } from '../../../../core/helpers/request/request.helper';
+import { HttpHelper } from '../../../../core/helpers/http/http-helper.service';
 import { SessionService } from '../../../../core/services/session/session.service';
 import { ChallengeLevel } from '../../interfaces/challenge.interface';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
@@ -10,7 +10,7 @@ import { Observable, take } from 'rxjs';
 })
 export class ChallengeLevelService {
   constructor(
-    private readonly requestHelper: RequestHelper,
+    private readonly requestHelper: HttpHelper,
     private readonly sessionService: SessionService
   ) {}
 

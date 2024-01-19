@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SessionService } from '../../../../core/services/session/session.service';
-import { RequestHelper } from '../../../../core/helpers/request/request.helper';
+import { HttpHelper } from '../../../../core/helpers/http/http-helper.service';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
 import { Challenge } from '../../../events/interfaces/challenge.interface';
 import { map, Observable, switchMap } from 'rxjs';
@@ -11,7 +11,7 @@ import { map, Observable, switchMap } from 'rxjs';
 export class AdminChallengeService {
   constructor(
     private readonly sessionService: SessionService,
-    private readonly requestHelper: RequestHelper
+    private readonly requestHelper: HttpHelper
   ) {}
 
   public getChallengesToApprove(): Observable<Challenge[]> {

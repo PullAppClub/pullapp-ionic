@@ -4,7 +4,7 @@ import { FirebaseService } from '../../../../core/services/firebase/firebase.ser
 import { LoginParams } from '../../../../core/interfaces/user-auth.interface';
 import { LoginProvider } from '../../../../core/enums/auth.enum';
 import { FirebaseEmailPasswordProvider } from '../../../../core/types/auth.type';
-import { RequestHelper } from '../../../../core/helpers/request/request.helper';
+import { HttpHelper } from '../../../../core/helpers/http/http-helper.service';
 import { endpoints } from '../../../../core/constants/endpoints.constant';
 import { ThirdPartyProvider } from '../../../../core/enums/third-part-provider';
 import { UserAccountService } from '../user-account/user-account.service';
@@ -26,7 +26,7 @@ export class UserAuthService {
   constructor(
     private readonly firebaseService: FirebaseService,
     private readonly sessionService: SessionService,
-    private readonly requestHelper: RequestHelper,
+    private readonly requestHelper: HttpHelper,
     private readonly userAccountService: UserAccountService
   ) {}
 

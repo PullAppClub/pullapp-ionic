@@ -48,6 +48,7 @@ export class SignUpComponent implements OnInit {
     this.checkUsername()
       .pipe(
         mergeMap(() => this.userCreationHandler()),
+        mergeMap(() => this.saveUsername()),
         finalize(() => (this.showSignUpSpinner = false))
       )
       .subscribe({
@@ -56,7 +57,7 @@ export class SignUpComponent implements OnInit {
             route: '/user/registration-details',
           }),
         error: (e: Error) => this.httpErrorHandlerHelper.handle(e),
-      });
+      })
   }
 
   private userCreationHandler(): Observable<void> {
@@ -66,7 +67,7 @@ export class SignUpComponent implements OnInit {
       return throwError(() => new Error('Form is not valid'));
     }
 
-    return concat(this.createUser(), this.saveUsername());
+    return concat(this.createUser());
   }
 
   private saveUsername(): Observable<void> {
@@ -83,7 +84,7 @@ export class SignUpComponent implements OnInit {
   }
 
   private checkUsername(): Observable<void> {
-    const username = this.signUpForm.get('username')?.value as string;
+    const username = this.signUpForm.get('username')?.value?.trim() as string;
 
     if (!username || username.length < 3 || username.length > 20) {
       return throwError(() => new Error('Username is not valid'));

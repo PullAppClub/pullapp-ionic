@@ -1,6 +1,6 @@
 import { ToastService } from '../../services/toast/toast.service';
 import { LangService } from '../../services/lang/lang.service';
-import { RequestHelper } from '../request/request.helper';
+import { HttpHelper } from '../http/http-helper.service';
 import { Injectable } from '@angular/core';
 import { ToastType } from '../../enums/toast.enum';
 import { Error } from '../../interfaces/error.interface';
@@ -13,7 +13,7 @@ export class HttpErrorHandlerHelper {
   constructor(
     private readonly toastService: ToastService,
     private readonly langService: LangService,
-    private readonly requestHelper: RequestHelper
+    private readonly requestHelper: HttpHelper
   ) {}
 
   public handle(params: Error): Observable<any> {

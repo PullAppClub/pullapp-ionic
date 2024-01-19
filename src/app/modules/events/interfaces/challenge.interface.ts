@@ -17,7 +17,7 @@ export interface Challenge {
   sportType: SportType;
   deadline: Date;
   /**
-   * Status related to this challenge for the user that made the request.
+   * Status related to this challenge for the user that made the http.
    * Required to change the enter button text and action.
    */
   participationStatus?: ParticipationStatus;

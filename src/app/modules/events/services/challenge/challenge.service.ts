@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RequestHelper } from '../../../../core/helpers/request/request.helper';
+import { HttpHelper } from '../../../../core/helpers/http/http-helper.service';
 import { SessionService } from '../../../../core/services/session/session.service';
 import {
   Challenge,
@@ -25,7 +25,7 @@ export class ChallengeService {
   private passedChallenge?: Challenge;
 
   constructor(
-    private readonly requestHelper: RequestHelper,
+    private readonly requestHelper: HttpHelper,
     private readonly sessionService: SessionService,
     private readonly toastService: ToastService,
     private readonly langService: LangService

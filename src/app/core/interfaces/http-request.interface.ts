@@ -5,6 +5,7 @@ interface BaseHttpRequest {
   getHeaders?: boolean;
   showProgressBar?: boolean;
   token$?: Observable<string>;
+  skipErrorHandlerInterceptor?: boolean;
 }
 
 export interface GetParams extends BaseHttpRequest {

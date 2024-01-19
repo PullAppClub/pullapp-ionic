@@ -11,6 +11,7 @@ import {
 } from '../../interfaces/http-request.interface';
 import { Error } from '../../interfaces/error.interface';
 import { firstValueFrom, map, mergeMap, Observable, switchMap } from 'rxjs';
+import { CustomHeaders } from '../../enums/http.enum';
 
 type RequestOptions = {
   headers?: HttpHeaders;
@@ -19,7 +20,7 @@ type RequestOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class RequestHelper {
+export class HttpHelper {
   constructor(private readonly http: HttpClient) {}
 
   public get<T>(params: GetParams): Observable<T> {
@@ -97,6 +98,10 @@ export class RequestHelper {
 
     if (!params.showProgressBar) {
       headers = headers.append('ignoreProgressBar', '');
+    }
+
+    if (!params.skipErrorHandlerInterceptor) {
+      headers = headers.append(CustomHeaders.SkipErrorHandlerInterceptor, 'true');
     }
 
     const options: RequestOptions = {

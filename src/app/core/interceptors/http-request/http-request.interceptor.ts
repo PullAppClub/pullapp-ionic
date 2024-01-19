@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, tap } from 'rxjs';
 import { HttpErrorHandlerHelper } from '../../helpers/http-error-handler/http-error-handler.helper';
+import { CustomHeaders } from '../../enums/http.enum';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -18,6 +19,10 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<null>> {
+    if (req.headers.get(CustomHeaders.SkipErrorHandlerInterceptor)) {
+      return next.handle(req);
+    }
+
     return next
       .handle(req)
       .pipe(catchError(e => this.httpErrorHandlerHelper.handle(e)));
