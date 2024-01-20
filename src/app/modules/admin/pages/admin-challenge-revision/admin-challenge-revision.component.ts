@@ -24,8 +24,7 @@ export class AdminChallengeRevisionComponent implements OnInit {
       .getChallengesToApprove()
       .subscribe({
         next: (challenges: Challenge[]) => (this.challenges = challenges),
-      })
-      .unsubscribe();
+      });
   }
 
   public approve(challengeId: string): void {
