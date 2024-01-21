@@ -1,4 +1,4 @@
-<div *ngIf="challenge">
+<div *ngIf="challenge && challenge.participants.length > 0">
   <!-- Challenge Avatar Group -->
   <label
     [for]="forLabelId"

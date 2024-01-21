@@ -30,10 +30,10 @@ export class AdminChallengeRevisionComponent implements OnInit {
   public approve(challengeId: string): void {
     this.adminChallengeService
       .approveChallenge(challengeId)
+      .pipe(take(1))
       .subscribe({
         next: () => this.removeChallengeFromList(challengeId),
-      })
-      .unsubscribe();
+      });
   }
 
   public reject(text: string): void {

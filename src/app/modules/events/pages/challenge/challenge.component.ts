@@ -6,6 +6,7 @@ import { ChallengeService } from '../../services/challenge/challenge.service';
 import { ChallengeParticipantsListModalComponent } from '../../../../shared/components/molecules/challenge-participants-list-modal/challenge-participants-list-modal.component';
 import { SessionService } from '../../../../core/services/session/session.service';
 import { LangService } from '../../../../core/services/lang/lang.service';
+import { ParticipationStatus } from '../../enums/challenge-participant.enum';
 
 @Component({
   selector: 'app-challenge',
@@ -16,6 +17,7 @@ export class ChallengeComponent implements OnInit {
   public challenge?: Challenge;
   public modal = ChallengeParticipantsListModalComponent;
   public userId: string | undefined;
+  public videoPlayerLabelId = 'videoPlayerLabelId';
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -47,4 +49,6 @@ export class ChallengeComponent implements OnInit {
   private getChallengeIdFromPath(): string {
     return this.activatedRoute.snapshot.paramMap.get('id') as string;
   }
+
+  protected readonly participationStatus = ParticipationStatus;
 }

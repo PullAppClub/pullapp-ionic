@@ -42,6 +42,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {}
 
+
   public signUp(): void {
     this.showSignUpSpinner = true;
 
@@ -57,7 +58,7 @@ export class SignUpComponent implements OnInit {
             route: '/user/registration-details',
           }),
         error: (e: Error) => this.httpErrorHandlerHelper.handle(e),
-      })
+      });
   }
 
   private userCreationHandler(): Observable<void> {

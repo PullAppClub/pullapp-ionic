@@ -4,15 +4,21 @@
   <!-- Container -->
   <div class="container max-w-lg mx-auto" *ngIf="challenge">
     <!-- Video Section -->
-    <div
-      class="m-2 rounded-lg overflow-hidden"
-      style="max-height: 469px"
-      *ngIf="challenge.video">
-      <video class="w-full" controls>
-        <source src="{{ challenge.video }}" type="video/mp4" />
-        <source src="{{ challenge.video }}" type="video/ogg" />
-        Your browser does not support the video tag.
-      </video>
+<!--    <div-->
+<!--      class="m-2 rounded-lg overflow-hidden"-->
+<!--      style="max-height: 469px"-->
+<!--      *ngIf="challenge.video">-->
+<!--      <video class="w-full" controls>-->
+<!--        <source src="{{ challenge.video }}" type="video/mp4" />-->
+<!--        <source src="{{ challenge.video }}" type="video/ogg" />-->
+<!--        Your browser does not support the video tag.-->
+<!--      </video>-->
+<!--    </div>-->
+    <div>
+    <app-video-container
+    [challenge]="challenge"
+    [videoPlayerLabelId]="videoPlayerLabelId"
+    ></app-video-container>
     </div>
     <!-- ./Video Section -->
 
@@ -24,6 +30,7 @@
         {{ 'MODULES.CHALLENGE.REVIEW_PARTICIPANTS' | translate }}
       </button>
       <!-- ./Approve Button -->
+
 
       <!-- Info Section -->
       <div class="grid grid-rows-5 gap-2">
@@ -73,11 +80,26 @@
       <!-- Action Section -->
 
       <!-- Accept Button -->
-      <label
-        class="btn btn-block normal-case"
-        for="acceptChallenge"
-        *ngIf="challenge.owner.userId !== userId">
-        Enter -{{ challenge.level.requiredMuscleTokens }} 💪
+      <label class="btn btn-block normal-case"
+              for="acceptChallenge">
+        <!-- Enter Text -->
+        <span
+          *ngIf="
+                challenge.owner.userId !== userId &&
+                (!challenge.participationStatus ||
+                  challenge.participationStatus === participationStatus.Decline)
+              ">
+              {{ 'COMMON.ENTER' | translate }}
+          <!-- Required Muscle Tokens -->
+              <span *ngIf="challenge.level.requiredMuscleTokens > 0">-{{ challenge.level.requiredMuscleTokens }} 💪</span>
+          <!-- ./Required Muscle Tokens -->
+            </span>
+        <!-- ./Enter Text -->
+        <!-- Details Text -->
+        <span *ngIf="challenge.owner.userId === userId">
+              {{ 'COMMON.DETAILS' | translate }}
+            </span>
+        <!-- ./Details Text -->
       </label>
       <!-- ./Accept Button -->
 
