@@ -7,7 +7,6 @@ import { Challenge } from '../../../../modules/events/interfaces/challenge.inter
   styleUrls: ['./video-container.component.scss'],
 })
 export class VideoContainerComponent implements OnInit {
-
   @Input()
   public challenge!: Challenge;
 
@@ -17,8 +16,10 @@ export class VideoContainerComponent implements OnInit {
   @Input()
   public videoPlayerLabelId!: string;
 
-  constructor() { }
+  @Input()
+  height: string = '100%';
+
+  constructor() {}
 
   ngOnInit() {}
-
 }

@@ -17,7 +17,7 @@ export class ChallengeComponent implements OnInit {
   public challenge?: Challenge;
   public modal = ChallengeParticipantsListModalComponent;
   public userId: string | undefined;
-  public videoPlayerLabelId = 'videoPlayerLabelId';
+  public videoPlayerLabelId = 'videoPlayerLabelIdChallengeComponent';
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,

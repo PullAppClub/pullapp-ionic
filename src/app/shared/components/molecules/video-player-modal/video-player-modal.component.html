@@ -3,11 +3,19 @@
   [id]="forLabelId"
   class="modal-toggle"
   (click)="modalToggle()" />
-<label [for]="forLabelId" class="modal cursor-pointer">
-  <div class="rounded-xl overflow-hidden">
-    <video class="w-full" controls #video>
-      <source src="{{ url }}" type="video/mp4" />
-      <source src="{{ url }}" type="video/ogg" />
-    </video>
+
+<div class="modal cursor-pointer">
+  <div class="modal-box relative">
+    <label
+      [for]="forLabelId"
+      class="btn btn-sm btn-circle absolute right-2 top-2"
+      >✕</label
+    >
+    <div class="rounded-xl overflow-hidden pt-3">
+      <video class="w-full" style="max-height: 450px" controls #video>
+        <source src="{{ url }}" type="video/mp4" />
+        <source src="{{ url }}" type="video/ogg" />
+      </video>
+    </div>
   </div>
-</label>
+</div>

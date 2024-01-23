@@ -2,21 +2,12 @@
 <div
   class="thumbnail-container"
   [ngStyle]="{
-      'background-image': 'url(' + challenge.thumbnail + ')'
-    }">
+    'background-image': 'url(' + challenge.thumbnail + ')',
+    'height': height,
+  }">
   <div
     style="background-color: rgba(0, 0, 0, 0.4)"
     class="grid grid-cols-9 h-full">
-    <div class="h-full flex items-center">
-      <!-- Slide Right Button -->
-      <button class="btn btn-ghost btn-circle text-4xl" *ngIf="iconClickCallback">
-        <ion-icon
-          name="chevron-back-outline"
-          (click)="iconClickCallback()"
-          style="color: rgb(255, 255, 255)"></ion-icon>
-      </button>
-      <!-- ./Slide Right Button -->
-    </div>
     <div class="col-span-7 h-full flex items-center">
       <!-- Play Button -->
       <label
