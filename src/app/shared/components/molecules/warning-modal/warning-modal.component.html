@@ -1,0 +1,30 @@
+<input
+  type="checkbox"
+  id="uploadingModal"
+  [id]="modalId"
+  class="modal-toggle"
+  #modalToggle />
+<div class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box text-center justify-center">
+    <!-- Warns Lottie -->
+    <ng-lottie
+      width="220px"
+      containerClass="mx-auto mb-5"
+      [options]="lottieOptions">
+    </ng-lottie>
+    <!-- ./Warns Lottie -->
+
+    <h2 class="font-medium text-slate-800 text-center">
+      {{ tKey | translate }}
+    </h2>
+    <div class="modal-action max-w-md">
+      <!-- Understand Button -->
+      <button
+        class="btn btn-warning normal-case mx-auto"
+        (click)="modalToggleClick()">
+        {{ 'COMMON.I_UNDERSTAND' | translate }}
+      </button>
+      <!-- ./Understand Button -->
+    </div>
+  </div>
+</div>

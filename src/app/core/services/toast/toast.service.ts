@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ToastType } from '../../enums/toast.enum';
 
 interface ShowToastParams {
-  title: string;
+  title?: string;
   message: string;
   time?: number;
   type: ToastType;
@@ -28,7 +28,10 @@ export class ToastService {
   public type: ToastType | undefined;
 
   public showToast(params: ShowToastParams): void {
-    this.title = params.title;
+    if (params.title) {
+      this.title = params.title;
+    }
+
     this.msg = params.message;
     this.toastOnScreen = true;
     this.type = params.type;
@@ -36,5 +39,9 @@ export class ToastService {
     setTimeout(() => {
       this.toastOnScreen = false;
     }, params.time || 3000);
+  }
+
+  public showSuccessToast(params: Omit<ShowToastParams, 'type'>): void {
+    this.showToast({ ...params, type: ToastType.Success });
   }
 }

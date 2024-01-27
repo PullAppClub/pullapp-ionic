@@ -31,6 +31,7 @@ import { ChallengeParticipantsListModalComponent } from './components/molecules/
 import { ChallengeAvatarGroupComponent } from './components/organisms/challenge-avatar-group/challenge-avatar-group.component';
 import { VideoInputComponent } from './components/atoms/video-input/video-input.component';
 import { VideoContainerComponent } from './components/organisms/video-container/video-container.component';
+import { WarningModalComponent } from './components/molecules/warning-modal/warning-modal.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { VideoContainerComponent } from './components/organisms/video-container/
     ChallengeAvatarGroupComponent,
     VideoInputComponent,
     VideoContainerComponent,
+    WarningModalComponent,
   ],
   imports: [
     CommonModule,
@@ -97,6 +99,7 @@ import { VideoContainerComponent } from './components/organisms/video-container/
     ChallengeAvatarGroupComponent,
     VideoInputComponent,
     VideoContainerComponent,
+    WarningModalComponent,
   ],
 })
 export class SharedModule {}

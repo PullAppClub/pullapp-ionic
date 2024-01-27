@@ -20,6 +20,9 @@ export const endpoints = {
     GET_HOME_PAGE_CHALLENGES: '/event/challenge/home-page',
     GET_CHALLENGE: '/event/challenge/',
   },
+  CHALLENGE_PARTICIPATION: {
+    CREATE: '/event/challenge-participant',
+  },
   ACCOUNT: {
     FCM_TOKEN: '/user/account/fcm-token',
   },

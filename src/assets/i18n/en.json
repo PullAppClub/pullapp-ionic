@@ -30,10 +30,11 @@
       "CREATE_CHALLENGE": "Create Challenge",
       "ENTRY_FEE": "Entry fee",
       "REWARD": "Reward",
-      "CHALLENGE_UPLOADING_MODAL_TEXT": "We are uploading your challenge, please do not close the app until the red bar at the top disappears.",
+      "CHALLENGE_UPLOADING_MODAL_TEXT": "We are uploading your challenge 🚀, please do not close the app until the red bar at the top disappears 🙏",
       "REVIEW_PARTICIPANTS": "Review participants",
       "WANT_TO_PARTICIPATE": "Would you like to take part in this challenge?",
-      "UPLOAD_YOUR_VIDEO": "Upload your video"
+      "UPLOAD_YOUR_VIDEO": "Upload your video",
+      "UPLOADING_PARTICIPATION_VIDEO":"We are uploading your challenge 🚀. Your challenge will be reviewed and you'll be notified regarding it. Please do not close the app until the red bar at the top disappears 🙏"
     },
     "ADMIN": {
       "REJECT_CHALLENGE_TITLE": "Explain why you are rejecting this challenge",

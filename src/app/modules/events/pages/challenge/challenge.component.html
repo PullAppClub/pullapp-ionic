@@ -14,12 +14,11 @@
     <!--        Your browser does not support the video tag.-->
     <!--      </video>-->
     <!--    </div>-->
-    <div>
-      <app-video-container
-        [challenge]="challenge"
-        [videoPlayerLabelId]="videoPlayerLabelId"
-        height="300px"></app-video-container>
-    </div>
+
+    <app-video-container
+      [challenge]="challenge"
+      [videoPlayerLabelId]="videoPlayerLabelId"
+      height="300px"></app-video-container>
     <!-- ./Video Section -->
 
     <div class="m-4">
@@ -157,15 +156,20 @@
       </p>
 
       <!-- Video Section -->
-      <app-video-input></app-video-input>
+      <app-video-input
+        (videoEmitter)="setParticipationVideo($event)"></app-video-input>
       <!-- ./Video Section -->
 
       <div class="modal-action justify-center">
-        <label class="btn normal-case btn-outline mr-2" for="acceptChallenge">
+        <label
+          class="btn normal-case btn-outline mr-2"
+          for="acceptChallenge"
+          #cancelModalBtn
+          id="cancelModalBtn">
           Cancel
         </label>
 
-        <label class="btn normal-case" for="acceptChallenge">
+        <label class="btn normal-case" (click)="createChallengeParticipant()">
           {{ 'COMMON.CONFIRM' | translate }} -{{
             challenge.level.requiredMuscleTokens
           }}
@@ -175,4 +179,12 @@
     </div>
   </div>
   <!-- ./Accept Challenge Modal -->
+
+  <!-- Wait for Upload Modal -->
+  <label [for]="warningLabelId" class="btn hidden" #openModalBtn></label>
+  <app-warning-modal
+    tKey="MODULES.CHALLENGE.UPLOADING_PARTICIPATION_VIDEO"
+    [modalId]="warningLabelId">
+  </app-warning-modal>
+  <!-- ./Wait for Upload Modal -->
 </ion-content>
