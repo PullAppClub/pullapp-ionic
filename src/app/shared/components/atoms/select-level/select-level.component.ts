@@ -41,6 +41,8 @@ export class SelectLevelComponent implements OnInit {
       next: (challengeLevels: ChallengeLevel[]) => {
         this.challengeLevels = challengeLevels;
         this.selectedChallengeLevel = this.challengeLevels[0];
+
+        this.selectedValueValueEmitter.emit(this.selectedChallengeLevel);
       },
     });
   }
