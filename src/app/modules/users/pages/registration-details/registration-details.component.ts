@@ -4,6 +4,7 @@ import { UserProfileService } from '../../services/user-profile/user-profile.ser
 import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
 import { finalize } from 'rxjs';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
 
 @Component({
   selector: 'app-registration-details',
@@ -20,7 +21,8 @@ export class RegistrationDetailsComponent implements OnInit {
 
   constructor(
     private readonly profileService: UserProfileService,
-    private readonly navigationHelper: NavigationHelper
+    private readonly navigationHelper: NavigationHelper,
+    private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper
   ) {}
 
   ngOnInit() {}
@@ -51,6 +53,7 @@ export class RegistrationDetailsComponent implements OnInit {
               route: '/user/profile',
             })
             .clearHistory(),
+        error: (e: Error) => this.httpErrorHandlerHelper.handle(e),
       });
   }
 }
