@@ -46,9 +46,11 @@ export class RegistrationDetailsComponent implements OnInit {
       .pipe(finalize(() => (this.showSubmitSpinner = false)))
       .subscribe({
         next: () =>
-          this.navigationHelper.openPageWithoutHistory({
-            route: '/user/profile',
-          }),
+          this.navigationHelper
+            .openPageWithoutHistory({
+              route: '/user/profile',
+            })
+            .clearHistory(),
       });
   }
 }

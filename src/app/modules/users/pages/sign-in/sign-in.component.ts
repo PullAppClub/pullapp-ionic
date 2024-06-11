@@ -39,7 +39,9 @@ export class SignInComponent implements OnInit {
         password: this.loginForm.get('password')?.value as string,
       });
 
-      this.navigationHelper.openPageWithoutHistory({ route: '/user/profile' });
+      this.navigationHelper
+        .openPageWithoutHistory({ route: '/user/profile' })
+        .clearHistory();
     } catch (e) {
       this.httpErrorHandlerHelper.handle(e);
     }

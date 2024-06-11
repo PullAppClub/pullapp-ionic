@@ -33,11 +33,17 @@ export class NavigationHelper {
     }
   }
 
+  public clearHistory(): void {
+    this.history = [];
+  }
+
   public getCurrentPath(): string {
     return this.router.url;
   }
 
-  public openPageWithoutHistory(params: GoToParams): void {
+  public openPageWithoutHistory(params: GoToParams): NavigationHelper {
     this.navController.navigateRoot(params.route, params.options);
+
+    return this;
   }
 }
