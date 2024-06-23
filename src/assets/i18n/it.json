@@ -1,0 +1,64 @@
+{
+  "MODULES": {
+    "USER": {
+      "SIGNUP": {
+        "USERNAME_ALREADY_EXISTS": "Il nome utente esiste già"
+      }
+    },
+    "PROFILE": {
+      "HEIGHT": "Altezza",
+      "WEIGHT": "Peso",
+      "GENDER": "Genere",
+      "BIO": "Bio",
+      "DATE_OF_BIRTH": "Data di Nascita",
+      "EMAIL_CHANGED_TITLE": "Email Cambiata",
+      "EMAIL_CHANGED_BODY": "La tua email è stata cambiata con successo",
+      "PASSWORD_CHANGED_TITLE": "Password Cambiata",
+      "PASSWORD_CHANGED_BODY": "La tua password è stata cambiata con successo",
+      "SETTINGS": {
+        "TITLE": "Impostazioni",
+        "LOGOUT": "Logout",
+        "CHANGE_AVATAR": "Cambia avatar",
+        "AVATAR_CHANGED_TITLE": "Avatar cambiato",
+        "AVATAR_CHANGED_BODY": "Il tuo avatar è stato cambiato con successo"
+      }
+    },
+    "CHALLENGE": {
+      "UPLOAD_VIDEO": "Carica video",
+      "SELECT_DISCIPLINE": "Seleziona disciplina",
+      "DESCRIPTION": "Descrizione",
+      "CREATE_CHALLENGE": "Crea Sfida",
+      "ENTRY_FEE": "Quota di iscrizione",
+      "REWARD": "Ricompensa",
+      "CHALLENGE_UPLOADING_MODAL_TEXT": "Stiamo caricando la tua sfida 🚀, per favore non chiudere l'app fino a quando la barra rossa in alto scompare 🙏",
+      "REVIEW_PARTICIPANTS": "Rivedi partecipanti",
+      "WANT_TO_PARTICIPATE": "Vuoi partecipare a questa sfida?",
+      "UPLOAD_YOUR_VIDEO": "Carica il tuo video",
+      "UPLOADING_PARTICIPATION_VIDEO": "Stiamo caricando il tuo video di partecipazione 🚀. La tua sfida sarà rivista e sarai notificato al riguardo. Per favore non chiudere l'app fino a quando la barra rossa in alto scompare 🙏"
+    },
+    "ADMIN": {
+      "REJECT_CHALLENGE_TITLE": "Spiega perché stai rifiutando questa sfida",
+      "CONFIRM_REJECTION": "Conferma rifiuto"
+    }
+  },
+  "COMMON": {
+    "SAVE": "Salva",
+    "CANCEL": "Annulla",
+    "UPLOAD": "Carica",
+    "CONFIRM": "Conferma",
+    "DROP_FILE_TO_ATTACH": "Trascina i file per allegarli, o sfoglia",
+    "I_UNDERSTAND": "Ho capito",
+    "APPROVE": "Approva",
+    "REJECT": "Rifiuta",
+    "ENTER": "Entra",
+    "DETAILS": "Dettagli",
+    "BY": "da",
+    "AGO": "fa"
+  },
+  "ERROR": {
+    "AGE_LESS_THAN_16": "L'età deve essere maggiore di 16 anni"
+  },
+  "MESSAGE": {
+    "CHALLENGE_UNDER_ELABORATION": "Sfida in elaborazione"
+  }
+}

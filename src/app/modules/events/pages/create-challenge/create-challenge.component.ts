@@ -16,11 +16,19 @@ import { LangService } from '../../../../core/services/lang/lang.service';
 })
 export class CreateChallengeComponent implements OnInit {
   public createChallengeForm = new FormGroup({
-    title: new FormControl('', [Validators.min(4), Validators.max(20)]),
-    description: new FormControl('', [Validators.min(10), Validators.max(300)]),
+    title: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(20),
+    ]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(300),
+    ]),
   });
-  private level!: ChallengeLevel;
-  private sportFilter!: SportType;
+  public level!: ChallengeLevel;
+  public sportFilter!: SportType;
   public video: File | undefined;
   public lottieOptions: AnimationOptions = {
     path: '/assets/lottie/warns.json',
@@ -51,7 +59,12 @@ export class CreateChallengeComponent implements OnInit {
   }
 
   public createChallenge(): void {
-    if (this.createChallengeForm.invalid || !this.video) {
+    if (
+      this.createChallengeForm.invalid ||
+      !this.video ||
+      !this.sportFilter ||
+      !this.level
+    ) {
       return;
     }
 
