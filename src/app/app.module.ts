@@ -13,8 +13,7 @@ import { playerFactory } from './modules/users/users.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GalleryModule } from 'ng-gallery';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
+
 import {
   provideAnalytics,
   getAnalytics,
