@@ -42,9 +42,6 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
     SharedModule,
     BrowserAnimationsModule,
     GalleryModule,
-    provideAnalytics(() => getAnalytics()),
-    provideAuth(() => getAuth()),
-    provideMessaging(() => getMessaging()),
     HttpClientModule,
   ],
   providers: [
@@ -53,6 +50,9 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
     UserTrackingService,
     importProvidersFrom(NgProgressHttpModule),
     provideHttpClient(withInterceptorsFromDi()),
+    provideAnalytics(() => getAnalytics()),
+    provideAuth(() => getAuth()),
+    provideMessaging(() => getMessaging()),
   ],
   bootstrap: [AppComponent],
 })

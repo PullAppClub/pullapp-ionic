@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { NavigationOptions } from '@ionic/angular/providers/nav-controller';
 import { Router } from '@angular/router';
+import { NavigationOptions } from '@ionic/angular/common/providers/nav-controller';
 
 interface GoToParams {
   route: string;
