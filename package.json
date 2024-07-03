@@ -10,7 +10,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier:write": "npx prettier --write ."
   },
   "private": true,
   "dependencies": {
@@ -75,10 +76,5 @@
     "ts-node": "~8.3.0",
     "typescript": "~5.4.5"
   },
-  "description": "An Ionic project",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npx prettier --write ."
-    }
-  }
+  "description": "An Ionic project"
 }
