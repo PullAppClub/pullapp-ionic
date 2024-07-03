@@ -42,7 +42,6 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {}
 
-
   public signUp(): void {
     this.showSignUpSpinner = true;
 

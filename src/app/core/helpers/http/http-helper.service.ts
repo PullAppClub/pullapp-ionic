@@ -100,7 +100,10 @@ export class HttpHelper {
     }
 
     if (!params.skipErrorHandlerInterceptor) {
-      headers = headers.append(CustomHeaders.SkipErrorHandlerInterceptor, 'true');
+      headers = headers.append(
+        CustomHeaders.SkipErrorHandlerInterceptor,
+        'true'
+      );
     }
 
     const options: RequestOptions = {

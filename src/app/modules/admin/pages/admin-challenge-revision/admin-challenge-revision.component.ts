@@ -20,11 +20,9 @@ export class AdminChallengeRevisionComponent implements OnInit {
   }
 
   public getChallenges(): void {
-    this.adminChallengeService
-      .getChallengesToApprove()
-      .subscribe({
-        next: (challenges: Challenge[]) => (this.challenges = challenges),
-      });
+    this.adminChallengeService.getChallengesToApprove().subscribe({
+      next: (challenges: Challenge[]) => (this.challenges = challenges),
+    });
   }
 
   public approve(challengeId: string): void {

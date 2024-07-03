@@ -62,7 +62,9 @@
               ">
               {{ 'COMMON.ENTER' | translate }}
               <!-- Required Muscle Tokens -->
-              <span *ngIf="challenge.level.requiredMuscleTokens > 0">-{{ challenge.level.requiredMuscleTokens }} 💪</span>
+              <span *ngIf="challenge.level.requiredMuscleTokens > 0"
+                >-{{ challenge.level.requiredMuscleTokens }} 💪</span
+              >
               <!-- ./Required Muscle Tokens -->
             </span>
             <!-- ./Enter Text -->
@@ -89,7 +91,7 @@
     <div
       class="thumbnail-container"
       [ngStyle]="{
-        'background-image': 'url(' + challenge.thumbnail + ')'
+        'background-image': 'url(' + challenge.thumbnail + ')',
       }"
       (click)="toggleVideoContainer()">
       <div
@@ -112,7 +114,7 @@
   <div
     class="thumbnail-container"
     [ngStyle]="{
-      'background-image': 'url(' + challenge.thumbnail + ')'
+      'background-image': 'url(' + challenge.thumbnail + ')',
     }"
     *ngIf="showVideoContainer">
     <div

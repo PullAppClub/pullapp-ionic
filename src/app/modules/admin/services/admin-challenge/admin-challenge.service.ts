@@ -15,11 +15,12 @@ export class AdminChallengeService {
   ) {}
 
   public getChallengesToApprove(): Observable<Challenge[]> {
-    return this.requestHelper.get<Challenge[]>({
-      url: endpoints.HOST + endpoints.ADMIN.GET_CHALLENGES_TO_APPROVE,
-      token$: this.sessionService.getSessionToken(),
-    })
-      .pipe(take(1))
+    return this.requestHelper
+      .get<Challenge[]>({
+        url: endpoints.HOST + endpoints.ADMIN.GET_CHALLENGES_TO_APPROVE,
+        token$: this.sessionService.getSessionToken(),
+      })
+      .pipe(take(1));
   }
 
   public approveChallenge(challengeId: string): Observable<void> {

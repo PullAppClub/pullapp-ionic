@@ -22,7 +22,10 @@
         placeholder="Challenge Title"
         formControlName="title"
         class="input w-full max-w-xl input-bordered input-primary"
-        [class.border-rose-600]="createChallengeForm.get('title')?.invalid && createChallengeForm.get('title')?.touched"
+        [class.border-rose-600]="
+          createChallengeForm.get('title')?.invalid &&
+          createChallengeForm.get('title')?.touched
+        "
         [class.border-slate-200]="createChallengeForm.get('title')?.valid"
         required />
       <!-- ./Title -->
@@ -46,8 +49,13 @@
           rows="3"
           class="textarea w-full textarea-bordered"
           formControlName="description"
-          [class.border-rose-600]="createChallengeForm.get('description')?.invalid && createChallengeForm.get('description')?.touched"
-          [class.border-slate-200]="createChallengeForm.get('description')?.valid"
+          [class.border-rose-600]="
+            createChallengeForm.get('description')?.invalid &&
+            createChallengeForm.get('description')?.touched
+          "
+          [class.border-slate-200]="
+            createChallengeForm.get('description')?.valid
+          "
           maxlength="250"
           required></textarea>
       </div>
@@ -71,7 +79,12 @@
           {{ 'COMMON.CANCEL' | translate }}
         </button>
 
-        <button type="submit" class="btn btn-success normal-case w-1/3" [disabled]="createChallengeForm.invalid || !video || !sportFilter || !level">
+        <button
+          type="submit"
+          class="btn btn-success normal-case w-1/3"
+          [disabled]="
+            createChallengeForm.invalid || !video || !sportFilter || !level
+          ">
           {{ 'COMMON.CONFIRM' | translate }}
         </button>
       </div>

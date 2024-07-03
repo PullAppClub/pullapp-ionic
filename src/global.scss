@@ -1,5 +1,5 @@
 /* Core CSS required for Ionic components to work properly */
-@import "~@ionic/angular/css/core.css";
+@import '~@ionic/angular/css/core.css';
 
 ///* Basic CSS for apps built with Ionic */
 //@import "~@ionic/angular/css/normalize.css";
@@ -19,16 +19,23 @@ ion-datetime {
   --background-rgb: 255, 241, 242;
 }
 
-
 // google Remove google font from the map
-a[href^="http://maps.google.com/maps"]{display:none !important}
-a[href^="https://maps.google.com/maps"]{display:none !important}
+a[href^="http://maps.google.com/maps"]
+{
+  display: none !important;
+}
+a[href^="https://maps.google.com/maps"]
+{
+  display: none !important;
+}
 
-.gmnoprint a, .gmnoprint span, .gm-style-cc {
-  display:none;
+.gmnoprint a,
+.gmnoprint span,
+.gm-style-cc {
+  display: none;
 }
 .gmnoprint div {
-  background:none !important;
+  background: none !important;
 }
 
 ::-webkit-scrollbar {

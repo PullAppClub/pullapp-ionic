@@ -124,7 +124,7 @@
         class="btn space-x-2 items-center justify-center"
         [ngClass]="[
           showSignUpSpinner ? 'loading btn-disabled' : '',
-          signUpForm.invalid ? 'btn-disabled' : 'bg-indigo-600'
+          signUpForm.invalid ? 'btn-disabled' : 'bg-indigo-600',
         ]">
         <span *ngIf="!showSignUpSpinner">Sign Up</span>
       </button>

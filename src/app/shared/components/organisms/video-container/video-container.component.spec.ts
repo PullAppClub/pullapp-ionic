@@ -9,8 +9,8 @@ describe('VideoContainerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ VideoContainerComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [VideoContainerComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(VideoContainerComponent);
