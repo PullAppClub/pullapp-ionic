@@ -76,9 +76,9 @@
     "typescript": "~5.4.5"
   },
   "description": "An Ionic project",
-  "lint-staged": {
-    "*.{json,js,ts,jsx,tsx,html}": [
-      "prettier --write --ignore-unknown"
-    ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx prettier --write ."
+    }
   }
 }
