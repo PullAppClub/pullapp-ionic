@@ -38,11 +38,6 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
     AppRoutingModule,
     HelperModule,
     ServicesModule,
-
-
-
-
-
     LottieModule.forRoot({ player: playerFactory }),
     SharedModule,
     BrowserAnimationsModule,
