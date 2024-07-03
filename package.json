@@ -36,7 +36,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "daisyui": "^2.41.0",
     "date-fns": "^2.30.0",
-    "firebase": "^9.14.0",
+    "firebase": "^10.12.2",
     "ionicons": "^6.0.3",
     "jwt-decode": "^3.1.2",
     "lottie-web": "^5.9.6",
