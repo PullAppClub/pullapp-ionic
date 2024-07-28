@@ -11,15 +11,11 @@ export const authenticationGuard: CanActivateFn = (route, state) => {
     .pipe(
       tap(token => {
         if (!token) {
-          openSignInPage();
+          inject(NavigationHelper).openPage({
+            route: '/user/sign-in',
+          });
         }
       }),
       map(token => !!token)
     );
-};
-
-const openSignInPage = () => {
-  inject(NavigationHelper).openPage({
-    route: '/user/sign-in',
-  });
 };

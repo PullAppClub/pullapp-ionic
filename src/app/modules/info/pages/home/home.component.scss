@@ -1,0 +1,95 @@
+@keyframes moveRightLeft {
+  0% { transform: translateX(-100%); opacity: 0; }
+  10%, 90% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+.animated-element {
+  animation: moveRightLeft 20s cubic-bezier(0.42, 0.0, 0.58, 1.0) infinite;
+  will-change: transform;
+  position: absolute;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.animated-button1 { animation-duration: 4s; width: 160px; height: 50px; font-size: 14px; top: 10%; }
+.animated-button2 { animation-duration: 8s; width: 180px; height: 60px; font-size: 14px; top: 65%; }
+.animated-div1 { animation-duration: 12s; width: 200px; height: 70px; font-size: 32px; top: 30%;}
+.animated-div2 { animation-duration: 16s; width: 280px; height: 100px; font-size: 48px; top: 40%; }
+.animated-div3 { animation-duration: 6s; width: 160px; height: 60px; font-size: 32px; top: 80%; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.emoji-animated {
+  position: absolute;
+  font-size: 6rem;
+  animation: float 4s ease-in-out infinite;
+  transition: transform 0.3s;
+}
+
+.emoji-animated:hover {
+  transform: rotate(15deg) scale(1.5);
+}
+
+@keyframes enlarge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+}
+
+@media (max-width: 768px) {
+
+  .animated-button1 { animation-duration: 4s; width: 160px; height: 50px; font-size: 14px; top: 10%; }
+  .animated-button2 { animation-duration: 8s; width: 180px; height: 60px; font-size: 14px; top: 65%; }
+  .animated-div1 { animation-duration: 12s; width: 200px; height: 70px; font-size: 32px; top: 30%;  }
+  .animated-div2 { animation-duration: 16s; width: 220px; height: 100px; font-size: 48px; top: 40%; }
+  .animated-div3 { animation-duration: 6s; width: 180px; height: 60px; font-size: 32px; top: 80%; }
+
+  .min-h-full-mobile {
+    min-height: 300px;
+  }
+
+  .emoji-animated {
+    font-size: 4rem;
+  }
+  .map-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-30%, 9%);
+    z-index: 10;
+    width: 60%;
+  }
+}
+
+/* Add this CSS to animate the span */
+@keyframes enlargeAndFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40px) scale(1);
+    opacity: 0;
+  }
+}
+
+.muscle-token {
+  display: inline-block;
+  animation: float 4s ease-in-out infinite;
+  transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+}
+
+.muscle-token.animate {
+  animation: enlargeAndFloat 1.5s ease-in-out;
+  opacity: 0;
+}
