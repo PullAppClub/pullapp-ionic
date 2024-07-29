@@ -39,6 +39,33 @@
     "ADMIN": {
       "REJECT_CHALLENGE_TITLE": "Explain why you are rejecting this challenge",
       "CONFIRM_REJECTION": "Confirm rejection"
+    },
+    "HOME": {
+      "NAVBAR": {
+        "TITLE": {
+          "APP": "App",
+          "MUSCLE_COIN": "Muscle Coin",
+          "WHITEPAPER": "Whitepaper",
+          "BUSINESS": "Business",
+          "BUSINESS_EVENTS": "Events",
+          "MARKETPLACE": "Marketplace",
+          "COMPANY": "Company",
+          "ABOUT_US": "About Us",
+          "CONTACT_US": "Contacts"
+        },
+        "DESCRIPTION": {
+          "APP": "Join our vibrant community! Download our mobile app or use the web3 application. Connect, engage, and experience more with us.",
+          "MUSCLE_COIN_LONG": "Muscle Coin, the currency of the PullApp ecosystem, is designed to reward your gains. Earn, win, and spend it all within the app. Strengthen your fitness journey with every rep!",
+          "MUSCLE_COIN": "Your Fitness Currency. Earn, Win, Spend in the PullApp Ecosystem.",
+          "WHITEPAPER": "Comprehensive Guide to Our Vision, Technology, and the Unique Value of Muscle Coin in the PullApp Ecosystem.",
+          "BUSINESS_LONG": "Enhance your services and increase profitability by incorporating PullApp into your business operations.",
+          "BUSINESS_EVENTS": "Enhance Your Business with PullApp events",
+          "MARKETPLACE": "Sell fitness equipment, supplements, and more in the PullApp Marketplace.",
+          "COMPANY_LONG": "PullApp is a dedicated social platform where street athletes converge, connect and grow. It's the go-to destination for sharing workouts, celebrating progress, and exploring the vibrant world of street athletics.",
+          "ABOUT_US": "We are a vibrant tech company fostering a connected street athletics community via our innovative platform",
+          "CONTACT_US": "Reach out to us for any queries or feedback."
+        }
+      }
     }
   },
   "COMMON": {
