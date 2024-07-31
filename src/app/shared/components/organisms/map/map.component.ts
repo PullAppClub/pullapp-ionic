@@ -39,10 +39,10 @@ export class MapComponent implements AfterViewInit {
 
     const mapConfig = {
       center: {
-        lat: 33.6,
-        lng: -117.9,
+        lat: 41.87,
+        lng: 12.56,
       },
-      zoom: 12,
+      zoom: 7,
       disableDefaultUI: true,
       androidLiteMode: false,
       styles: styleConfig,
@@ -61,8 +61,8 @@ export class MapComponent implements AfterViewInit {
     await map.addMarkers([
       {
         coordinate: {
-          lat: 33.6,
-          lng: -117.9,
+          lat: 41.87,
+          lng: 12.56,
         },
         title: 'Hello world',
       },

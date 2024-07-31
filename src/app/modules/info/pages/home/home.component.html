@@ -102,41 +102,38 @@
         class="bg-white p-8 rounded-xl text-left mb-16 flex flex-col justify-between border border-gray-200 relative">
         <div>
           <h2 class="text-4xl sm:text-4xl font-bold mb-4 text-gray-900">
-            Spots.
+            Spots
           </h2>
           <p class="text-xl sm:text-xl mb-8 text-gray-600">
             Spots are locations where street athletes can workout. Find the ones
-            near you or earn Muscle Tokens by founding a new spot.
+            near you or earn Muscle Coins by founding a new spot.
           </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-auto relative">
-          <div class="order-2 md:order-1 relative">
-            <!--            <img-->
-            <!--              src="assets/spot1.png"-->
-            <!--              alt="Spot 1"-->
-            <!--              class="w-3/4 rounded-xl mb-4" />-->
-            <!--            <img-->
-            <!--              src="assets/spot2.png"-->
-            <!--              alt="Spot 2"-->
-            <!--              class="w-1/2 rounded-xl mb-4" />-->
-            <!--            <img-->
-            <!--              src="assets/spot3.png"-->
-            <!--              alt="Spot 3"-->
-            <!--              class="w-3/4 rounded-xl mb-4" />-->
-            <!--            <img src="assets/spot4.png" alt="Spot 4" class="w-1/2 rounded-xl" />-->
+          <div class="order-1 md:order-1 relative">
+            <div class="rounded-xl overflow-hidden">
+              <app-map [style]="{ height: '30em' }"></app-map>
+            </div>
           </div>
-          <div class="order-1 md:order-2 relative md:static">
-            <!--            <img-->
-            <!--              src="assets/map-mobile.png"-->
-            <!--              alt="Map"-->
-            <!--              class="w-3/4 map-image rounded-xl md:relative md:static md:top-0 md:left-0" />-->
+          <div class="relative order-2 mx-auto md:static flex flex-col">
+            <h1 class="text-2xl font-bold mb-4">
+              Earn Muscle Coin by Sharing Spots!
+            </h1>
+            <p class="text-xl text-gray-600 mb-4">
+              Join our community and start earning rewards! Each time you share
+              a spot like a calisthenics structure, skate park, or parkour spot,
+              you earn 10 Muscle Coin. It's simple:
+            </p>
+            <p
+              class="relative order-2 mt-auto mx-auto md:static text-gray-600 text-xl mb-4 font-bold">
+              Start sharing, start earning!
+            </p>
+
+            <img
+              src="assets/img/share.svg"
+              alt="HallOfFame"
+              class="sm:w-2/4 mx-auto mt-auto" />
           </div>
-        </div>
-        <!-- Eye Emoji -->
-        <div
-          class="emoji-animated absolute"
-          style="top: 27%; right: 0; padding-right: 10px">
-          👀
         </div>
       </section>
 
