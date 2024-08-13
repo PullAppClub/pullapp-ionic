@@ -13,9 +13,9 @@
       <div class="grid grid-rows-4 gap-2">
         <div class="flex">
           <app-entry-reward
-            [requiredMuscleTokens]="challenge.level.requiredMuscleTokens"
-            [rewardMuscleTokens]="
-              challenge.level.rewardMuscleTokens
+            [requiredMuscleCoins]="challenge.level.requiredMuscleCoins"
+            [rewardMuscleCoins]="
+              challenge.level.rewardMuscleCoins
             "></app-entry-reward>
         </div>
         <div>
@@ -62,8 +62,8 @@
               ">
               {{ 'COMMON.ENTER' | translate }}
               <!-- Required Muscle Tokens -->
-              <span *ngIf="challenge.level.requiredMuscleTokens > 0"
-                >-{{ challenge.level.requiredMuscleTokens }} 💪</span
+              <span *ngIf="challenge.level.requiredMuscleCoins > 0"
+                >-{{ challenge.level.requiredMuscleCoins }} 💪</span
               >
               <!-- ./Required Muscle Tokens -->
             </span>

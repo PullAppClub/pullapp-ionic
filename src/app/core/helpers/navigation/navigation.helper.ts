@@ -26,6 +26,19 @@ export class NavigationHelper {
       .then(() => this.history.push(params.route));
   }
 
+  /**
+   * Add a page to the history stack. Useful when routerLink is used.
+   *
+   * @example
+   * <a
+   *  routerLink="/user/forgot-password"
+   *  (click)='navigationHelper.addPageToHistory("/user/forgot-password")'
+   *  >{{ 'MODULES.USER.FORGOT_PASSWORD.FORGOT' | translate }}?</a>
+   */
+  public addPageToHistory(route: string): void {
+    this.history.push(route);
+  }
+
   public goBack(): void {
     if (this.history.length > 0) {
       this.navController.back();

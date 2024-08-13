@@ -10,6 +10,7 @@ import { HallOfFameComponent } from './pages/hall-of-fame/hall-of-fame.component
 import { PersonalInfoComponent } from './pages/personal-info/personal-info.component';
 import { ChangeEmailComponent } from './pages/change-email/change-email.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: SignUpComponent,
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
   },
   {
     path: 'registration-details',

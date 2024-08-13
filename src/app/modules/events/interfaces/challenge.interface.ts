@@ -43,8 +43,8 @@ export interface UserProfileChallenge {
 export interface Level {
   id: string;
   levelName: string;
-  rewardMuscleTokens: number;
-  requiredMuscleTokens: number;
+  rewardMuscleCoins: number;
+  requiredMuscleCoins: number;
   // to show on front-end
   text?: string;
 }
@@ -59,8 +59,8 @@ export interface CreateChallengeParams {
 
 export interface ChallengeLevel {
   levelName: ChallengeLevelEnum;
-  rewardMuscleTokens: number;
-  requiredMuscleTokens: number;
+  rewardMuscleCoins: number;
+  requiredMuscleCoins: number;
   id: string;
 }
 

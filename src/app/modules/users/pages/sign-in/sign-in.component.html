@@ -82,7 +82,14 @@
         <div class="flex flex-row justify-between">
           <div></div>
           <div>
-            <a href="#" class="font-medium text-indigo-600">Forgot Password?</a>
+            <a
+              routerLink="/user/forgot-password"
+              (click)="
+                navigationHelper.addPageToHistory('/user/forgot-password')
+              "
+              class="font-medium text-indigo-600"
+              >{{ 'MODULES.USER.FORGOT_PASSWORD.FORGOT' | translate }}?</a
+            >
           </div>
         </div>
         <button class="btn bg-indigo-600 space-x-2 items-center justify-center">

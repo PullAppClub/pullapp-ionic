@@ -3,6 +3,11 @@
     "USER": {
       "SIGNUP": {
         "USERNAME_ALREADY_EXISTS": "Username already exists"
+      },
+      "FORGOT_PASSWORD": {
+        "EMAIL_SENT": "Email sent",
+        "FORGOT": "Forgot password",
+        "SEND_RESET_LINK": "Send reset password link"
       }
     },
     "PROFILE": {
@@ -83,7 +88,8 @@
     "AGO": "ago"
   },
   "ERROR": {
-    "AGE_LESS_THAN_16": "Age must be greater than 16"
+    "AGE_LESS_THAN_16": "Age must be greater than 16",
+    "SOMETHING_WENT_WRONG": "Something went wrong"
   },
   "MESSAGE": {
     "CHALLENGE_UNDER_ELABORATION": "Challenge under elaboration"

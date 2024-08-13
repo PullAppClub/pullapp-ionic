@@ -21,7 +21,7 @@ export class SignInComponent implements OnInit {
   });
 
   constructor(
-    private readonly navigationHelper: NavigationHelper,
+    public readonly navigationHelper: NavigationHelper,
     private readonly userAuthService: UserAuthService,
     private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper
   ) {}

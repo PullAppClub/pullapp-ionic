@@ -1,42 +1,42 @@
-<span
-  class="loading loading-spinner text-secondary"
-  *ngIf="!selectedChallengeLevel"></span>
+@if (!selectedChallengeLevel) {
+  <span class="loading loading-spinner text-secondary"></span>
+} @else {
+  <div>
+    <p class="text-xl text-slate-800 mt-10">Select the level of difficulty</p>
 
-<div *ngIf="selectedChallengeLevel">
-  <p class="text-xl text-slate-800 mt-10">Select the level of difficulty</p>
-
-  <div class="mx-3">
-    <input
-      type="range"
-      min="0"
-      max="60"
-      class="range mt-1"
-      step="10"
-      [(ngModel)]="selectedLevel" />
-    <div class="w-full flex justify-between text-xs px-2">
-      <!--    <span>🤪</span>-->
-      <!--    <span>😄</span>-->
-      <!--    <span>🙂</span>-->
-      <!--    <span>😐️</span>-->
-      <!--    <span>😤</span>-->
-      <!--    <span>😡</span>-->
-      <!--    <span>😈</span>-->
-      <span>|</span>
-      <span>|</span>
-      <span>|</span>
-      <span>|</span>
-      <span>|</span>
-      <span>|</span>
-      <span>|</span>
+    <div class="mx-3">
+      <input
+        type="range"
+        min="0"
+        max="60"
+        class="range mt-1"
+        step="10"
+        [(ngModel)]="selectedLevel" />
+      <div class="w-full flex justify-between text-xs px-2">
+        <!--    <span>🤪</span>-->
+        <!--    <span>😄</span>-->
+        <!--    <span>🙂</span>-->
+        <!--    <span>😐️</span>-->
+        <!--    <span>😤</span>-->
+        <!--    <span>😡</span>-->
+        <!--    <span>😈</span>-->
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+      </div>
+      <p class="text-[54px] text-slate-800 mt-5">{{ emojiLevel }}</p>
+      <p class="text-xl text-slate-800">
+        {{ selectedChallengeLevel.levelName.toString() | titlecase }}
+      </p>
+      <app-entry-reward
+        [requiredMuscleCoins]="selectedChallengeLevel.requiredMuscleCoins"
+        [rewardMuscleCoins]="
+          selectedChallengeLevel.rewardMuscleCoins
+        "></app-entry-reward>
     </div>
-    <p class="text-[54px] text-slate-800 mt-5">{{ emojiLevel }}</p>
-    <p class="text-xl text-slate-800">
-      {{ selectedChallengeLevel.levelName.toString() | titlecase }}
-    </p>
-    <app-entry-reward
-      [requiredMuscleTokens]="selectedChallengeLevel.requiredMuscleTokens"
-      [rewardMuscleTokens]="
-        selectedChallengeLevel.rewardMuscleTokens
-      "></app-entry-reward>
   </div>
-</div>
+}

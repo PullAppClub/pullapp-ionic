@@ -72,12 +72,40 @@ export class UserAuthService {
       );
   }
 
+  public sendPasswordResetEmail(email: string): Observable<void> {
+    return from(this.firebaseService.forgotPassword(email));
+    // return this.requestHelper
+    //   .get<{
+    //     provider: ThirdPartyProvider;
+    //   }>({
+    //     url: endpoints.HOST + endpoints.IDENTITY.GET_IDENTITY_PROVIDER,
+    //     token$: this.sessionService.getSessionToken(),
+    //   })
+    //   .pipe(
+    //     map(({ provider }) => provider),
+    //     mergeMap(provider =>
+    //       this.sendPasswordResetEmailByProvider(provider, email)
+    //     )
+    //   );
+  }
+
   private changePasswordByProvider(
     provider: ThirdPartyProvider,
     password: string
   ): Observable<void> {
     if (provider === ThirdPartyProvider.Firebase) {
       return this.firebaseService.changePassword(password);
+    }
+
+    throw new Error('Unknown provider');
+  }
+
+  private sendPasswordResetEmailByProvider(
+    provider: ThirdPartyProvider,
+    email: string
+  ): Observable<void> {
+    if (provider === ThirdPartyProvider.Firebase) {
+      return from(this.firebaseService.forgotPassword(email));
     }
 
     throw new Error('Unknown provider');

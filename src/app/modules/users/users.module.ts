@@ -16,6 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PersonalInfoComponent } from './pages/personal-info/personal-info.component';
 import { ChangeEmailComponent } from './pages/change-email/change-email.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -32,6 +33,7 @@ export function playerFactory(): any {
     PersonalInfoComponent,
     ChangeEmailComponent,
     ChangePasswordComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     CommonModule,
