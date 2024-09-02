@@ -1,0 +1,55 @@
+<div>
+  <p class="text-xl text-slate-800 mb-10">Choose payment method</p>
+  <!-- Payment Method Card -->
+  @for (payment of pricing; track payment) {
+    <div
+      class="grid grid-cols-5 flex items-center bg-base-100 shadow-md card cursor-pointer"
+      [ngClass]="selectedCurrency === payment.currencyType ? 'selected' : ''"
+      (click)="selectCurrency(payment.currencyType)">
+      <div class="col-span-1">
+        <figure>
+          @switch (payment.currencyType) {
+            <!-- Telegram Star Lottie -->
+            @case (CurrencyTypeEnum.TelegramStars) {
+              @if (selectedCurrency === CurrencyTypeEnum.TelegramStars) {
+                <ng-lottie
+                  width="70px"
+                  containerClass="mx-auto mb-5"
+                  [options]="telegramStarOptions">
+                </ng-lottie>
+              } @else {
+                <ng-lottie
+                  width="70px"
+                  containerClass="mx-auto mb-5"
+                  [options]="telegramSadStarOptions">
+                </ng-lottie>
+              }
+            }
+            <!-- ./Telegram Star Lottie -->
+          }
+        </figure>
+      </div>
+      <div class="card-body text-left col-span-3">
+        <h3 class="card-title">
+          @switch (payment.currencyType) {
+            @case (CurrencyTypeEnum.TelegramStars) {
+              Telegram Stars
+            }
+          }
+        </h3>
+        <p class="text-slate-500">
+          Amount {{ payment.amount }} ~ Euro {{ payment.amountInEur }}
+        </p>
+      </div>
+
+      <div class="col-span-1">
+        <input
+          type="radio"
+          name="radio-10"
+          class="radio checked:bg-red-500"
+          [checked]="payment.currencyType === selectedCurrency" />
+      </div>
+    </div>
+  }
+  <!-- ./Payment Method Card -->
+</div>

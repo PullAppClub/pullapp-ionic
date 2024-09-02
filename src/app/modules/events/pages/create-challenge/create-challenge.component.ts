@@ -8,6 +8,9 @@ import { NavigationHelper } from '../../../../core/helpers/navigation/navigation
 import { ToastType } from '../../../../core/enums/toast.enum';
 import { ToastService } from '../../../../core/services/toast/toast.service';
 import { LangService } from '../../../../core/services/lang/lang.service';
+import { ChallengeType } from '../../enums/challenge-type.enum';
+import { ChallengePaymentService } from '../../services/challenge-payment/challenge-payment.service';
+import { ChallengePricing } from '../../interfaces/challenge-payment.interface';
 
 @Component({
   selector: 'app-create-challenge',
@@ -34,6 +37,10 @@ export class CreateChallengeComponent implements OnInit {
     path: '/assets/lottie/warns.json',
   };
 
+  public challengeType: ChallengeType = ChallengeType.Global;
+  public challengeTypeEnum = ChallengeType;
+  public challengePricing?: ChallengePricing;
+
   @ViewChild('openModalBtn', { read: ElementRef })
   openModalBtn!: ElementRef;
 
@@ -41,7 +48,8 @@ export class CreateChallengeComponent implements OnInit {
     private readonly challengeService: ChallengeService,
     private readonly navigationHelper: NavigationHelper,
     private readonly toastService: ToastService,
-    private readonly langService: LangService
+    private readonly langService: LangService,
+    private readonly challengePaymentService: ChallengePaymentService
   ) {}
 
   ngOnInit() {}
@@ -56,6 +64,16 @@ export class CreateChallengeComponent implements OnInit {
 
   public setSportFilter(sport: SportType): void {
     this.sportFilter = sport;
+  }
+
+  public setChallengeType(challengeType: ChallengeType): void {
+    this.challengeType = challengeType;
+
+    if (challengeType === ChallengeType.Global && !this.challengePricing) {
+      this.challengePaymentService
+        .getSponsoredChallengePricing()
+        .subscribe(pricing => (this.challengePricing = pricing));
+    }
   }
 
   public createChallenge(): void {

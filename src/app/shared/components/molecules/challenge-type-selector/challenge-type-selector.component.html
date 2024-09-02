@@ -1,0 +1,97 @@
+<!-- The button to open modal -->
+<label
+  for="challenge-type-modal"
+  class="btn normal-case mx-auto btn-block btn-outline btn-secondary"
+  (click)="setChallengeTypeOnFirstLoad()">
+  @switch (selectedChallengeType) {
+    @case (challengeTypeEnum.Global) {
+      {{ 'COMMON.GLOBAL' | translate }}
+    }
+    @case (challengeTypeEnum.Sponsored) {
+      {{ 'COMMON.SPONSORED' | translate }}
+    }
+    @default {
+      {{ 'COMMON.SELECT_CHALLENGE_TYPE' | translate }}
+    }
+  }
+</label>
+
+<input type="checkbox" id="challenge-type-modal" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">
+      {{ 'COMMON.SELECT_CHALLENGE_TYPE' | translate }}
+    </h3>
+    <!-- Challenge Type Description Section -->
+    @if (selectedChallengeType === challengeTypeEnum.Global) {
+      <!-- Global Challenge Description -->
+      <div class="mt-4">
+        <img
+          src="assets/img/challenge-accepted.svg"
+          alt="HallOfFame"
+          class="w-2/3 mx-auto" />
+      </div>
+
+      <p class="py-4">
+        {{
+          'MODULES.CHALLENGE.CREATE_GLOBAL_CHALLENGE_DESCRIPTION' | translate
+        }}
+      </p>
+      <!-- ./Global Challenge Description -->
+    } @else {
+      <!-- Sponsored Challenge Description -->
+      <div class="mt-4">
+        <img
+          src="assets/img/business.svg"
+          alt="HallOfFame"
+          class="w-2/3 mx-auto" />
+      </div>
+
+      <p class="py-4">
+        {{
+          'MODULES.CHALLENGE.CREATE_SPONSORED_CHALLENGE_DESCRIPTION' | translate
+        }}
+      </p>
+      <!-- ./Sponsored Challenge Description -->
+    }
+    <!-- ./Challenge Type Description Section -->
+
+    <!-- Challenge Types Radio -->
+
+    <!-- Global Challenge -->
+    <div class="form-control type-selector">
+      <label class="label cursor-pointer">
+        <span class="label-text">
+          {{ 'COMMON.GLOBAL' | translate }} ({{ 'COMMON.FREE' | translate }})
+        </span>
+        <input
+          type="radio"
+          name="radio-10"
+          class="radio checked:bg-red-500"
+          (click)="emitSelectedChallengeType(challengeTypeEnum.Global)"
+          [checked]="selectedChallengeType === challengeTypeEnum.Global" />
+      </label>
+    </div>
+    <!-- ./Global Challenge -->
+
+    <!-- Sponsored Challenge -->
+    <div class="form-control type-selector mt-4">
+      <label class="label cursor-pointer">
+        <span class="label-text"> {{ 'COMMON.SPONSORED' | translate }} 💰</span>
+        <input
+          type="radio"
+          name="radio-10"
+          class="radio checked:bg-green-500"
+          (click)="emitSelectedChallengeType(challengeTypeEnum.Sponsored)"
+          [checked]="selectedChallengeType === challengeTypeEnum.Sponsored" />
+      </label>
+    </div>
+    <!-- ./Sponsored Challenge -->
+
+    <!-- ./Challenge Types Radio -->
+
+    <div class="modal-action">
+      <label for="challenge-type-modal" class="btn">Ok</label>
+    </div>
+  </div>
+</div>

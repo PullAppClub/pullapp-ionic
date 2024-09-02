@@ -34,6 +34,8 @@ import { VideoContainerComponent } from './components/organisms/video-container/
 import { WarningModalComponent } from './components/molecules/warning-modal/warning-modal.component';
 import { StoresButtonComponent } from './components/atoms/stores-button/stores-button.component';
 import { InfoNavbarComponent } from './components/organisms/info-navbar/info-navbar.component';
+import { ChallengeTypeSelectorComponent } from './components/molecules/challenge-type-selector/challenge-type-selector.component';
+import { ChallengePricingComponent } from './components/molecules/challenge-pricing/challenge-pricing.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { InfoNavbarComponent } from './components/organisms/info-navbar/info-nav
     WarningModalComponent,
     StoresButtonComponent,
     InfoNavbarComponent,
+    ChallengeTypeSelectorComponent,
+    ChallengePricingComponent,
   ],
   imports: [
     CommonModule,
@@ -106,6 +110,8 @@ import { InfoNavbarComponent } from './components/organisms/info-navbar/info-nav
     WarningModalComponent,
     StoresButtonComponent,
     InfoNavbarComponent,
+    ChallengeTypeSelectorComponent,
+    ChallengePricingComponent,
   ],
 })
 export class SharedModule {}

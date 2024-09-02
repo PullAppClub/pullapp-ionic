@@ -20,6 +20,9 @@ export const endpoints = {
     GET_HOME_PAGE_CHALLENGES: '/event/challenge/home-page',
     GET_CHALLENGE: '/event/challenge/',
   },
+  CHALLENGE_PAYMENT: {
+    SPONSORED_PRICING: '/event/challenge-payment/sponsored-pricing',
+  },
   CHALLENGE_PARTICIPATION: {
     CREATE: '/event/challenge-participant',
   },

@@ -61,6 +61,22 @@
       </div>
       <!-- ./Description Section -->
 
+      <!-- Select Challenge Type -->
+      <app-challenge-type-selector
+        (selectedChallengeTypeEmitter)="
+          setChallengeType($event)
+        "></app-challenge-type-selector>
+      <!-- ./Select Challenge Type -->
+
+      @if (challengeType === challengeTypeEnum.Sponsored) {
+        @if (!challengePricing) {
+          <app-spinner></app-spinner>
+        } @else {
+          <app-challenge-pricing [pricing]="challengePricing">
+          </app-challenge-pricing>
+        }
+      }
+
       <!-- Select Discipline -->
       <app-select-sport
         (selectedSportValueEmitter)="setSportFilter($event)"></app-select-sport>
