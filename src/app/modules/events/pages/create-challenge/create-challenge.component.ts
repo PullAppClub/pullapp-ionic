@@ -11,6 +11,8 @@ import { LangService } from '../../../../core/services/lang/lang.service';
 import { ChallengeType } from '../../enums/challenge-type.enum';
 import { ChallengePaymentService } from '../../services/challenge-payment/challenge-payment.service';
 import { ChallengePricing } from '../../interfaces/challenge-payment.interface';
+import { CurrencyType } from '../../../../core/enums/currency-type.enum';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-create-challenge',
@@ -18,6 +20,8 @@ import { ChallengePricing } from '../../interfaces/challenge-payment.interface';
   styleUrls: ['./create-challenge.component.scss'],
 })
 export class CreateChallengeComponent implements OnInit {
+  public challengeType: ChallengeType = ChallengeType.Global;
+
   public createChallengeForm = new FormGroup({
     title: new FormControl('', [
       Validators.required,
@@ -29,6 +33,14 @@ export class CreateChallengeComponent implements OnInit {
       Validators.minLength(10),
       Validators.maxLength(300),
     ]),
+    sponsoredBy: new FormControl('', [
+      Validators.minLength(3),
+      Validators.maxLength(100),
+    ]),
+    sponsorUrl: new FormControl('', [
+      Validators.minLength(3),
+      Validators.maxLength(100),
+    ]),
   });
   public level!: ChallengeLevel;
   public sportFilter!: SportType;
@@ -37,12 +49,19 @@ export class CreateChallengeComponent implements OnInit {
     path: '/assets/lottie/warns.json',
   };
 
-  public challengeType: ChallengeType = ChallengeType.Global;
   public challengeTypeEnum = ChallengeType;
   public challengePricing?: ChallengePricing;
+  private selectedCurrency?: CurrencyType;
+  public showPaymentUploadingSpinner = false;
+  public paymentLink?: string;
+  public purchaseId?: string;
+  public showCloseButton = false;
 
   @ViewChild('openModalBtn', { read: ElementRef })
   openModalBtn!: ElementRef;
+
+  @ViewChild('tonStarsPaymentModal', { read: ElementRef })
+  openTonStarsPaymentModal!: ElementRef;
 
   constructor(
     private readonly challengeService: ChallengeService,
@@ -76,16 +95,25 @@ export class CreateChallengeComponent implements OnInit {
     }
   }
 
-  public createChallenge(): void {
-    if (
-      this.createChallengeForm.invalid ||
-      !this.video ||
-      !this.sportFilter ||
-      !this.level
-    ) {
+  public setCurrency(currencyType: CurrencyType): void {
+    this.selectedCurrency = currencyType;
+  }
+
+  public handleChallengeCreation(): void {
+    if (this.checkCreationConstraints()) {
       return;
     }
 
+    if (this.challengeType === ChallengeType.Global) {
+      this.createGlobalChallenge();
+    }
+
+    if (this.challengeType === ChallengeType.Sponsored) {
+      this.createSponsoredChallenge();
+    }
+  }
+
+  public createGlobalChallenge(): void {
     this.openModalBtn.nativeElement.click();
 
     const createChallenge$ = this.challengeService.createGlobalChallenge({
@@ -93,7 +121,7 @@ export class CreateChallengeComponent implements OnInit {
       description: this.createChallengeForm.get('description')?.value as string,
       levelId: this.level.id,
       sportType: this.sportFilter,
-      video: this.video,
+      video: this.video as File,
     });
 
     createChallenge$.subscribe({
@@ -106,11 +134,59 @@ export class CreateChallengeComponent implements OnInit {
     });
   }
 
+  private createSponsoredChallenge(): void {
+    if (!this.challengePricing || !this.selectedCurrency) {
+      return;
+    }
+
+    this.showPaymentUploadingSpinner = true;
+
+    this.openTonStarsPaymentModal.nativeElement.click();
+
+    const createChallenge$ = this.challengeService.createSponsoredChallenge({
+      title: this.createChallengeForm.get('title')?.value as string,
+      description: this.createChallengeForm.get('description')?.value as string,
+      levelId: this.level.id,
+      sportType: this.sportFilter,
+      video: this.video as File,
+      sponsoredBy: this.createChallengeForm.get('sponsoredBy')?.value as string,
+      sponsorUrl: this.createChallengeForm.get('sponsorUrl')?.value as string,
+      currencyType: this.selectedCurrency,
+    });
+
+    createChallenge$
+      .pipe(finalize(() => (this.showPaymentUploadingSpinner = false)))
+      .subscribe({
+        next: ({ paymentLink, purchaseId }) => {
+          this.paymentLink = paymentLink;
+          this.purchaseId = purchaseId;
+        },
+      });
+  }
+
+  private checkCreationConstraints(): boolean {
+    return (
+      this.createChallengeForm.invalid ||
+      !this.video ||
+      !this.sportFilter ||
+      !this.level
+    );
+  }
+
   public closeModal(): void {
     this.openModalBtn.nativeElement.click();
 
     this.navigationHelper.openPageWithoutHistory({
       route: '/events/home',
     });
+  }
+
+  /**
+   * Shows close modal after a user has clicked on the pay button
+   */
+  public setShowCloseButton(value?: boolean): void {
+    setTimeout(() => {
+      this.showCloseButton = value ?? true;
+    }, 500);
   }
 }

@@ -15,7 +15,7 @@
     <form
       class="flex flex-col space-y-4 mx-4 my-2"
       [formGroup]="createChallengeForm"
-      (submit)="createChallenge()">
+      (submit)="handleChallengeCreation()">
       <!-- Title -->
       <input
         type="text"
@@ -72,10 +72,48 @@
         @if (!challengePricing) {
           <app-spinner></app-spinner>
         } @else {
-          <app-challenge-pricing [pricing]="challengePricing">
+          <app-challenge-pricing
+            (selectedCurrencyEmitted)="setCurrency($event)"
+            [pricing]="challengePricing">
           </app-challenge-pricing>
         }
       }
+
+      <!-- Sponsor Info Section -->
+      @if (challengeType === challengeTypeEnum.Sponsored) {
+        <!-- Sponsored by -->
+        <input
+          type="text"
+          placeholder="Sponsored by"
+          formControlName="sponsoredBy"
+          class="input w-full max-w-xl input-bordered input-primary"
+          [class.border-rose-600]="
+            createChallengeForm.get('sponsoredBy')?.invalid &&
+            createChallengeForm.get('sponsoredBy')?.touched
+          "
+          [class.border-slate-200]="
+            createChallengeForm.get('sponsoredBy')?.valid
+          "
+          required />
+        <!-- ./Sponsored by -->
+
+        <!-- Sponsor Url -->
+        <input
+          type="text"
+          placeholder="Sponsor Url"
+          formControlName="sponsorUrl"
+          class="input w-full max-w-xl input-bordered input-primary"
+          [class.border-rose-600]="
+            createChallengeForm.get('sponsorUrl')?.invalid &&
+            createChallengeForm.get('sponsorUrl')?.touched
+          "
+          [class.border-slate-200]="
+            createChallengeForm.get('sponsorUrl')?.valid
+          "
+          required />
+        <!-- ./Sponsor Url -->
+      }
+      <!-- ./Sponsor Info Section -->
 
       <!-- Select Discipline -->
       <app-select-sport
@@ -137,4 +175,70 @@
     </div>
   </div>
   <!-- ./Uploading Modal -->
+
+  <!-- TonStars Payment Modal -->
+  <label
+    for="tonStarsPaymentModal"
+    class="btn hidden"
+    #tonStarsPaymentModal
+    id="openTonStarsPaymentModal"></label>
+  <input type="checkbox" id="tonStarsPaymentModal" class="modal-toggle" />
+  <div class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-center justify-center">
+      <!-- Warns Lottie -->
+      <ng-lottie
+        width="220px"
+        containerClass="mx-auto mb-5"
+        [options]="lottieOptions">
+      </ng-lottie>
+      <!-- ./Warns Lottie -->
+
+      @if (showPaymentUploadingSpinner) {
+        <h2 class="font-medium text-slate-800 text-center">
+          {{
+            'MODULES.CHALLENGE.SPONSORED_CHALLENGE_UPLOADING_MODAL_TEXT'
+              | translate
+          }}
+        </h2>
+
+        <app-spinner></app-spinner>
+      }
+
+      @if (paymentLink && purchaseId) {
+        <p class="font-medium text-slate-800 text-center">
+          {{ 'MODULES.CHALLENGE.CHALLENGE_PAYMENT_MODAL_TEXT' | translate }}
+        </p>
+
+        <p class="font-medium text-slate-800 text-center mt-4">
+          PurchaseId:
+          <b>{{ purchaseId }} </b>
+        </p>
+
+        <div
+          class="flex items-center justify-between modal-action max-w-md space-x-4">
+          <!-- Close Button -->
+          @if (showCloseButton) {
+            <button class="btn btn-warning normal-case" (click)="closeModal()">
+              {{ 'COMMON.CLOSE' | translate }}
+            </button>
+          } @else {
+            <div></div>
+            <!-- Empty div -->
+          }
+          <!-- ./Close Button -->
+
+          <!-- Pay Button -->
+          <a
+            href="{{ paymentLink }}"
+            target="_blank"
+            class="btn btn-primary normal-case"
+            (click)="setShowCloseButton()"
+            >{{ 'COMMON.PAY_NOW' | translate }}</a
+          >
+          <!-- ./Pay Button -->
+        </div>
+      }
+    </div>
+  </div>
+  <!-- ./TonStars Payment Modal -->
 </ion-content>

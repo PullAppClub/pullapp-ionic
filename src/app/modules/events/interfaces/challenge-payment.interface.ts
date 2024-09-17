@@ -6,3 +6,8 @@ export type ChallengePricing = {
   amountInEur: number;
   date?: Date;
 }[];
+
+export type CreateSponsoredChallengeResponse = {
+  paymentLink: string;
+  purchaseId: string;
+};

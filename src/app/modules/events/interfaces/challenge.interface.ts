@@ -3,6 +3,7 @@ import { ChallengeType } from '../enums/challenge-type.enum';
 import { ProfileBasicInfo, User } from '../../users/interfaces/user.interface';
 import { ChallengeLevel as ChallengeLevelEnum } from '../enums/challenge-level.enum';
 import { ParticipationStatus } from '../enums/challenge-participant.enum';
+import { CurrencyType } from '../../../core/enums/currency-type.enum';
 
 export interface Challenge {
   id: string;
@@ -55,6 +56,12 @@ export interface CreateChallengeParams {
   title: string;
   description: string;
   levelId: string;
+}
+
+export interface CreateSponsoredChallengeParams extends CreateChallengeParams {
+  sponsoredBy: string;
+  sponsorUrl: string;
+  currencyType: CurrencyType;
 }
 
 export interface ChallengeLevel {
