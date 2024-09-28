@@ -15,7 +15,7 @@ import { LoadMoreButtonComponent } from './components/atoms/load-more-button/loa
 import { ChallengeCardMdComponent } from './components/molecules/challenge-card-md/challenge-card-md.component';
 import { SpotCardMdComponent } from './components/molecules/spot-card-md/spot-card-md.component';
 import { GalleryModule } from 'ng-gallery';
-import { OfficialChallengeCardComponent } from './components/molecules/official-challenge-card/official-challenge-card.component';
+import { SponsoredChallengeCardComponent } from './components/molecules/sponsored-challenge-card/sponsored-challenge-card.component';
 import { EntryRewardComponent } from './components/atoms/entry-reward/entry-reward.component';
 import { LoadButtonComponent } from './components/atoms/load-button/load-button.component';
 import { UploadModalComponent } from './components/molecules/upload-modal/upload-modal.component';
@@ -51,7 +51,7 @@ import { ChallengePricingComponent } from './components/molecules/challenge-pric
     LoadMoreButtonComponent,
     ChallengeCardMdComponent,
     SpotCardMdComponent,
-    OfficialChallengeCardComponent,
+    SponsoredChallengeCardComponent,
     EntryRewardComponent,
     LoadButtonComponent,
     UploadModalComponent,
@@ -94,7 +94,7 @@ import { ChallengePricingComponent } from './components/molecules/challenge-pric
     LoadMoreButtonComponent,
     ChallengeCardMdComponent,
     SpotCardMdComponent,
-    OfficialChallengeCardComponent,
+    SponsoredChallengeCardComponent,
     EntryRewardComponent,
     LoadButtonComponent,
     UploadModalComponent,

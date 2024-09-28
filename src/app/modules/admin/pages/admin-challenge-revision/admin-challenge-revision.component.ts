@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Challenge } from '../../../events/interfaces/challenge.interface';
 import { AdminChallengeService } from '../../services/admin-challenge/admin-challenge.service';
 import { take } from 'rxjs';
+import { ChallengeType as ChallengeTypeEnum } from '../../../events/enums/challenge-type.enum';
 
 @Component({
   selector: 'app-admin-challenge-revision',
@@ -12,6 +13,7 @@ export class AdminChallengeRevisionComponent implements OnInit {
   public challenges: Challenge[] = [];
   public rejectChallengeModalLabelId = 'rejectChallengeModalLabelId';
   private challengeToReject: Challenge | null = null;
+  public readonly ChallengeType = ChallengeTypeEnum;
 
   constructor(private readonly adminChallengeService: AdminChallengeService) {}
 

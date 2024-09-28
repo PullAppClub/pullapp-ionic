@@ -1,20 +1,8 @@
-<app-header></app-header>
+<app-header [title]="challenge?.title"></app-header>
 
 <ion-content scrollEvents="true">
   <!-- Container -->
   <div class="container max-w-lg mx-auto" *ngIf="challenge">
-    <!-- Video Section -->
-    <!--    <div-->
-    <!--      class="m-2 rounded-lg overflow-hidden"-->
-    <!--      style="max-height: 469px"-->
-    <!--      *ngIf="challenge.video">-->
-    <!--      <video class="w-full" controls>-->
-    <!--        <source src="{{ challenge.video }}" type="video/mp4" />-->
-    <!--        <source src="{{ challenge.video }}" type="video/ogg" />-->
-    <!--        Your browser does not support the video tag.-->
-    <!--      </video>-->
-    <!--    </div>-->
-
     <app-video-container
       [challenge]="challenge"
       [videoPlayerLabelId]="videoPlayerLabelId"
@@ -23,11 +11,11 @@
 
     <div class="m-4">
       <!-- Approve Button -->
-      <button
-        class="btn btn-outline w-full normal-case mb-3"
-        *ngIf="challenge.owner.userId === userId">
-        {{ 'MODULES.CHALLENGE.REVIEW_PARTICIPANTS' | translate }}
-      </button>
+      @if (challenge.owner.userId === userId) {
+        <button class="btn btn-outline w-full normal-case mb-3">
+          {{ 'MODULES.CHALLENGE.REVIEW_PARTICIPANTS' | translate }}
+        </button>
+      }
       <!-- ./Approve Button -->
 
       <!-- Info Section -->
@@ -77,29 +65,34 @@
       <!-- ./Info Section -->
       <!-- Action Section -->
 
+      <!-- Sign In To Participate -->
+      @if (!userId) {
+        <a
+          class="btn btn-outline w-full normal-case mb-3"
+          routerLink="/user/sign-in">
+          {{ 'MODULES.CHALLENGE.SIGN_IN_TO_PARTICIPATE' | translate }}
+        </a>
+      }
+      <!-- ./Sign In To Participate -->
+
       <!-- Accept Button -->
-      <label class="btn btn-block normal-case" for="acceptChallenge">
-        <!-- Enter Text -->
-        <span
-          *ngIf="
-            challenge.owner.userId !== userId &&
-            (!challenge.participationStatus ||
-              challenge.participationStatus === participationStatus.Decline)
-          ">
+      @if (
+        !!userId &&
+        challenge.owner.userId !== userId &&
+        (!challenge.participationStatus ||
+          challenge.participationStatus === participationStatus.Decline)
+      ) {
+        <label class="btn btn-block normal-case" for="acceptChallenge">
+          <!-- Enter Text -->
           {{ 'COMMON.ENTER' | translate }}
           <!-- Required Muscle Tokens -->
           <span *ngIf="challenge.level.requiredMuscleCoins > 0"
             >-{{ challenge.level.requiredMuscleCoins }} 💪</span
           >
           <!-- ./Required Muscle Tokens -->
-        </span>
-        <!-- ./Enter Text -->
-        <!-- Details Text -->
-        <span *ngIf="challenge.owner.userId === userId">
-          {{ 'COMMON.DETAILS' | translate }}
-        </span>
-        <!-- ./Details Text -->
-      </label>
+          <!-- ./Enter Text -->
+        </label>
+      }
       <!-- ./Accept Button -->
 
       <!-- ./Action Section -->

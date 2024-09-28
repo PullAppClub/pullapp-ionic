@@ -22,6 +22,8 @@ export interface Challenge {
    * Required to change the enter button text and action.
    */
   participationStatus?: ParticipationStatus;
+  sponsoredBy?: string;
+  sponsorUrl?: string;
 }
 
 export interface ChallengeParticipant {
@@ -73,5 +75,5 @@ export interface ChallengeLevel {
 
 export type HomePageChallenges = {
   global: Challenge[];
-  official: Challenge[];
+  sponsored: Challenge[];
 };

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { OfficialChallengeCardComponent } from './official-challenge-card.component';
+import { SponsoredChallengeCardComponent } from './sponsored-challenge-card.component';
 
 describe('OfficialChallengeCardComponent', () => {
-  let component: OfficialChallengeCardComponent;
-  let fixture: ComponentFixture<OfficialChallengeCardComponent>;
+  let component: SponsoredChallengeCardComponent;
+  let fixture: ComponentFixture<SponsoredChallengeCardComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OfficialChallengeCardComponent],
+      declarations: [SponsoredChallengeCardComponent],
       imports: [IonicModule.forRoot()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OfficialChallengeCardComponent);
+    fixture = TestBed.createComponent(SponsoredChallengeCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

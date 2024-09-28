@@ -43,7 +43,8 @@
       "UPLOADING_PARTICIPATION_VIDEO": "We are uploading your challenge 🚀. Your challenge will be reviewed and you'll be notified regarding it. Please do not close the app until the red bar at the top disappears 🙏",
       "CREATE_GLOBAL_CHALLENGE_DESCRIPTION": "Global Challenges are accessible to all users and are prominently displayed on the Challenges page. Participation in these challenges is open to any user possessing the requisite number of Muscle Coins.",
       "CREATE_SPONSORED_CHALLENGE_DESCRIPTION": "Sponsored Challenges are tailored for businesses aiming to promote their products or services. These challenges are featured in a dedicated Sponsored Challenges section.",
-      "CHALLENGE_PAYMENT_MODAL_TEXT": "Please click on the 'Pay now' button to complete your payment. Once the payment is successfully made, you will be notified about the status of your challenge.\nAfter completion of the payment, no further action is required on your part. We will take care of everything else and keep you updated on the progress of your challenge."
+      "CHALLENGE_PAYMENT_MODAL_TEXT": "Please click on the 'Pay now' button to complete your payment. Once the payment is successfully made, you will be notified about the status of your challenge.\nAfter completion of the payment, no further action is required on your part. We will take care of everything else and keep you updated on the progress of your challenge.",
+      "SIGN_IN_TO_PARTICIPATE": "Sign in to participate"
     },
     "ADMIN": {
       "REJECT_CHALLENGE_TITLE": "Explain why you are rejecting this challenge",

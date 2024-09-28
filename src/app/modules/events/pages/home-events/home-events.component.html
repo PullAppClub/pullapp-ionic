@@ -6,7 +6,7 @@
 <ion-content scrollEvents="true">
   <!-- Container -->
   <div class="container max-w-lg mx-auto my-10">
-    <!-- Official Challenges Horizontal Section -->
+    <!-- Sponsored Challenges Horizontal Section -->
     <div class="grid grid-cols-5 justify-items-center">
       <!-- Scroll Left Button -->
       <div class="max-w-lg mr-auto">
@@ -23,7 +23,7 @@
       </div>
       <!-- ./Scroll Left Button -->
       <div class="grid col-span-3 content-center">
-        <h1 class="text-xl font-bold text-slate-900">Official Challenges</h1>
+        <h1 class="text-xl font-bold text-slate-900">Sponsored Challenges</h1>
       </div>
       <!-- Scroll Right Button -->
       <div class="max-w-lg ml-auto">
@@ -41,14 +41,14 @@
       #widgetsContent>
       <div
         class="snap-center"
-        *ngFor="let challenge of homePageChallenges?.official">
+        *ngFor="let challenge of homePageChallenges?.sponsored">
         <!-- Challenge Card -->
-        <app-official-challenge-card
-          [challenge]="challenge"></app-official-challenge-card>
+        <app-sponsored-challenge-card
+          [challenge]="challenge"></app-sponsored-challenge-card>
         <!-- ./Challenge Card -->
       </div>
     </div>
-    <!-- Official Challenges Horizontal Section -->
+    <!-- Sponsored Challenges Horizontal Section -->
 
     <!-- Global Challenges Vertical Section -->
     <div class="px-4 mt-10" style="padding-bottom: 40px">

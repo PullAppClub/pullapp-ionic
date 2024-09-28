@@ -4,8 +4,15 @@
   <!-- Container -->
   <div class="container max-w-xl mx-auto p-3">
     <!-- Challenges To Approve -->
-    <div *ngFor="let challenge of challenges">
+    @for (challenge of challenges; track challenge.id) {
       <app-challenge-card [challenge]="challenge"></app-challenge-card>
+      @if (challenge.challengeType === ChallengeType.Sponsored) {
+        sponsoredBy {{ challenge.sponsoredBy }} <br />
+        sponsorUrl
+        <a [href]="challenge.sponsorUrl" target="_blank">
+          {{ challenge.sponsorUrl }}</a
+        >
+      }
 
       <div class="flex justify-between">
         <!-- Reject Button -->
@@ -25,8 +32,8 @@
         </button>
         <!-- ./Approve Button -->
       </div>
-    </div>
-    <!-- ./Challenges To Approve -->
+      <!-- ./Challenges To Approve -->
+    }
   </div>
   <!-- ./Container -->
 
