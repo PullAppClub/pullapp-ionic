@@ -10,6 +10,7 @@ import { UserProfileService } from '../../services/user-profile/user-profile.ser
 import { ProfileEvents, UserProfile } from '../../types/profile.type';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileEventsService } from '../../services/profile-events/profile-events.service';
+import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
 
 @Component({
   selector: 'app-user-profile',
@@ -28,7 +29,8 @@ export class UserProfileComponent implements OnInit {
     public readonly tabBarService: TabBarService,
     private readonly userProfileService: UserProfileService,
     private readonly route: ActivatedRoute,
-    private readonly profileEventsService: ProfileEventsService
+    private readonly profileEventsService: ProfileEventsService,
+    public readonly navigationHelper: NavigationHelper
   ) {}
 
   public async loadMoreActiveChallenges(): Promise<void> {

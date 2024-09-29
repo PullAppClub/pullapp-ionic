@@ -10,6 +10,7 @@ export type UserProfile = {
   username: string;
   muscleCoins: number;
   description?: string;
+  rank?: number;
 };
 
 export type UpdateProfileInfoParams = Omit<

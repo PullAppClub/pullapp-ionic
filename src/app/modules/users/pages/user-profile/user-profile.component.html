@@ -31,7 +31,7 @@
         <app-small-stat-card
           [icon]="'🏆️'"
           [title]="'Ranking'"
-          [value]="'150°'"></app-small-stat-card>
+          [value]="profile.rank + '°'"></app-small-stat-card>
       </div>
       <!-- Mp and Ranking Section -->
       <!-- ./User Info Section -->
@@ -57,7 +57,11 @@
           <!-- Active Challenge Cards -->
           @for (challenge of activeChallenges; track challenge.id) {
             <div class="card bg-base-100" style="background-color: #f2f4f7">
-              <a [routerLink]="['/events/challenge/', challenge.id]">
+              <a
+                [routerLink]="['/events/challenge/', challenge.id]"
+                (click)="
+                  navigationHelper.addPageToHistory('/events/challenge/')
+                ">
                 <div class="card-body text-left">
                   <p class="text-xs lowercase">
                     {{ challenge.sportType }} -
@@ -86,7 +90,11 @@
           <!-- Completed Challenge Cards -->
           @for (challenge of completedChallenges; track challenge.id) {
             <div class="card bg-base-100" style="background-color: #d1fadf">
-              <a [routerLink]="['/events/challenge/', challenge.id]">
+              <a
+                [routerLink]="['/events/challenge/', challenge.id]"
+                (click)="
+                  navigationHelper.addPageToHistory('/events/challenge/')
+                ">
                 <div class="card-body text-left">
                   <p class="text-xs lowercase">
                     {{ challenge.sportType }} -
