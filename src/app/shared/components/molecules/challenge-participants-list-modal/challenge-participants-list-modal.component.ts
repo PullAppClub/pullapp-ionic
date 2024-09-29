@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
   Challenge,
   ChallengeParticipant,
@@ -15,6 +8,7 @@ import { DateHelper } from '../../../../core/helpers/date/date.helper';
 import { ParticipationStatus } from '../../../../modules/events/enums/challenge-participant.enum';
 import { SessionService } from '../../../../core/services/session/session.service';
 import { DecodedToken } from '../../../../core/types/auth.type';
+import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
 
 @Component({
   selector: 'app-challenge-participants-list-modal',
@@ -39,7 +33,8 @@ export class ChallengeParticipantsListModalComponent implements OnInit {
     public readonly tabBarService: TabBarService,
     public readonly dateHelper: DateHelper,
     public readonly sessionService: SessionService,
-    private readonly elementRef: ElementRef
+    private readonly elementRef: ElementRef,
+    public readonly navigationHelper: NavigationHelper
   ) {}
 
   ngOnInit(): void {

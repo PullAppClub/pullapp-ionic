@@ -36,6 +36,7 @@ import { StoresButtonComponent } from './components/atoms/stores-button/stores-b
 import { InfoNavbarComponent } from './components/organisms/info-navbar/info-navbar.component';
 import { ChallengeTypeSelectorComponent } from './components/molecules/challenge-type-selector/challenge-type-selector.component';
 import { ChallengePricingComponent } from './components/molecules/challenge-pricing/challenge-pricing.component';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { ChallengePricingComponent } from './components/molecules/challenge-pric
     ReactiveFormsModule,
     LottieComponent,
     NgOptimizedImage,
+    RouterLink,
   ],
   exports: [
     HeaderComponent,

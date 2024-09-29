@@ -104,13 +104,18 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadProfile();
-    this.route.paramMap.subscribe(params => {
-      console.log(params.get('userId'));
-    });
+    this.route.paramMap.subscribe(params => this.loadProfile(params.get('id')));
   }
 
-  private loadProfile(): void {
+  private loadProfile(userId?: string | null): void {
+    if (userId) {
+      this.userProfileService.getProfileById(userId).subscribe({
+        next: (profile: UserProfile) => (this.profile = profile),
+      });
+
+      return;
+    }
+
     this.userProfileService.getProfile().subscribe({
       next: (profile: UserProfile) => (this.profile = profile),
     });

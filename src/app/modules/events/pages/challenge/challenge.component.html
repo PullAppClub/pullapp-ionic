@@ -43,10 +43,14 @@
             </p>
             <div class="avatar small-avatar-container">
               <div class="w-8 rounded-full">
-                <img
-                  ngSrc="{{ challenge.owner.avatar }}"
-                  fill="true"
-                  alt="avatar" />
+                <a
+                  [routerLink]="['/user/member', challenge.owner.userId]"
+                  (click)="navigationHelper.addPageToHistory('/user/profile/')">
+                  <img
+                    ngSrc="{{ challenge.owner.avatar }}"
+                    fill="true"
+                    alt="avatar" />
+                </a>
               </div>
             </div>
           </div>

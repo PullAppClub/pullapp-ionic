@@ -24,9 +24,12 @@
         <div class="card-body">
           <p class="text-slate-500 mt-2">
             {{ 'COMMON.BY' | translate }}
-            <span class="text-lg text-slate-900 cursor-pointer"
+            <a
+              class="text-lg text-slate-900 cursor-pointer"
+              [routerLink]="['/user/member', challenge.owner.userId]"
+              (click)="navigationHelper.addPageToHistory('/user/profile/')"
               >{{ participant.user.username }}
-            </span>
+            </a>
 
             <span class="ml-auto float-right">
               {{ createAgoString(participant.createdAt) }}

@@ -45,12 +45,17 @@ export class UserProfileService {
   }
 
   public getProfile(): Observable<UserProfile> {
-    return this.requestHelper
-      .get<UserProfile>({
-        url: endpoints.HOST + endpoints.PROFILE.GET_PROFILE,
-        token$: this.sessionService.getSessionToken(),
-      })
-      .pipe(take(1));
+    return this.requestHelper.get<UserProfile>({
+      url: endpoints.HOST + endpoints.PROFILE.GET_PROFILE,
+      token$: this.sessionService.getSessionToken(),
+    });
+  }
+
+  public getProfileById(userId: string): Observable<UserProfile> {
+    return this.requestHelper.get<UserProfile>({
+      url: `${endpoints.HOST}${endpoints.PROFILE.GET_PROFILE}/${userId}`,
+      token$: this.sessionService.getSessionToken(),
+    });
   }
 
   public uploadAvatar(file: File): Observable<UserProfile> {
