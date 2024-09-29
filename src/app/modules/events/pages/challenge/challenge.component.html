@@ -10,13 +10,16 @@
     <!-- ./Video Section -->
 
     <div class="m-4">
-      <!-- Approve Button -->
+      <!-- Show Participation List Owner Section -->
       @if (challenge.owner.userId === userId) {
-        <button class="btn btn-outline w-full normal-case mb-3">
+        <label
+          class="btn btn-outline w-full normal-case mb-3"
+          for="challengePage"
+          (click)="tabBarService.setShowTabBar(false)">
           {{ 'MODULES.CHALLENGE.REVIEW_PARTICIPANTS' | translate }}
-        </button>
+        </label>
       }
-      <!-- ./Approve Button -->
+      <!-- ./Show Participation List Owner Section -->
 
       <!-- Info Section -->
       <div class="grid grid-rows-5 gap-2">
@@ -31,7 +34,10 @@
           <div class="flex ml-auto items-center">
             <p class="text-sm mr-2">
               <span class="text-slate-500">{{ 'COMMON.BY' | translate }}</span>
-              <a class="link">
+              <a
+                class="link"
+                [routerLink]="['/user/member', challenge.owner.userId]"
+                (click)="navigationHelper.addPageToHistory('/user/profile/')">
                 {{ challenge.owner.username }}
               </a>
             </p>
@@ -180,4 +186,12 @@
     [modalId]="warningLabelId">
   </app-warning-modal>
   <!-- ./Wait for Upload Modal -->
+
+  <!-- Challenge Participants List -->
+  @if (challenge) {
+    <app-challenge-participants-list-modal
+      forLabelId="challengePage"
+      [challenge]="challenge"></app-challenge-participants-list-modal>
+  }
+  <!-- ./Challenge Participants List -->
 </ion-content>

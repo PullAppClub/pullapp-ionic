@@ -17,6 +17,4 @@ export class ChallengeAvatarGroupComponent implements OnInit {
   constructor(public readonly tabBarService: TabBarService) {}
 
   ngOnInit() {}
-
-  protected readonly console = console;
 }

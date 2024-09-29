@@ -10,6 +10,9 @@ import { ParticipationStatus } from '../../enums/challenge-participant.enum';
 import { ChallengeParticipationService } from '../../services/challenge-participation/challenge-participation.service';
 import { ToastService } from '../../../../core/services/toast/toast.service';
 import { mergeMap, take } from 'rxjs';
+import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
+import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service';
+import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
 
 @Component({
   selector: 'app-challenge',
@@ -41,7 +44,10 @@ export class ChallengeComponent implements OnInit {
     private readonly sessionService: SessionService,
     private readonly langService: LangService,
     private readonly toastService: ToastService,
-    private readonly challengeParticipationService: ChallengeParticipationService
+    private readonly challengeParticipationService: ChallengeParticipationService,
+    private readonly httpErrorHandlerHelper: HttpErrorHandlerHelper,
+    public readonly tabBarService: TabBarService,
+    public readonly navigationHelper: NavigationHelper
   ) {
     this.sessionService
       .observeParsedSessionToken()
@@ -86,7 +92,10 @@ export class ChallengeComponent implements OnInit {
         video: this.participationVideo,
       })
       .pipe(mergeMap(({ message }) => this.langService.t(message)))
-      .subscribe(message => this.toastService.showSuccessToast({ message }));
+      .subscribe({
+        next: message => this.toastService.showSuccessToast({ message }),
+        error: e => this.httpErrorHandlerHelper.handle(e),
+      });
   }
 
   public setParticipationVideo(video: File): void {

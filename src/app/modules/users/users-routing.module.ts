@@ -39,6 +39,13 @@ const routes: Routes = [
     component: UserProfileComponent,
     canActivate: [authenticationGuard],
   },
+  /**
+   * This route is used to display other user's profile.
+   */
+  {
+    path: 'member/:id',
+    component: UserProfileComponent,
+  },
   {
     path: 'settings',
     component: SettingsComponent,

@@ -1,4 +1,4 @@
-<div *ngIf="challenge && challenge.participants.length > 0">
+@if (challenge && challenge.participants.length > 0) {
   <!-- Challenge Avatar Group -->
   <label
     [for]="forLabelId"
@@ -13,4 +13,4 @@
     [forLabelId]="forLabelId"
     [challenge]="challenge"></app-challenge-participants-list-modal>
   <!-- ./Challenge Participants List -->
-</div>
+}

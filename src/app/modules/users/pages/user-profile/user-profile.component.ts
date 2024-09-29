@@ -8,6 +8,7 @@ import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service
 import { UserChallengesSection } from '../../enums/layout.enum';
 import { UserProfileService } from '../../services/user-profile/user-profile.service';
 import { UserProfile } from '../../types/profile.type';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -22,10 +23,15 @@ export class UserProfileComponent implements OnInit {
   public userChallengesSection = UserChallengesSection;
   public spots = [];
   public profile?: UserProfile;
+  /**
+   * User id from query params.
+   */
+  public paramUserId: string | null = null;
 
   constructor(
     public readonly tabBarService: TabBarService,
-    private readonly userProfileService: UserProfileService
+    private readonly userProfileService: UserProfileService,
+    private readonly route: ActivatedRoute
   ) {
     this.mockEvents();
   }
@@ -99,6 +105,9 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.loadProfile();
+    this.route.paramMap.subscribe(params => {
+      console.log(params.get('userId'));
+    });
   }
 
   private loadProfile(): void {

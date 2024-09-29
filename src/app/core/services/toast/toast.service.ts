@@ -30,6 +30,8 @@ export class ToastService {
   public showToast(params: ShowToastParams): void {
     if (params.title) {
       this.title = params.title;
+    } else if (params.type === ToastType.Success) {
+      this.title = 'Success';
     }
 
     this.msg = params.message;
@@ -38,7 +40,7 @@ export class ToastService {
 
     setTimeout(() => {
       this.toastOnScreen = false;
-    }, params.time || 3000);
+    }, params.time || 6000);
   }
 
   public showSuccessToast(params: Omit<ShowToastParams, 'type'>): void {

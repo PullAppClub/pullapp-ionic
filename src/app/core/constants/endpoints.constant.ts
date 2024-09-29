@@ -25,7 +25,7 @@ export const endpoints = {
     SPONSORED_PRICING: '/event/challenge-payment/sponsored-pricing',
   },
   CHALLENGE_PARTICIPATION: {
-    CREATE: '/event/challenge-participant',
+    CREATE: '/event/challenge-participation',
   },
   ACCOUNT: {
     FCM_TOKEN: '/user/account/fcm-token',
