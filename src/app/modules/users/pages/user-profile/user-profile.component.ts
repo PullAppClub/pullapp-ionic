@@ -7,8 +7,9 @@ import { SportType } from '../../../events/enums/sport.enum';
 import { TabBarService } from '../../../../core/services/tab-bar/tab-bar.service';
 import { UserChallengesSection } from '../../enums/layout.enum';
 import { UserProfileService } from '../../services/user-profile/user-profile.service';
-import { UserProfile } from '../../types/profile.type';
+import { ProfileEvents, UserProfile } from '../../types/profile.type';
 import { ActivatedRoute } from '@angular/router';
+import { ProfileEventsService } from '../../services/profile-events/profile-events.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,25 +17,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-  public challenges: Challenge[] = [];
+  public challengesCreated: Challenge[] = [];
   public activeChallenges: UserProfileChallenge[] = [];
   public completedChallenges: UserProfileChallenge[] = [];
   public showChallenges: UserChallengesSection = UserChallengesSection.Active;
   public userChallengesSection = UserChallengesSection;
   public spots = [];
   public profile?: UserProfile;
-  /**
-   * User id from query params.
-   */
-  public paramUserId: string | null = null;
-
   constructor(
     public readonly tabBarService: TabBarService,
     private readonly userProfileService: UserProfileService,
-    private readonly route: ActivatedRoute
-  ) {
-    this.mockEvents();
-  }
+    private readonly route: ActivatedRoute,
+    private readonly profileEventsService: ProfileEventsService
+  ) {}
 
   public async loadMoreActiveChallenges(): Promise<void> {
     try {
@@ -113,11 +108,27 @@ export class UserProfileComponent implements OnInit {
         next: (profile: UserProfile) => (this.profile = profile),
       });
 
+      this.loadProfileEvents(userId);
+
       return;
     }
 
     this.userProfileService.getProfile().subscribe({
-      next: (profile: UserProfile) => (this.profile = profile),
+      next: (profile: UserProfile) => {
+        this.profile = profile;
+        this.loadProfileEvents();
+      },
+    });
+  }
+
+  public loadProfileEvents(userId?: string): void {
+    this.profileEventsService.getProfileEvents(userId).subscribe({
+      next: (profileEvents: ProfileEvents) => {
+        this.spots = profileEvents.spots;
+        this.activeChallenges = profileEvents.challenges.active;
+        this.completedChallenges = profileEvents.challenges.completed;
+        this.challengesCreated = profileEvents.challenges.created;
+      },
     });
   }
 }

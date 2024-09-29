@@ -2,6 +2,17 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const devFirebaseConfig = {
+  apiKey: 'AIzaSyAJQgQaHSrc2mje3DlazLsJp7cv52S3NUc',
+  authDomain: 'development-57933.firebaseapp.com',
+  projectId: 'development-57933',
+  storageBucket: 'development-57933.appspot.com',
+  messagingSenderId: '771311771906',
+  appId: '1:771311771906:web:4c5087b558444ad285a21b',
+  measurementId: 'G-74PH1BQH5E',
+  locationId: 'europe-west',
+};
+
 export const environment = {
   host: 'http://localhost:3000',
   useFirebaseEmulator: true,

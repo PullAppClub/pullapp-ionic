@@ -52,23 +52,24 @@
       </div>
 
       <!-- Active Challenges Section -->
-      <div *ngIf="showChallenges === userChallengesSection.Active">
+      @if (showChallenges === userChallengesSection.Active) {
         <div class="grid grid-cols-2 gap-2 mt-5 mb-5">
           <!-- Active Challenge Cards -->
-          <div
-            class="card bg-base-100"
-            style="background-color: #f2f4f7"
-            *ngFor="let challenge of activeChallenges">
-            <div class="card-body text-left">
-              <p class="text-xs lowercase">
-                {{ challenge.sportType }} -
-                <span class="font-semibold">{{
-                  challenge.level.levelName
-                }}</span>
-              </p>
-              <h2 class="font-semibold">{{ challenge.title }}</h2>
+          @for (challenge of activeChallenges; track challenge.id) {
+            <div class="card bg-base-100" style="background-color: #f2f4f7">
+              <a [routerLink]="['/events/challenge/', challenge.id]">
+                <div class="card-body text-left">
+                  <p class="text-xs lowercase">
+                    {{ challenge.sportType }} -
+                    <span class="font-semibold">{{
+                      challenge.level.levelName
+                    }}</span>
+                  </p>
+                  <h2 class="font-semibold">{{ challenge.title }}</h2>
+                </div></a
+              >
             </div>
-          </div>
+          }
           <!-- ./Active Challenge Cards -->
         </div>
 
@@ -76,27 +77,28 @@
         <app-load-more-button
           (click)="loadMoreActiveChallenges()"></app-load-more-button>
         <!-- ./Load More Active Challenges Button -->
-      </div>
+      }
       <!-- ./Active Challenges Section -->
 
       <!-- Completed Challenges Section -->
-      <div *ngIf="showChallenges === userChallengesSection.Completed">
+      @if (showChallenges === userChallengesSection.Completed) {
         <div class="grid grid-cols-2 gap-2 mt-5 mb-5">
           <!-- Completed Challenge Cards -->
-          <div
-            class="card bg-base-100"
-            style="background-color: #d1fadf"
-            *ngFor="let challenge of activeChallenges">
-            <div class="card-body text-left">
-              <p class="text-xs lowercase">
-                {{ challenge.sportType }} -
-                <span class="font-semibold">{{
-                  challenge.level.levelName
-                }}</span>
-              </p>
-              <h2 class="font-semibold">{{ challenge.title }}</h2>
+          @for (challenge of completedChallenges; track challenge.id) {
+            <div class="card bg-base-100" style="background-color: #d1fadf">
+              <a [routerLink]="['/events/challenge/', challenge.id]">
+                <div class="card-body text-left">
+                  <p class="text-xs lowercase">
+                    {{ challenge.sportType }} -
+                    <span class="font-semibold">{{
+                      challenge.level.levelName
+                    }}</span>
+                  </p>
+                  <h2 class="font-semibold">{{ challenge.title }}</h2>
+                </div>
+              </a>
             </div>
-          </div>
+          }
           <!-- ./Completed Challenge Cards -->
         </div>
 
@@ -104,18 +106,18 @@
         <app-load-more-button
           (click)="loadMoreCompletedChallenges()"></app-load-more-button>
         <!-- ./Load More Completed Challenges Button -->
-      </div>
+      }
       <!-- ./Completed Challenges Section -->
 
       <!-- Created Challenges Section -->
       <div class="mx-auto my-10 text-left">
         <h2 class="text-2xl inline-block align-middle font-semibold">
-          Created Challenges
+          {{ 'MODULES.PROFILE.CHALLENGES_CREATED' | translate }}
         </h2>
         <!-- Created Challenge Carousel -->
         <div
           class="container-snap snap-proximity pb-8 w-full flex gap-8 snap-x overflow-x-auto self-center p-6">
-          <div class="snap-center" *ngFor="let challenge of challenges">
+          <div class="snap-center" *ngFor="let challenge of challengesCreated">
             <app-challenge-card-md
               [challenge]="challenge"></app-challenge-card-md>
           </div>
@@ -125,37 +127,41 @@
       <!-- ./Created Challenges Section -->
 
       <!-- User Spots -->
-      <div class="mx-auto my-10 text-left">
-        <h2 class="text-2xl inline-block align-middle font-semibold">
-          &#64;username Spots
-        </h2>
-        <!-- Created Challenge Carousel -->
-        <div
-          class="container-snap snap-proximity pb-8 w-full flex gap-8 snap-x overflow-x-auto self-center p-6">
-          <div class="snap-center" *ngFor="let challenge of challenges">
-            <app-spot-card-md></app-spot-card-md>
+      @if (!!spots && spots.length > 0) {
+        <div class="mx-auto my-10 text-left">
+          <h2 class="text-2xl inline-block align-middle font-semibold">
+            &#64;username Spots
+          </h2>
+          <!-- Created Challenge Carousel -->
+          <div
+            class="container-snap snap-proximity pb-8 w-full flex gap-8 snap-x overflow-x-auto self-center p-6">
+            <div
+              class="snap-center"
+              *ngFor="let challenge of challengesCreated">
+              <app-spot-card-md></app-spot-card-md>
+            </div>
           </div>
+          <!-- ./Created Challenge Carousel -->
         </div>
-        <!-- ./Created Challenge Carousel -->
-      </div>
+      }
       <!-- ./User Spots -->
 
       <!-- ./Challenges  Section -->
 
-      <!-- Spot Card -->
+      <!--      Spot Card-->
       <!--      <div class="card card-side bg-base-100 shadow-xl mb-5">-->
       <!--        <figure>-->
       <!--          <img src="assets/img/share.svg" alt="share" />-->
       <!--        </figure>-->
       <!--        <div class="card-body">-->
       <!--          <h2 class="card-title">Spot! 🌍️</h2>-->
-      <!--          <p>@username shared a new spot.</p>-->
+      <!--          <p>&#64;username shared a new spot.</p>-->
       <!--          <div class="card-actions justify-end">-->
       <!--            <button class="btn btn-primary">Discover it</button>-->
       <!--          </div>-->
       <!--        </div>-->
       <!--      </div>-->
-      <!-- ./Spot Card -->
+      <!--      ./Spot Card-->
 
       <!-- Meeting Card -->
       <!--      <div class="card card-side bg-base-100 shadow-xl mb-5">-->

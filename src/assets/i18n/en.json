@@ -26,7 +26,8 @@
         "CHANGE_AVATAR": "Change avatar",
         "AVATAR_CHANGED_TITLE": "Avatar changed",
         "AVATAR_CHANGED_BODY": "Your avatar has been changed successfully"
-      }
+      },
+      "CHALLENGES_CREATED": "Challenges Created"
     },
     "CHALLENGE": {
       "UPLOAD_VIDEO": "Upload video",
