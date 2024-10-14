@@ -15,6 +15,7 @@ import {
 } from 'rxjs';
 import { NavigationHelper } from '../../helpers/navigation/navigation.helper';
 import { TabBarPages } from '../../enums/pages.enum';
+import { de } from 'date-fns/locale';
 
 @Injectable({
   providedIn: 'root',
@@ -27,10 +28,10 @@ export class SessionService {
   ) {}
 
   public getSessionToken(): Observable<string> {
-    return this.firebaseService
-      .getIdToken()
-      .pipe(take(1))
-      .pipe(switchMap(token => this.checkSessionToken(token)));
+    return this.firebaseService.getIdToken().pipe(
+      take(1),
+      mergeMap(token => this.checkSessionToken(token))
+    );
   }
 
   public observeParsedSessionToken(): Observable<DecodedToken | null> {
@@ -70,9 +71,9 @@ export class SessionService {
     );
   }
 
-  private checkSessionToken(token: string | null): Observable<string> | string {
+  private checkSessionToken(token: string | null): Observable<string> {
     return this.isSessionTokenValid(token)
-      ? token
+      ? of(token)
       : this.firebaseService.refreshIdToken();
   }
 
@@ -83,6 +84,6 @@ export class SessionService {
 
     const jwt = this.cryptoHelper.jwtDecode(token);
 
-    return new Date() >= new Date(jwt.exp * 1000);
+    return new Date() <= new Date(jwt.exp * 1000);
   }
 }

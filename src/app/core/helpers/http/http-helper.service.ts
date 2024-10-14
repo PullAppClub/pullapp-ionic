@@ -10,7 +10,14 @@ import {
   PutParams,
 } from '../../interfaces/http-request.interface';
 import { Error } from '../../interfaces/error.interface';
-import { firstValueFrom, map, mergeMap, Observable, switchMap } from 'rxjs';
+import {
+  firstValueFrom,
+  map,
+  mergeMap,
+  Observable,
+  switchMap,
+  take,
+} from 'rxjs';
 import { CustomHeaders } from '../../enums/http.enum';
 
 type RequestOptions = {
