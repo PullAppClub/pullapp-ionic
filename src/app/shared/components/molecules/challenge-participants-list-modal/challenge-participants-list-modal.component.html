@@ -11,46 +11,104 @@
     <!-- Participants Section -->
     <div class="mt-4">
       <!-- Challenge Participant Cards -->
-      <div
-        class="card card-compact bg-base-100 shadow-xl"
-        *ngFor="let participant of participants">
-        <figure>
-          <video class="w-full" controls>
-            <source src="{{ participant.video }}" type="video/mp4" />
-            <source src="{{ participant.video }}" type="video/ogg" />
-            Your browser does not support the video tag.
-          </video>
-        </figure>
-        <div class="card-body">
-          <p class="text-slate-500 mt-2">
-            {{ 'COMMON.BY' | translate }}
-            <a
-              class="text-lg text-slate-900 cursor-pointer"
-              [routerLink]="['/user/member', challenge.owner.userId]"
-              (click)="navigationHelper.addPageToHistory('/user/profile/')"
-              >{{ participant.user.username }}
-            </a>
+      @for (participant of participants; track participant.id) {
+        <div class="card card-compact bg-base-100 shadow-xl">
+          <figure>
+            <video class="w-full" controls>
+              <source src="{{ participant.video }}" type="video/mp4" />
+              <source src="{{ participant.video }}" type="video/ogg" />
+              Your browser does not support the video tag.
+            </video>
+          </figure>
+          <div class="card-body">
+            <p class="text-slate-500 mt-2">
+              {{ 'COMMON.BY' | translate }}
+              <a
+                class="text-lg text-slate-900 cursor-pointer"
+                [routerLink]="['/user/member', participant.user.userId]"
+                (click)="navigationHelper.addPageToHistory('/user/profile/')"
+                >{{ participant.user.username }}
+              </a>
 
-            <span class="ml-auto float-right">
-              {{ createAgoString(participant.createdAt) }}
-            </span>
-          </p>
-          <div
-            class="card-actions justify-center mt-3"
-            *ngIf="
+              <span class="ml-auto float-right">
+                {{ createAgoString(participant.createdAt) }}
+              </span>
+            </p>
+            <!-- Action Buttons Section -->
+            @if (
               participant.status === participationStatus.UnderReview &&
               userId &&
               challenge.owner.userId === userId
-            ">
-            <button class="btn btn-secondary normal-case mr-auto">
-              {{ 'COMMON.REJECT' | translate }}
-            </button>
-            <button class="btn btn-primary normal-case">
-              {{ 'COMMON.APPROVE' | translate }}
-            </button>
+            ) {
+              <div class="card-actions justify-center mt-3">
+                <button
+                  class="btn btn-secondary normal-case mr-auto"
+                  (click)="showDeclineChallenge()">
+                  {{ 'COMMON.REJECT' | translate }}
+                </button>
+                <button
+                  class="btn btn-primary normal-case"
+                  (click)="showAcceptChallenge()">
+                  {{ 'COMMON.APPROVE' | translate }}
+                </button>
+              </div>
+            }
+            <!-- ./Action Buttons Section -->
+            <!-- Decline Confirmation Section -->
+            @if (showDeclineChallengeSection) {
+              <form
+                class="flex flex-col space-y-2 mt-4 my-2"
+                [formGroup]="declineChallengeReasonForm">
+                <h1 class="text-xl font-bold text-slate-900">
+                  Do you confirm the challenge was not done correctly ?
+                </h1>
+                <p class="text-md font-bold text-slate-900">Insert comment</p>
+                <textarea
+                  formControlName="reason"
+                  class="textarea w-full textarea-bordered"
+                  maxlength="250"
+                  required
+                  [class.border-rose-600]="
+                    declineChallengeReasonForm.get('reason')?.invalid
+                  "
+                  [class.border-slate-200]="
+                    declineChallengeReasonForm.get('reason')?.valid
+                  "></textarea>
+
+                <div class="flex space-x-2 justify-center">
+                  <!-- Cancel Rejection Button -->
+
+                  <button
+                    type="button"
+                    class="btn btn-outline normal-case mr-auto"
+                    (click)="showDeclineChallengeSection = false">
+                    {{ 'COMMON.CANCEL' | translate }}
+                  </button>
+                  <!-- ./Cancel Rejection Button -->
+
+                  <!-- Confirm Rejection Button -->
+                  <button
+                    type="submit"
+                    class="btn normal-case"
+                    (click)="
+                      declineChallenge(
+                        participant,
+                        $any(declineChallengeReasonForm.get('reason')?.value)
+                      )
+                    "
+                    [disabled]="
+                      declineChallengeReasonForm.get('reason')?.invalid
+                    ">
+                    {{ 'COMMON.CONFIRM' | translate }}
+                  </button>
+                  <!-- ./Confirm Rejection Button -->
+                </div>
+              </form>
+            }
+            <!-- ./Decline Confirmation Section -->
           </div>
         </div>
-      </div>
+      }
       <!-- ./Challenge Participant Cards -->
     </div>
     <!-- ./Participants Section -->

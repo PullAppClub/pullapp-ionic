@@ -47,6 +47,11 @@ export class SelectLevelComponent implements OnInit {
     });
   }
 
+  public reset(): void {
+    this.selectedLevel = 0;
+    this.selectedValueValueEmitter.emit(this.selectedChallengeLevel);
+  }
+
   private handleSelectedChallengeLevel(
     challengeLevelName: ChallengeLevelEnum
   ): void {

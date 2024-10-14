@@ -24,7 +24,7 @@ export class ChallengeCardComponent implements OnInit {
   public userId: string | undefined;
 
   constructor(
-    private readonly navigationHelper: NavigationHelper,
+    public readonly navigationHelper: NavigationHelper,
     private readonly sessionService: SessionService,
     private readonly challengeService: ChallengeService
   ) {}

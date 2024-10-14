@@ -21,12 +21,15 @@ export const endpoints = {
     LEVELS: '/event/challenge/levels',
     GET_HOME_PAGE_CHALLENGES: '/event/challenge/home-page',
     GET_CHALLENGE: '/event/challenge/',
+    GET_GLOBAL_CHALLENGES: '/event/challenge/global',
   },
   CHALLENGE_PAYMENT: {
     SPONSORED_PRICING: '/event/challenge-payment/sponsored-pricing',
   },
   CHALLENGE_PARTICIPATION: {
     CREATE: '/event/challenge-participation',
+    APPROVE: '/event/challenge-participation/approve',
+    REJECT: '/event/challenge-participation/reject',
   },
   ACCOUNT: {
     FCM_TOKEN: '/user/account/fcm-token',

@@ -27,4 +27,24 @@ export class ChallengeParticipationService {
       showProgressBar: true,
     });
   }
+
+  public approveChallengeParticipation(
+    challengeParticipationId: string
+  ): Observable<HttpMessageResponse> {
+    return this.httpHelper.patch<HttpMessageResponse>({
+      url: `${endpoints.HOST}${endpoints.CHALLENGE_PARTICIPATION.APPROVE}/${challengeParticipationId}`,
+      token$: this.sessionService.getSessionToken(),
+    });
+  }
+
+  public rejectChallengeParticipation(
+    challengeParticipationId: string,
+    reason: string
+  ): Observable<HttpMessageResponse> {
+    return this.httpHelper.patch<HttpMessageResponse, { reason: string }>({
+      url: `${endpoints.HOST}${endpoints.CHALLENGE_PARTICIPATION.REJECT}/${challengeParticipationId}`,
+      token$: this.sessionService.getSessionToken(),
+      body: { reason },
+    });
+  }
 }

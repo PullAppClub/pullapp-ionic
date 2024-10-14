@@ -72,13 +72,17 @@
       </div>
 
       <!-- Challenge Loading Spinner -->
-      <app-spinner *ngIf="!homePageChallenges"></app-spinner>
+      @if (!homePageChallenges || showGlobalChallengesSpinner) {
+        <app-spinner></app-spinner>
+      }
       <!-- ./Challenge LoadingSpinner -->
 
       <!-- Challenge Card -->
-      <app-challenge-card
-        *ngFor="let challenge of homePageChallenges?.global"
-        [challenge]="challenge"></app-challenge-card>
+      @if (homePageChallenges?.global && !showGlobalChallengesSpinner) {
+        @for (challenge of homePageChallenges?.global; track challenge.id) {
+          <app-challenge-card [challenge]="challenge"></app-challenge-card>
+        }
+      }
       <!-- ./Challenge Card -->
     </div>
     <!-- ./Global Challenges Vertical Section -->
@@ -91,6 +95,7 @@
     <div class="modal-box text-center">
       <label
         for="filter-modal"
+        #filterModalClose
         class="btn btn-xs btn-circle absolute right-2 top-2"
         (click)="tabBarService.setShowTabBar(true)"
         >✕</label
@@ -110,9 +115,11 @@
 
       <div class="modal-action">
         <!-- Join Meeting -->
-        <button class="btn mr-auto">Reset</button>
+        <button class="btn mr-auto" (click)="resetFilters()">Reset</button>
 
-        <button class="btn btn-primary mr-auto">Apply</button>
+        <button class="btn btn-primary mr-auto" (click)="getGlobalChallenges()">
+          Apply
+        </button>
 
         <!-- ./Join Meeting -->
       </div>

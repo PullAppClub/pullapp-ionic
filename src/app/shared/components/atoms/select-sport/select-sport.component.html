@@ -1,7 +1,8 @@
 <select
   class="select select-primary w-full max-w-xl"
+  [(ngModel)]="selectedSport"
   (change)="emitSelectedSport($any($event.target).value)">
-  <option disabled selected>Select discipline</option>
+  <option disabled [value]="undefined" selected>Select discipline</option>
   <option [value]="sportTypeEnum.Calisthenics">Calisthenics</option>
   <option [value]="sportTypeEnum.Skating">Skating</option>
   <option [value]="sportTypeEnum.Parkour">Parkour</option>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import {
   Challenge,
   ChallengeParticipant,
@@ -9,6 +9,11 @@ import { ParticipationStatus } from '../../../../modules/events/enums/challenge-
 import { SessionService } from '../../../../core/services/session/session.service';
 import { DecodedToken } from '../../../../core/types/auth.type';
 import { NavigationHelper } from '../../../../core/helpers/navigation/navigation.helper';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChallengeParticipationService } from '../../../../modules/events/services/challenge-participation/challenge-participation.service';
+import { finalize } from 'rxjs';
+import { error } from 'ol/console';
+import { HttpErrorHandlerHelper } from '../../../../core/helpers/http-error-handler/http-error-handler.helper';
 
 @Component({
   selector: 'app-challenge-participants-list-modal',
@@ -23,18 +28,27 @@ export class ChallengeParticipantsListModalComponent implements OnInit {
 
   @Input({ required: true })
   public forLabelId!: string;
-
   public participationStatus = ParticipationStatus;
   public userId: string | undefined;
-  @ViewChild('participantsSection', { static: true })
-  private participantsSection!: ElementRef;
+
+  public showDeclineChallengeSection = false;
+  public showAcceptChallengeSection = false;
+  public declineChallengeReasonForm = new FormGroup({
+    reason: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(300),
+    ]),
+  });
 
   constructor(
     public readonly tabBarService: TabBarService,
     public readonly dateHelper: DateHelper,
     public readonly sessionService: SessionService,
     private readonly elementRef: ElementRef,
-    public readonly navigationHelper: NavigationHelper
+    public readonly navigationHelper: NavigationHelper,
+    public readonly challengeParticipationService: ChallengeParticipationService,
+    public readonly httpErrorHandlerHelper: HttpErrorHandlerHelper
   ) {}
 
   ngOnInit(): void {
@@ -61,5 +75,28 @@ export class ChallengeParticipantsListModalComponent implements OnInit {
       new Date(createdAt),
       new Date()
     );
+  }
+
+  public showDeclineChallenge(): void {
+    this.showDeclineChallengeSection = true;
+    this.showAcceptChallengeSection = false;
+  }
+
+  public showAcceptChallenge(): void {
+    this.showAcceptChallengeSection = true;
+    this.showDeclineChallengeSection = false;
+  }
+
+  public declineChallenge(
+    participation: ChallengeParticipant,
+    reason: string
+  ): void {
+    this.challengeParticipationService
+      .rejectChallengeParticipation(participation.id, reason)
+      .pipe(finalize(() => (this.showDeclineChallengeSection = false)))
+      .subscribe({
+        next: () => (participation.status = ParticipationStatus.Decline),
+        error: e => this.httpErrorHandlerHelper.handle(e),
+      });
   }
 }

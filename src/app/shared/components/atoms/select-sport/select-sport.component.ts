@@ -10,6 +10,7 @@ export class SelectSportComponent implements OnInit {
   @Output()
   public selectedSportValueEmitter = new EventEmitter<SportType>();
   public sportTypeEnum = SportType;
+  public selectedSport?: SportType;
 
   constructor() {}
 
@@ -17,5 +18,10 @@ export class SelectSportComponent implements OnInit {
 
   public emitSelectedSport(sport: SportType) {
     this.selectedSportValueEmitter.emit(sport);
+  }
+
+  public reset() {
+    this.selectedSport = undefined;
+    this.selectedSportValueEmitter.emit(undefined);
   }
 }

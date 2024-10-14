@@ -33,7 +33,10 @@
         <div class="flex items-center">
           <p class="text-sm mr-2">
             <span class="text-slate-500">{{ 'COMMON.BY' | translate }}</span>
-            <a class="link">
+            <a
+              class="link"
+              [routerLink]="['/user/member', challenge.owner.userId]"
+              (click)="navigationHelper.addPageToHistory('/user/profile/')">
               {{ challenge.owner.username }}
             </a>
           </p>

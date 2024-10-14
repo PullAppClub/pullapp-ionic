@@ -3,6 +3,7 @@ import { HttpHelper } from '../../../../core/helpers/http/http-helper.service';
 import { SessionService } from '../../../../core/services/session/session.service';
 import {
   Challenge,
+  ChallengeFilters,
   ChallengeParticipant,
   CreateChallengeParams,
   CreateSponsoredChallengeParams,
@@ -80,6 +81,24 @@ export class ChallengeService {
   public getHomePageChallenges(): Observable<HomePageChallenges> {
     return this.requestHelper.get<HomePageChallenges>({
       url: endpoints.HOST + endpoints.CHALLENGE.GET_HOME_PAGE_CHALLENGES,
+      token$: this.sessionService.getSessionToken(),
+    });
+  }
+
+  public getGlobal(filters: ChallengeFilters): Observable<Challenge[]> {
+    const params: ChallengeFilters = {};
+
+    if (filters?.levelId) {
+      params['levelId'] = filters.levelId;
+    }
+
+    if (filters?.sportType) {
+      params['sportType'] = filters.sportType;
+    }
+
+    return this.requestHelper.get<Challenge[]>({
+      url: endpoints.HOST + endpoints.CHALLENGE.GET_GLOBAL_CHALLENGES,
+      params,
       token$: this.sessionService.getSessionToken(),
     });
   }

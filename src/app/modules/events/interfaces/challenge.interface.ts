@@ -77,3 +77,8 @@ export type HomePageChallenges = {
   global: Challenge[];
   sponsored: Challenge[];
 };
+
+export type ChallengeFilters = {
+  levelId?: string;
+  sportType?: SportType;
+};
